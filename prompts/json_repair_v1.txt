@@ -1,0 +1,9 @@
+Repair the candidate into one valid JSON object with exactly 4 distinct entries under `pairs`.
+Each entry must contain non-empty `question`, `answer`, `evidence`, and `question_type` strings.
+Preserve the candidate's semantic content; do not add facts. Return JSON only.
+
+Validation error:
+{validation_error}
+
+Candidate:
+{candidate}

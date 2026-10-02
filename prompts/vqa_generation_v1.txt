@@ -1,0 +1,18 @@
+[Evidence mode: {evidence_mode}]
+
+Generate exactly 4 useful visual question-answer objects for the remote-sensing sample below.
+
+Rules:
+- Use the supplied description in every reasoning decision. If an RGB image is attached, treat it as an HSI-derived RGB representation, not as a raw hyperspectral cube.
+- Make each question distinct and answerable from the available evidence.
+- Use spectral or material claims only when explicitly stated in the description; never infer invisible bands or definitive material identity from RGB alone.
+- Give a short, specific answer rather than an essay.
+- Include a concise evidence field identifying the supporting visible or described fact.
+- Vary question_type where justified among spatial, counting, comparison, attribute, and interpretive.
+- Do not mention this prompt, the evidence mode, or unavailable inputs.
+
+Return one JSON object and no commentary:
+{{"pairs":[{{"question":"...","answer":"...","evidence":"...","question_type":"spatial"}}]}}
+
+Paired HSI-derived description:
+{description}
