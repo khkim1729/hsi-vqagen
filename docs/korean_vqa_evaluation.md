@@ -14,6 +14,38 @@ paired description을 뜻한다. **정답 VQA annotation을 뜻하지 않는다.
 다운로드가 진행 중이어서 이번 표에서 제외했다. 완료 뒤 같은 prompt와 sample manifest로
 추가해야 한다.
 
+## VQA를 생성한 prompt와 검증 과정
+
+모든 조건은 [`prompts/vqa_generation_ko_v1.txt`](../prompts/vqa_generation_ko_v1.txt)의
+동일 template을 사용한다. `{evidence_mode}`만 `RGB + description` 또는
+`description only`로 바뀌고, `{description}`에는 해당 sample의 한국어 paired description이
+들어간다. Multimodal 조건에서는 HSI-derived RGB를 text보다 먼저 전달하고, text-only
+조건에서는 image content와 RGB path를 모두 제거한다.
+
+Prompt는 정확히 4개의 서로 다른 VQA, 자연스러운 한국어 question/answer/evidence, 짧고
+구체적인 answer, 입력에 근거한 evidence, strict JSON 출력을 요구한다. Description에 없는
+spectral/material 정보를 RGB만으로 추론하지 못하게 하고, text-only 모델이 image를 직접
+보았다고 표현하는 것도 금지한다. JSON key와 `spatial`, `counting`, `comparison`,
+`attribute`, `interpretive`의 `question_type` 값만 영어로 유지한다.
+
+```json
+{
+  "pairs": [
+    {
+      "question": "장면에서 가장 넓은 식생대의 비율은 얼마인가요?",
+      "answer": "약 43%입니다.",
+      "evidence": "가장 넓은 습윤 식생대가 약 43%를 차지합니다.",
+      "question_type": "counting"
+    }
+  ]
+}
+```
+
+Prompt file의 SHA-256, prompt version, checkpoint revision, generation settings는
+`generation_config.json`과 각 normalized row에 기록한다. Validator는 pair 수, schema,
+provenance와 중복 질문을 검사한다. 선택적 validation retry는 최초 실패 시 seed를
+20261001에서 20261002로 바꾸는 최대 1회이며, 원시 응답과 retry 여부를 남긴다.
+
 ## 자동 평가
 
 - 한국어 완결률: 질문과 evidence에 한글이 있고, 답변은 한글 또는 `43%` 같은 완결된
@@ -74,9 +106,9 @@ CSV와 계산 전 JSON은 각각 `artifacts/korean_vqa_metrics.csv`와
 이 점검은 연구자 1인의 비맹검 예비 검토다. 논문용 correctness·grounding·hallucination·
 usefulness 점수에는 최소 2인의 독립 평가와 불일치 조정이 필요하다.
 
-## 권장 human evaluation rubric
+## 확정한 human evaluation rubric
 
-각 VQA를 1--5점으로 평가한다.
+평가자 2인이 서로의 점수를 보지 않고 각 VQA를 1--5점으로 평가한다.
 
 1. correctness: answer가 source/RGB와 모순되지 않는가
 2. grounding: answer와 evidence가 제공된 입력에서 확인 가능한가
@@ -87,7 +119,8 @@ usefulness 점수에는 최소 2인의 독립 평가와 불일치 조정이 필�
 추가로 question diversity와 visual dependence를 case 단위 1--5점으로 평가한다.
 description-only 평가자에게는 RGB를 보여주지 않고, multimodal 평가에는 RGB와 description을
 함께 제공해야 입력 조건이 섞이지 않는다. Gemma-4-12B C03/C09는 같은 checkpoint의 controlled
-modality ablation으로 별도 비교한다.
+modality ablation으로 별도 비교한다. 두 평가자의 점수가 2점 이상 차이나면 근거를 기록해
+조정하고, 원점수·조정점수·일치도를 모두 보존한다.
 
 ## 재현 명령
 
