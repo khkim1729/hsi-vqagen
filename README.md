@@ -37,4 +37,14 @@ The companion paper is titled *HSI-VQAGen: Comparing Vision-Language and Text-On
 
 ## Current status
 
-The dataset and prior HSI-description system have been inspected. Repository implementation, model smoke tests, the five-by-eleven run, and paper assets are being built in the documented gated order.
+The dataset and prior HSI-description system have been inspected. A preliminary
+same-sample comparison has completed for Qwen3-VL-8B, InternVL3-8B,
+Gemma-4-12B, and Mistral Small 3.1 under both input conditions. The Mistral
+vLLM/Transformers incompatibility was reproduced and resolved with a pinned stack.
+
+- [초기 4개 멀티모달 모델 비교 결과 (한국어)](docs/early_model_comparison_ko.md)
+- [One-sample smoke-test execution record](docs/smoke_test_results.md)
+
+The preliminary result is not the final eleven-configuration paper experiment.
+Remaining checkpoints, blind human evaluation, figures, and paper assets continue
+in the documented gated order.

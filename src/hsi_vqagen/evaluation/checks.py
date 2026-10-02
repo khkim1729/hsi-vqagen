@@ -154,12 +154,27 @@ def main() -> None:
     parser.add_argument("--require-samples", nargs="*")
     parser.add_argument("--require-pairs", type=int, default=4)
     args = parser.parse_args()
+    rows = _load_rows(args.outputs)
+    required_configs = (
+        [item for value in args.require_configs for item in value.split(",") if item]
+        if args.require_configs else None
+    )
+    required_samples = args.require_samples
+    count_error = None
+    if required_samples and len(required_samples) == 1 and required_samples[0].isdigit():
+        expected_count = int(required_samples[0])
+        observed = sorted({str(row.get("sample_id")) for row in rows})
+        if len(observed) != expected_count:
+            count_error = f"expected {expected_count} unique samples, found {len(observed)}"
+        required_samples = observed
     summary = evaluate_deterministic(
-        _load_rows(args.outputs), require_configs=args.require_configs,
-        require_samples=args.require_samples, require_pairs=args.require_pairs,
+        rows, require_configs=required_configs,
+        require_samples=required_samples, require_pairs=args.require_pairs,
     )
     print(summary.model_dump_json(indent=2))
-    raise SystemExit(0 if summary.passed else 1)
+    if count_error:
+        print(count_error)
+    raise SystemExit(0 if summary.passed and count_error is None else 1)
 
 
 if __name__ == "__main__":

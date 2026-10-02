@@ -42,6 +42,7 @@ configurations:
       trust_remote_code: true
       max_num_tiles: 12
       include_thumbnail: true
+      system_message_mode: inline_user
     preprocessing_exceptions:
       - InternVL dynamic tiling may create multiple 448-pixel image tiles.
 
@@ -76,6 +77,7 @@ configurations:
       tokenizer_mode: mistral
       config_format: mistral
       load_format: mistral
+      fix_mistral_regex: true
     preprocessing_exceptions:
       - Mistral common processing defines its image and message serialization.
 
@@ -110,6 +112,7 @@ configurations:
       tokenizer_mode: mistral
       config_format: mistral
       load_format: mistral
+      fix_mistral_regex: true
     preprocessing_exceptions: []
 
   - id: C07
@@ -187,5 +190,6 @@ configurations:
       trust_remote_code: true
       max_num_tiles: 12
       include_thumbnail: true
+      system_message_mode: inline_user
     preprocessing_exceptions:
       - The verified pure-text call must pass no pixel values or image payload.

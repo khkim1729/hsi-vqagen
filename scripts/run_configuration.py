@@ -18,12 +18,19 @@ from hsi_vqagen.inference.runner import run_configuration
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _exit_code(summary) -> int:
+    return 1 if summary.failed else 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("config_id")
     parser.add_argument("--base-url", required=True, help="vLLM endpoint ending in /v1")
     parser.add_argument("--output-root", type=Path, default=ROOT / "outputs" / "feasibility")
     parser.add_argument("--no-resume", action="store_true")
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--load-seconds", type=float, default=0.0)
+    parser.add_argument("--gpu-index", type=int)
     args = parser.parse_args()
 
     registry = load_experiment_registry(ROOT / "configs" / "experiments.yaml")
@@ -34,7 +41,14 @@ def main() -> None:
     local_paths = yaml.safe_load((ROOT / "configs" / "local_paths.yaml").read_text())
     records = load_dataset_records(Path(local_paths["dataset_root"]))
     fixed = load_fixed_samples(records, ROOT / "configs" / "feasibility_samples.yaml")
-    backend = VLLMBackend.from_endpoint(args.base_url)
+    if args.limit is not None:
+        fixed = fixed[: args.limit]
+    backend = VLLMBackend.from_endpoint(
+        args.base_url,
+        load_seconds=args.load_seconds,
+        server_version="0.30.0",
+        gpu_index=args.gpu_index,
+    )
     summary = run_configuration(
         config=config,
         records=fixed,
@@ -44,6 +58,7 @@ def main() -> None:
         resume=not args.no_resume,
     )
     print(summary.model_dump_json(indent=2))
+    raise SystemExit(_exit_code(summary))
 
 
 if __name__ == "__main__":

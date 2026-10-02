@@ -1,4 +1,4 @@
-from hsi_vqagen.inference.telemetry import peak_vram_measurement
+from hsi_vqagen.inference.telemetry import PeakMemorySampler, peak_vram_measurement
 from hsi_vqagen.utils.logging import redact_secrets
 
 
@@ -30,3 +30,11 @@ def test_redacts_tokens_and_authorization_headers() -> None:
     assert "abc.def.ghi" not in redacted
     assert all(token not in redacted for token in fake_tokens)
     assert redacted.count("[REDACTED]") >= 4
+
+
+def test_peak_sampler_keeps_maximum_observed_value() -> None:
+    values = iter((100, 500, 300))
+    sampler = PeakMemorySampler(lambda: next(values), interval_seconds=60)
+    with sampler:
+        sampler._sample()
+    assert sampler.peak_bytes == 500

@@ -8,7 +8,12 @@ The architecture and the input condition are recorded separately. In particular,
 
 ## Audited runtime
 
-The server has four NVIDIA H200 NVL GPUs, each reporting 143,771 MiB, with driver 580.82.07. The isolated environment currently contains Python 3.10.12, PyTorch 2.13.0+cu130, Transformers 5.18.0, and vLLM 0.30.0. CUDA enumeration succeeds for all four GPUs. The installed vLLM registry recognizes all configured architecture names:
+The server has four NVIDIA H200 NVL GPUs, each reporting 143,771 MiB, with driver
+580.82.07. The isolated environment contains Python 3.10.12, PyTorch 2.13.0+cu130,
+Transformers 5.10.4, Tokenizers 0.22.2, and vLLM 0.30.0. Transformers was pinned
+after an actual Mistral smoke-load failure demonstrated that 5.18.0 had removed the
+Pixtral rotary class imported by this vLLM release. CUDA enumeration succeeds for
+all four GPUs. The installed vLLM registry recognizes all configured architecture names:
 
 - `Qwen3VLForConditionalGeneration`
 - `InternVLChatModel`
@@ -68,7 +73,7 @@ CUDA_VISIBLE_DEVICES=<gpu> vllm serve <checkpoint> \
   --port <port>
 ```
 
-Qwen3 text runs explicitly disable thinking through chat-template arguments. Mistral uses its official `tokenizer_mode=mistral`, `config_format=mistral`, and `load_format=mistral` controls. InternVL uses remote code and its native dynamic image tiling when the Transformers fallback is needed.
+Qwen3 text runs explicitly disable thinking through chat-template arguments. Mistral uses its official `tokenizer_mode=mistral`, `config_format=mistral`, and `load_format=mistral` controls; its processor probe additionally required the upstream-recommended `fix_mistral_regex=true`, applied identically to C04 and C06. InternVL uses remote code and its native dynamic image tiling when the Transformers fallback is needed.
 
 At the pinned revision, the Gemma-4-12B repository card supplies a Transformers `AutoModelForMultimodalLM` example but no vLLM launch recipe. The Gemma-4-31B Hugging Face integration and the official [vLLM Gemma 4 recipe](https://docs.vllm.ai/projects/recipes/en/stable/Google/Gemma4.html) do provide a serving path, including a text-only mode that disables image profiling. Although local vLLM 0.30.0 recognizes the newer `Gemma4UnifiedForConditionalGeneration` architecture used by 12B, its real backend is intentionally unresolved until C03/C09 smoke tests. A Transformers fallback is predeclared; no checkpoint substitution is allowed silently.
 
