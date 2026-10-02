@@ -11,9 +11,9 @@ HSI에서 추출한 RGB와 기존 HSI 분석 시스템이 만든 한국어 descr
 | 고정 sample | 5개, 모든 configuration에서 동일 ID·순서 사용 |
 | 등록 checkpoint | 7개 open checkpoint |
 | 실험 configuration | 11개: RGB + description 4개, description only 7개 |
-| 완료 | 10개 configuration, 50 case, 한국어 VQA 200개 |
-| 대기 | C08 Qwen3-32B 다운로드 후 smoke/full run |
-| 한국어 형식 통과 | 완료된 200/200 VQA |
+| 완료 | 11개 configuration, 55 case, 한국어 VQA 220개 |
+| 모델 다운로드 | 7개 checkpoint 모두 완료 |
+| 한국어 형식 통과 | 220/220 VQA |
 | 주요 controlled ablation | Gemma-4-12B C03 vs C09 |
 | 원시 HSI 입력 여부 | 없음; HSI-derived RGB와 paired description만 사용 |
 
@@ -34,7 +34,7 @@ multimodal-capable architecture지만 C07에서는 image를 전달하지 않는 
 | C05 | Qwen/Qwen3-8B | 8B | Text | Description only | 20 | 0.625 | 3.06 s | 완료 |
 | C06 | Mistral-Small-3.1-24B-Instruct-2503 | 24B | Multimodal | Description only | 20 | 0.585 | 5.48 s | 완료 |
 | C07 | google/gemma-4-31B-it | 31B | Multimodal | Description only | 20 | 0.544 | 10.28 s | 완료 |
-| C08 | Qwen/Qwen3-32B | 32B | Text | Description only | -- | -- | -- | 다운로드 중 |
+| C08 | Qwen/Qwen3-32B | 32B | Text | Description only | 20 | 0.504 | 10.64 s | 완료 |
 | C09 | google/gemma-4-12B-it | 12B | Multimodal | Description only | 20 | 0.572 | 5.29 s | 완료 |
 | C10 | Qwen/Qwen3-VL-8B-Instruct | 8B | Multimodal | Description only | 20 | 0.557 | 2.88 s | 완료 |
 | C11 | OpenGVLab/InternVL3-8B | 8B | Multimodal | Description only | 20 | 0.652 | 3.73 s | 완료 |
@@ -144,8 +144,9 @@ Legacy description-generation 프로젝트는 read-only reference로 조사했�
 - [Machine-readable metrics JSON](artifacts/korean_vqa_metrics.json)
 - [Metrics CSV](artifacts/korean_vqa_metrics.csv)
 
-완료된 200개 VQA는 한국어 형식 검사를 모두 통과했다. 다만 수동 원문 대조에서
+완료된 220개 VQA는 한국어 형식 검사를 모두 통과했다. 다만 수동 원문 대조에서
 Qwen3-8B KONZ 한 답변과 InternVL text-only SRER 한 답변의 의미 오류를 확인했다.
+Qwen3-32B에서는 한 질문의 조사 결합이 어색한 한국어 문법 오류(`보입니다가?`)가 있었다.
 따라서 최종 논문 평가는 자동 지표와 평가자 2인의 독립 human evaluation을 함께 사용한다.
 
 ### Qualitative grids
@@ -154,6 +155,7 @@ Qwen3-8B KONZ 한 답변과 InternVL text-only SRER 한 답변의 의미 오류�
 |---|---|---|
 | RGB + description | [PNG](figures/korean_multimodal_grid.png) · [PDF](figures/korean_multimodal_grid.pdf) | [PNG](figures/korean_multimodal_grid_all.png) · [PDF](figures/korean_multimodal_grid_all.pdf) |
 | Description only | [PNG](figures/korean_text_only_grid.png) · [PDF](figures/korean_text_only_grid.pdf) | [PNG](figures/korean_text_only_grid_all.png) · [PDF](figures/korean_text_only_grid_all.pdf) |
+| Multimodal checkpoint의 description only | [PNG](figures/korean_controlled_text_only_grid.png) · [PDF](figures/korean_controlled_text_only_grid.pdf) | [PNG](figures/korean_controlled_text_only_grid_all.png) · [PDF](figures/korean_controlled_text_only_grid_all.pdf) |
 | Gemma-4-12B ablation | [PNG](figures/korean_gemma4_12b_ablation.png) · [PDF](figures/korean_gemma4_12b_ablation.pdf) | [PNG](figures/korean_gemma4_12b_ablation_all.png) · [PDF](figures/korean_gemma4_12b_ablation_all.pdf) |
 
 논문 본문은 대표 2개 sample을 사용하고 전체 5개 비교는 Appendix에 배치한다.
@@ -227,13 +229,12 @@ Dataset, raw output, model cache, weight, token, local path는 Git에 넣지 않
 Hyperspectral VQA Generation*이다. Overleaf에는 영문 `main.tex`와 한국어 `main_ko.tex`,
 `references.bib`, publication-quality PDF figure를 함께 관리한다.
 
-남은 순서는 다음과 같다.
+다음 순서는 다음과 같다.
 
-1. Qwen3-32B 다운로드 완료 후 C08 한국어 smoke test
-2. 동일 5개 sample의 C08 full run 및 11-configuration 표 갱신
-3. 평가자 2인의 독립 1--5점 human evaluation과 불일치 조정
-4. 대표 2개 qualitative figure는 본문, 전체 5개는 Appendix에 배치
-5. 5-sample feasibility 결론과 향후 전체 데이터 실행을 명확히 분리
+1. 평가자 2인의 독립 1--5점 human evaluation과 불일치 조정
+2. 대표 2개 qualitative figure는 본문, 전체 5개는 Appendix에 배치
+3. 11-configuration의 cross-model 결과와 same-checkpoint ablation을 분리해 분석
+4. 5-sample feasibility 결론과 향후 전체 데이터 실행을 명확히 분리
 
 ## 보안과 재현성
 

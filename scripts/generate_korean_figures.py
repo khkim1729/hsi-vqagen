@@ -12,8 +12,9 @@ from hsi_vqagen.data.records import load_dataset_records
 from hsi_vqagen.data.samples import load_fixed_samples
 from hsi_vqagen.figures.early import load_first_pairs
 from hsi_vqagen.figures.korean import (
+    CONTROLLED_TEXT_ONLY_COLUMNS,
     MULTIMODAL_COLUMNS,
-    TEXT_ONLY_COLUMNS,
+    PRIMARY_TEXT_ONLY_COLUMNS,
     make_korean_grid,
 )
 
@@ -45,9 +46,14 @@ def main() -> None:
             stem=f"korean_multimodal_grid{suffix}", output_dir=args.figures,
         )
         make_korean_grid(
-            rows=rows, samples=samples, columns=TEXT_ONLY_COLUMNS,
+            rows=rows, samples=samples, columns=PRIMARY_TEXT_ONLY_COLUMNS,
             title="한국어 VQA 비교: 한국어 description only (RGB는 독자 참고용)",
             stem=f"korean_text_only_grid{suffix}", output_dir=args.figures,
+        )
+        make_korean_grid(
+            rows=rows, samples=samples, columns=CONTROLLED_TEXT_ONLY_COLUMNS,
+            title="멀티모달 checkpoint의 한국어 description-only 비교",
+            stem=f"korean_controlled_text_only_grid{suffix}", output_dir=args.figures,
         )
         make_korean_grid(
             rows=rows, samples=samples,

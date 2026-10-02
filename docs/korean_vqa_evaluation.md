@@ -1,18 +1,16 @@
 # 한국어 VQA 평가 방법과 5-sample 예비 결과
 
 실행일: 2026-10-02 UTC
-범위: 다운로드와 smoke test가 끝난 6개 checkpoint, 10개 configuration, 고정 5개 sample
+범위: 7개 checkpoint, 11개 configuration, 고정 5개 sample
 
 ## 무엇을 평가했는가
 
 각 configuration은 같은 5개 sample에서 정확히 4개의 한국어 VQA를 생성했다. 현재 평가
-대상은 총 50 case, 200 VQA이다. `Source/GT description`은 기존 HSI 분석 pipeline이 만든
+대상은 총 55 case, 220 VQA이다. `Source/GT description`은 기존 HSI 분석 pipeline이 만든
 paired description을 뜻한다. **정답 VQA annotation을 뜻하지 않는다.** 따라서 description과의
 유사도는 grounding proxy일 뿐 correctness 점수가 아니다.
 
-현재 포함된 조건은 C01--C07, C09--C11이다. C08(Qwen3-32B description only)은 모델
-다운로드가 진행 중이어서 이번 표에서 제외했다. 완료 뒤 같은 prompt와 sample manifest로
-추가해야 한다.
+모든 C01--C11 조건은 같은 sample manifest와 한국어 prompt로 완료했다.
 
 ## VQA를 생성한 prompt와 검증 과정
 
@@ -69,6 +67,7 @@ provenance와 중복 질문을 검사한다. 선택적 validation retry는 최�
 | C05 | Qwen3-8B / description only | 1.00 | 0.625 | 0.869 | 3.06 |
 | C06 | Mistral Small 3.1 24B / description only | 1.00 | 0.585 | 0.923 | 5.48 |
 | C07 | Gemma-4-31B / description only | 1.00 | 0.544 | 0.978 | 10.28 |
+| C08 | Qwen3-32B / description only | 1.00 | 0.504 | 0.968 | 10.64 |
 | C09 | Gemma-4-12B / description only | 1.00 | 0.572 | 0.980 | 5.29 |
 | C10 | Qwen3-VL-8B / description only | 1.00 | 0.557 | 0.943 | 2.88 |
 | C11 | InternVL3-8B / description only | 1.00 | 0.652 | 0.921 | 3.73 |
@@ -84,13 +83,16 @@ CSV와 계산 전 JSON은 각각 `artifacts/korean_vqa_metrics.csv`와
 
 ## 원문 대조 정성 점검
 
-200개 VQA를 configuration별로 펼쳐 보고 source description과 대표 RGB를 대조했다.
+220개 VQA를 configuration별로 펼쳐 보고 source description과 대표 RGB를 대조했다.
 확인된 핵심 사항은 다음과 같다.
 
 - 수치 표현은 한국어 prompt에서 정상화되었다. 이전 영어 실험에서 InternVL3가 `4/3`,
   `5/1`로 잘못 썼던 BART 비율을 이번에는 `4분의 3`, `5분의 1`로 생성했다.
 - Gemma-4-31B(C07)는 20개 모두 source에 직접 근거한 질문·답변을 만들었고, KONZ의
   건물/포장/열린 물 부재, HARV의 43%·16%, DEJU의 34%·32%를 보존했다.
+- Qwen3-32B(C08)는 20개 모두 schema와 grounding 경고 검사를 통과했고 수치·공간 관계를
+  대체로 보존했다. 다만 HARV의 한 질문에 `보입니다가?`라는 조사 결합 오류가 있어 한국어
+  완결성 검사가 문법적 자연스러움까지 보장하지 않음을 확인했다.
 - Qwen3-8B(C05)의 KONZ 문답 중 “식생 밀도가 가장 낮은 지역”을 “화면 가장자리의 어두운
   부분”이라고 답한 것은 source의 “더 촘촘하거나 그늘진 건조 식생”과 맞지 않는다.
 - InternVL3 text-only(C11)의 SRER 첫 답변은 `연속적인 수면 반사`가 주를 이룬다고 썼지만,

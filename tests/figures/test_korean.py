@@ -2,7 +2,20 @@ import warnings
 
 from PIL import Image
 
-from hsi_vqagen.figures.korean import make_korean_grid
+from hsi_vqagen.figures.korean import (
+    CONTROLLED_TEXT_ONLY_COLUMNS,
+    PRIMARY_TEXT_ONLY_COLUMNS,
+    make_korean_grid,
+)
+
+
+def test_text_only_figures_split_cross_model_and_controlled_conditions() -> None:
+    assert [config_id for _, config_id in PRIMARY_TEXT_ONLY_COLUMNS] == [
+        "C05", "C06", "C07", "C08"
+    ]
+    assert [config_id for _, config_id in CONTROLLED_TEXT_ONLY_COLUMNS] == [
+        "C10", "C11", "C09", "C06"
+    ]
 
 
 def test_korean_grid_includes_source_description_and_writes_png_pdf(tmp_path) -> None:

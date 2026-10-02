@@ -8,12 +8,12 @@ The architecture and the input condition are recorded separately. In particular,
 
 ## 2026-10-02 Korean-run availability update
 
-Qwen3-VL-8B, InternVL3-8B, Gemma-4-12B, Mistral Small 3.1 24B, Qwen3-8B,
-and Gemma-4-31B have completed download, one-sample Korean smoke testing, and the
-fixed-five-sample Korean run for their configured conditions. Gemma-4-31B loaded in
-BF16 on one H200 and C07 completed 5/5 cases. Qwen3-32B is still downloading, so C08
-is explicitly absent from the current 10-configuration result and has not been
-replaced. See `docs/korean_vqa_evaluation.md` for measured outputs and limitations.
+All seven checkpoints have completed download, one-sample Korean smoke testing, and
+the fixed-five-sample Korean run for all eleven configurations. Gemma-4-31B and
+Qwen3-32B each loaded in BF16 on one H200; C07 and C08 both completed 5/5 cases.
+Qwen3-32B used 61.03 GiB for model loading in vLLM, had a 127-second measured server
+load time, and produced a mean 10.64-second case latency. No checkpoint was replaced.
+See `docs/korean_vqa_evaluation.md` for measured outputs and limitations.
 
 ## Audited runtime
 

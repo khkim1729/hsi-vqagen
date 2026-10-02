@@ -9,11 +9,10 @@
 ## 한국어 VQA 추가 비교
 
 paired HSI description의 언어에 맞춰 `vqa-generation-ko-v1` prompt를 만들고, 다운로드와
-smoke test가 끝난 모든 checkpoint를 다시 실행했다. 이번 실행은 6개 checkpoint,
-10개 configuration, 고정 5개 sample의 총 200 VQA다. Qwen3-32B(C08)는 아직 다운로드
-중이므로 임의 대체하지 않고 보류했다.
+smoke test가 끝난 모든 checkpoint를 다시 실행했다. 최종 실행은 7개 checkpoint,
+11개 configuration, 고정 5개 sample의 총 220 VQA다.
 
-- 200/200 VQA가 공통 JSONL schema와 한국어 완결성 검사를 통과했다.
+- 220/220 VQA가 공통 JSONL schema와 한국어 완결성 검사를 통과했다.
 - source-description cosine은 정답률이 아니라 **어휘적 grounding proxy**다.
 - 자동 지표와 원문 대조 오류 사례는 [한국어 VQA 평가 문서](korean_vqa_evaluation.md)에
   수치와 함께 정리했다.
@@ -25,7 +24,8 @@ smoke test가 끝난 모든 checkpoint를 다시 실행했다. 이번 실행은 
 
 ### Description only
 
-그림의 RGB는 독자 참고용이며 모델에는 전달하지 않았다. Gemma-4-31B 결과도 포함한다.
+그림의 RGB는 독자 참고용이며 모델에는 전달하지 않았다. C05--C08의 네 cross-model
+text-only 조건에 Gemma-4-31B와 Qwen3-32B 결과를 포함한다.
 
 ![한국어 텍스트 전용 조건 비교](../figures/korean_text_only_grid.png)
 
@@ -40,8 +40,9 @@ smoke test가 끝난 모든 checkpoint를 다시 실행했다. 이번 실행은 
 
 예비 정량 결과에서 한국어 완결률은 전 조건 1.00이었다. source cosine은 C02가 0.821로
 가장 높았지만 긴 source 문장을 그대로 옮기는 경향이 포함되므로 품질 1위라는 뜻은 아니다.
-Gemma-4-31B C07은 평균 10.28초/case로 가장 느렸고, source 수치와 관계를 안정적으로
-보존했다. 반대로 C05의 KONZ 한 답변과 C11의 SRER 한 답변에서 source와 모순되는 의미
+Gemma-4-31B C07은 평균 10.28초/case였고 source 수치와 관계를 안정적으로 보존했다.
+Qwen3-32B C08은 가장 느린 평균 10.64초/case였으며 한 질문에서 한국어 조사 오류가
+관찰됐다. C05의 KONZ 한 답변과 C11의 SRER 한 답변에서는 source와 모순되는 의미
 오류를 확인했다. 이 때문에 최종 논문 평가는 자동 유사도와 독립 human evaluation을 함께
 사용해야 한다.
 
@@ -174,7 +175,7 @@ smoke test한 후 5개 sample을 완료했다. checkpoint 교체는 없었다.
 
 ## 다음 단계
 
-1. 다운로드가 끝난 나머지 checkpoint를 configuration별 1-sample smoke test로 검증한다.
-2. 모든 통과 조건에서 동일 5개 sample을 실행하고 blind human evaluation을 수행한다.
-3. cross-model comparison과 same-checkpoint modality ablation을 분리해 표·그림을 만든다.
-4. 최종 11-configuration 결과만 논문의 본 결과로 사용한다.
+1. 평가자 2인의 blind human evaluation을 수행한다.
+2. cross-model comparison과 same-checkpoint modality ablation을 분리해 분석한다.
+3. 대표 2개 sample은 본문, 전체 5개는 Appendix에 배치한다.
+4. 5-sample feasibility 결과와 향후 전체 데이터 실행을 구분한다.

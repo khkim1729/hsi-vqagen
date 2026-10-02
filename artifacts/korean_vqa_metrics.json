@@ -87,6 +87,18 @@
       "mean_latency_seconds": 10.278250504471362
     },
     {
+      "config_id": "C08",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5035951275205062,
+      "mean_question_diversity": 0.968204768407424,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 28.3,
+      "mean_latency_seconds": 10.63756538182497
+    },
+    {
       "config_id": "C09",
       "case_count": 5,
       "pair_count": 20,

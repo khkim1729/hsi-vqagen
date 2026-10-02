@@ -19,14 +19,20 @@ MULTIMODAL_COLUMNS = (
     ("Gemma-4-12B", "C03"),
     ("Mistral Small 3.1 24B", "C04"),
 )
-TEXT_ONLY_COLUMNS = (
+PRIMARY_TEXT_ONLY_COLUMNS = (
     ("Qwen3-8B", "C05"),
+    ("Mistral Small 3.1 24B", "C06"),
     ("Gemma-4-31B", "C07"),
+    ("Qwen3-32B", "C08"),
+)
+CONTROLLED_TEXT_ONLY_COLUMNS = (
     ("Qwen3-VL-8B", "C10"),
     ("InternVL3-8B", "C11"),
     ("Gemma-4-12B", "C09"),
     ("Mistral Small 3.1 24B", "C06"),
 )
+# Backward-compatible name for callers that expect the main text-only figure.
+TEXT_ONLY_COLUMNS = PRIMARY_TEXT_ONLY_COLUMNS
 
 
 def _qa_text(row: dict[str, Any]) -> str:
