@@ -1,0 +1,191 @@
+registry_version: feasibility-11-config-v1
+sample_manifest_sha256: e64324facd80724ec65afb0734f09d559d1038d919cf2204f908244851205b9f
+
+shared_generation: &shared_generation
+  qa_count: 4
+  max_new_tokens: 1024
+  temperature: 0.0
+  top_p: 1.0
+  top_k: null
+  min_p: null
+  seed: 20261001
+  enable_thinking: false
+
+configurations:
+  - id: C01
+    output_dir: qwen3_vl_8b_multimodal
+    checkpoint: Qwen/Qwen3-VL-8B-Instruct
+    revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+    condition: multimodal
+    allow_image: true
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+    preprocessing_exceptions:
+      - Qwen AutoProcessor owns image resizing and vision-token construction.
+
+  - id: C02
+    output_dir: internvl3_8b_multimodal
+    checkpoint: OpenGVLab/InternVL3-8B
+    revision: 853e3a797a661694b1b8ece0cb72dc2b23e3dac9
+    condition: multimodal
+    allow_image: true
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: true
+      max_num_tiles: 12
+      include_thumbnail: true
+    preprocessing_exceptions:
+      - InternVL dynamic tiling may create multiple 448-pixel image tiles.
+
+  - id: C03
+    output_dir: gemma4_12b_multimodal
+    checkpoint: google/gemma-4-12B-it
+    revision: 707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7
+    condition: multimodal
+    allow_image: true
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+    preprocessing_exceptions:
+      - Gemma 4 AutoProcessor owns image tokenization and chat-template formatting.
+
+  - id: C04
+    output_dir: mistral_small_3_1_24b_multimodal
+    checkpoint: mistralai/Mistral-Small-3.1-24B-Instruct-2503
+    revision: 68faf511d618ef198fef186659617cfd2eb8e33a
+    condition: multimodal
+    allow_image: true
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      tokenizer_mode: mistral
+      config_format: mistral
+      load_format: mistral
+    preprocessing_exceptions:
+      - Mistral common processing defines its image and message serialization.
+
+  - id: C05
+    output_dir: qwen3_8b_text_only
+    checkpoint: Qwen/Qwen3-8B
+    revision: b968826d9c46dd6066d109eabc6255188de91218
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+      enable_thinking: false
+    preprocessing_exceptions: []
+
+  - id: C06
+    output_dir: mistral_small_3_1_24b_text_only
+    checkpoint: mistralai/Mistral-Small-3.1-24B-Instruct-2503
+    revision: 68faf511d618ef198fef186659617cfd2eb8e33a
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      tokenizer_mode: mistral
+      config_format: mistral
+      load_format: mistral
+    preprocessing_exceptions: []
+
+  - id: C07
+    output_dir: gemma4_31b_text_only
+    checkpoint: google/gemma-4-31B-it
+    revision: 842da3794eaa0b77d5f08bae87a17459d91ff475
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+    preprocessing_exceptions: []
+
+  - id: C08
+    output_dir: qwen3_32b_text_only
+    checkpoint: Qwen/Qwen3-32B
+    revision: 9216db5781bf21249d130ec9da846c4624c16137
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+      enable_thinking: false
+    preprocessing_exceptions: []
+
+  - id: C09
+    output_dir: gemma4_12b_text_only
+    checkpoint: google/gemma-4-12B-it
+    revision: 707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+    preprocessing_exceptions: []
+
+  - id: C10
+    output_dir: qwen3_vl_8b_text_only
+    checkpoint: Qwen/Qwen3-VL-8B-Instruct
+    revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: false
+      add_generation_prompt: true
+    preprocessing_exceptions: []
+
+  - id: C11
+    output_dir: internvl3_8b_text_only
+    checkpoint: OpenGVLab/InternVL3-8B
+    revision: 853e3a797a661694b1b8ece0cb72dc2b23e3dac9
+    condition: text_only
+    allow_image: false
+    preferred_backend: vllm
+    fallback_backend: transformers
+    prompt_version: vqa-generation-v1
+    generation: *shared_generation
+    template_controls:
+      trust_remote_code: true
+      max_num_tiles: 12
+      include_thumbnail: true
+    preprocessing_exceptions:
+      - The verified pure-text call must pass no pixel values or image payload.
