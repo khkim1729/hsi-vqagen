@@ -77,6 +77,7 @@ def build_generation_request(
         messages=build_messages(record, config),
         provenance={
             "dataset_shard": record.shard,
+            "description": record.description,
             "description_prompt_version": record.prompt_version,
             "description_prompt_hash": record.prompt_hash,
             "hsi_shape": list(record.hsi_shape),

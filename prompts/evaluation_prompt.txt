@@ -1,0 +1,3 @@
+Review each blinded VQA item using only the supplied RGB (when the condition includes it), paired description, question, answer, and evidence.
+
+Score the following fields independently using the accompanying rubric: correctness, grounding, hallucination, diversity, visual dependence, usefulness, and answer specificity. Do not infer model identity from writing style. Do not reward spectral or material claims unless they are explicitly supported by the description. Record uncertainty in reviewer_notes rather than guessing.
