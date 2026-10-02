@@ -22,7 +22,7 @@ def _exit_code(summary) -> int:
     return 1 if summary.failed else 0
 
 
-def main() -> None:
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("config_id")
     parser.add_argument("--base-url", required=True, help="vLLM endpoint ending in /v1")
@@ -31,13 +31,28 @@ def main() -> None:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--load-seconds", type=float, default=0.0)
     parser.add_argument("--gpu-index", type=int)
-    args = parser.parse_args()
+    parser.add_argument(
+        "--retry-invalid-once",
+        action="store_true",
+        help="retry one schema/content validation failure with seed+1",
+    )
+    parser.add_argument(
+        "--prompt-version",
+        choices=("vqa-generation-v1", "vqa-generation-ko-v1"),
+    )
+    return parser
+
+
+def main() -> None:
+    args = build_parser().parse_args()
 
     registry = load_experiment_registry(ROOT / "configs" / "experiments.yaml")
     try:
         config = registry.by_id[args.config_id]
     except KeyError as exc:
         raise SystemExit(f"unknown configuration: {args.config_id}") from exc
+    if args.prompt_version:
+        config = config.model_copy(update={"prompt_version": args.prompt_version})
     local_paths = yaml.safe_load((ROOT / "configs" / "local_paths.yaml").read_text())
     records = load_dataset_records(Path(local_paths["dataset_root"]))
     fixed = load_fixed_samples(records, ROOT / "configs" / "feasibility_samples.yaml")
@@ -56,6 +71,7 @@ def main() -> None:
         output_root=args.output_root,
         sample_manifest_sha256=registry.sample_manifest_sha256,
         resume=not args.no_resume,
+        retry_invalid_once=args.retry_invalid_once,
     )
     print(summary.model_dump_json(indent=2))
     raise SystemExit(_exit_code(summary))

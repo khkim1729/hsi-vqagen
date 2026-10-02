@@ -6,6 +6,15 @@ The feasibility study uses seven pinned checkpoints in eleven input configuratio
 
 The architecture and the input condition are recorded separately. In particular, C07, C09, C10, and C11 are multimodal-capable architectures run under a strict description-only condition; they are not relabelled as text-only architectures.
 
+## 2026-10-02 Korean-run availability update
+
+Qwen3-VL-8B, InternVL3-8B, Gemma-4-12B, Mistral Small 3.1 24B, Qwen3-8B,
+and Gemma-4-31B have completed download, one-sample Korean smoke testing, and the
+fixed-five-sample Korean run for their configured conditions. Gemma-4-31B loaded in
+BF16 on one H200 and C07 completed 5/5 cases. Qwen3-32B is still downloading, so C08
+is explicitly absent from the current 10-configuration result and has not been
+replaced. See `docs/korean_vqa_evaluation.md` for measured outputs and limitations.
+
 ## Audited runtime
 
 The server has four NVIDIA H200 NVL GPUs, each reporting 143,771 MiB, with driver

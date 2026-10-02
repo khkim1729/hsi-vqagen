@@ -1,0 +1,126 @@
+{
+  "schema_version": "hsi-vqagen.korean-metrics.v1",
+  "metric_note": "source-description cosine is a character 2-4 gram TF-IDF lexical grounding proxy, not a semantic correctness or human-quality score",
+  "configurations": [
+    {
+      "config_id": "C01",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.6324438835842872,
+      "mean_question_diversity": 0.9657420466238055,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 20.3,
+      "mean_latency_seconds": 3.145661533251405
+    },
+    {
+      "config_id": "C02",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.8209361600052499,
+      "mean_question_diversity": 0.925796915730165,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 49.2,
+      "mean_latency_seconds": 4.086337178014219
+    },
+    {
+      "config_id": "C03",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5588953210476316,
+      "mean_question_diversity": 0.9797094283021271,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 25.4,
+      "mean_latency_seconds": 5.301902508363128
+    },
+    {
+      "config_id": "C04",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5371311323308753,
+      "mean_question_diversity": 0.8999821870239572,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 23.6,
+      "mean_latency_seconds": 6.095480198785663
+    },
+    {
+      "config_id": "C05",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.624732886420792,
+      "mean_question_diversity": 0.868826414112305,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 14.6,
+      "mean_latency_seconds": 3.058479581028223
+    },
+    {
+      "config_id": "C06",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5852330266353623,
+      "mean_question_diversity": 0.9227056142131967,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 13.6,
+      "mean_latency_seconds": 5.483785509318113
+    },
+    {
+      "config_id": "C07",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5443215123434176,
+      "mean_question_diversity": 0.9783751830042966,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 30.0,
+      "mean_latency_seconds": 10.278250504471362
+    },
+    {
+      "config_id": "C09",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5719752174870579,
+      "mean_question_diversity": 0.979547688923798,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 28.1,
+      "mean_latency_seconds": 5.293873810954392
+    },
+    {
+      "config_id": "C10",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.5567763212147117,
+      "mean_question_diversity": 0.9428524151617577,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 17.65,
+      "mean_latency_seconds": 2.877698754519224
+    },
+    {
+      "config_id": "C11",
+      "case_count": 5,
+      "pair_count": 20,
+      "korean_complete_pair_rate": 1.0,
+      "mean_source_description_cosine": 0.6517715014120642,
+      "mean_question_diversity": 0.9206328496377895,
+      "direct_visual_access_warning_count": 0,
+      "unsupported_spectral_claim_count": 0,
+      "mean_answer_characters": 49.8,
+      "mean_latency_seconds": 3.7252435620874165
+    }
+  ]
+}

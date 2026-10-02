@@ -11,3 +11,8 @@ Every experimental configuration uses the same five sample IDs in the order belo
 | 5 | `NEON_D19_DEJU_DP3_566000_7088000_bidirectional_reflectance-532-596X724-788` | `s0397` | Bright developed or exposed surface. |
 
 The set was chosen only after checking readable 384 × 384 RGB files, non-empty paired descriptions, 64 × 64 × 426 metadata, and diverse visible/semantic scene characteristics. The selection is not changed per checkpoint or input condition.
+
+The paired descriptions are Korean. The canonical VQA task language is therefore
+Korean (`vqa-generation-ko-v1`) for subsequent feasibility and paper experiments.
+The earlier English run is retained only as a separate pilot record and must not be
+mixed with Korean outputs in aggregate evaluation.

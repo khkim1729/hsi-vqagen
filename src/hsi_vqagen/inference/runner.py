@@ -96,6 +96,7 @@ def run_configuration(
     sample_manifest_sha256: str,
     resume: bool = True,
     repair: RepairCallable | None = None,
+    retry_invalid_once: bool = False,
 ) -> RunSummary:
     output_dir = Path(output_root) / config.output_dir
     raw_dir = output_dir / "raw"
@@ -152,7 +153,42 @@ def run_configuration(
                 backend_metadata={"measurement_method": "unavailable"},
                 error=redact_secrets(f"{type(exc).__name__}: {exc}"),
             )
-        case = normalize_response(raw, request, repair=repair if raw.error is None else None)
+        retry_callable = repair
+        if retry_invalid_once and raw.error is None and retry_callable is None:
+            def retry_callable(raw_text: str, validation_error: str) -> RawGeneration:
+                del raw_text
+                retry_generation = request.generation.model_copy(
+                    update={"seed": request.generation.seed + 1}
+                )
+                retry_request = request.model_copy(
+                    update={"generation": retry_generation}
+                )
+                try:
+                    retried = backend.generate(retry_request)
+                except Exception as exc:
+                    retried = RawGeneration(
+                        text="",
+                        backend=request.backend,
+                        model=request.model,
+                        revision=request.revision,
+                        latency_seconds=0.0,
+                        model_load_seconds=0.0,
+                        backend_metadata={"measurement_method": "unavailable"},
+                        error=redact_secrets(f"{type(exc).__name__}: {exc}"),
+                    )
+                metadata = {
+                    **retried.backend_metadata,
+                    "validation_retry": 1,
+                    "retry_seed": retry_generation.seed,
+                    "trigger_validation_error": redact_secrets(validation_error),
+                }
+                return retried.model_copy(update={"backend_metadata": metadata})
+
+        case = normalize_response(
+            raw,
+            request,
+            repair=retry_callable if raw.error is None else None,
+        )
         atomic_write_json(raw_path, raw.model_dump(mode="json"))
         atomic_write_json(case_path, case.model_dump(mode="json"))
         cases.append(case)
@@ -206,6 +242,11 @@ def run_configuration(
         "completed_sample_ids": completed_ids,
         "failed_sample_ids": failed_ids,
         "model_load_seconds": max(load_times, default=0.0),
+        "validation_retry_policy": {
+            "enabled": retry_invalid_once,
+            "maximum_retries": 1 if retry_invalid_once else 0,
+            "seed_offset": 1 if retry_invalid_once else 0,
+        },
         "case_telemetry": telemetry,
     }
     atomic_write_json(output_dir / "run_manifest.json", manifest)

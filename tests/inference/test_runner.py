@@ -145,3 +145,33 @@ def test_backend_error_is_redacted_and_written_for_retry(record, registry, tmp_p
     assert summary.failed == 1
     assert fake_token not in errors
     assert "[REDACTED]" in errors
+
+
+def test_optional_validation_retry_uses_next_seed_and_preserves_attempts(
+    record, registry, tmp_path: Path
+) -> None:
+    config = registry.by_id["C05"]
+    backend = _Backend(["not json", _valid_text("retry")])
+
+    summary = run_configuration(
+        config=config,
+        records=[record],
+        backend=backend,
+        output_root=tmp_path,
+        sample_manifest_sha256=registry.sample_manifest_sha256,
+        retry_invalid_once=True,
+    )
+
+    assert summary.completed == 1
+    case_path = next((tmp_path / config.output_dir / "cases").glob("*.json"))
+    case = json.loads(case_path.read_text(encoding="utf-8"))
+    assert case["validation_status"] == "repaired"
+    assert len(case["raw_attempts"]) == 2
+    manifest = json.loads(
+        (tmp_path / config.output_dir / "run_manifest.json").read_text(encoding="utf-8")
+    )
+    assert manifest["validation_retry_policy"] == {
+        "enabled": True,
+        "maximum_retries": 1,
+        "seed_offset": 1,
+    }

@@ -3,6 +3,7 @@
 # Serving stack is installed explicitly after compatibility resolution.
 accelerate
 huggingface-hub
+koreanize-matplotlib==0.1.1
 openai
 torch
 transformers==5.10.4

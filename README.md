@@ -43,8 +43,20 @@ Gemma-4-12B, and Mistral Small 3.1 under both input conditions. The Mistral
 vLLM/Transformers incompatibility was reproduced and resolved with a pinned stack.
 
 - [초기 4개 멀티모달 모델 비교 결과 (한국어)](docs/early_model_comparison_ko.md)
+- [한국어 VQA 평가 방법·정량 지표·원문 대조 결과](docs/korean_vqa_evaluation.md)
 - [One-sample smoke-test execution record](docs/smoke_test_results.md)
 
-The preliminary result is not the final eleven-configuration paper experiment.
-Remaining checkpoints, blind human evaluation, figures, and paper assets continue
-in the documented gated order.
+Korean VQA has now completed for ten available configurations (200 validated VQA):
+Qwen3-VL-8B, InternVL3-8B, Gemma-4-12B, and Mistral Small 3.1 24B under both
+input conditions, plus Qwen3-8B and Gemma-4-31B under description-only input.
+Qwen3-32B remains pending while its checkpoint downloads. Existing English outputs
+are retained as a separate reproducibility record; Korean is the default task language
+for subsequent experiments and the paper keeps English/Korean manuscript entry points.
+
+Representative Korean grids:
+
+- [RGB + description](figures/korean_multimodal_grid.png)
+- [Description only](figures/korean_text_only_grid.png)
+- [Gemma-4-12B controlled modality ablation](figures/korean_gemma4_12b_ablation.png)
+
+These are preliminary five-sample feasibility results, not the final paper experiment.

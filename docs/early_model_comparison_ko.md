@@ -3,6 +3,48 @@
 실행일: 2026-10-02 UTC
 상태: **예비 결과** — 전체 11개 configuration 논문 실험의 최종 결과가 아님
 
+> 아래의 기존 영어 VQA 선비교 결과와 그림은 재현 기록으로 그대로 보존한다. 2026-10-02에
+> 별도 한국어 prompt로 다시 실행한 결과는 다음 절에 추가했다.
+
+## 한국어 VQA 추가 비교
+
+paired HSI description의 언어에 맞춰 `vqa-generation-ko-v1` prompt를 만들고, 다운로드와
+smoke test가 끝난 모든 checkpoint를 다시 실행했다. 이번 실행은 6개 checkpoint,
+10개 configuration, 고정 5개 sample의 총 200 VQA다. Qwen3-32B(C08)는 아직 다운로드
+중이므로 임의 대체하지 않고 보류했다.
+
+- 200/200 VQA가 공통 JSONL schema와 한국어 완결성 검사를 통과했다.
+- source-description cosine은 정답률이 아니라 **어휘적 grounding proxy**다.
+- 자동 지표와 원문 대조 오류 사례는 [한국어 VQA 평가 문서](korean_vqa_evaluation.md)에
+  수치와 함께 정리했다.
+- `Source/GT description`은 HSI pipeline의 paired source text이며 gold QA answer가 아니다.
+
+### RGB + description
+
+![한국어 멀티모달 조건 비교](../figures/korean_multimodal_grid.png)
+
+### Description only
+
+그림의 RGB는 독자 참고용이며 모델에는 전달하지 않았다. Gemma-4-31B 결과도 포함한다.
+
+![한국어 텍스트 전용 조건 비교](../figures/korean_text_only_grid.png)
+
+### Gemma-4-12B controlled modality ablation
+
+![동일 Gemma-4-12B의 RGB 포함 여부 비교](../figures/korean_gemma4_12b_ablation.png)
+
+전체 5개 sample 버전은 각각
+[multimodal](../figures/korean_multimodal_grid_all.png),
+[text-only](../figures/korean_text_only_grid_all.png),
+[Gemma ablation](../figures/korean_gemma4_12b_ablation_all.png)에서 확인할 수 있다.
+
+예비 정량 결과에서 한국어 완결률은 전 조건 1.00이었다. source cosine은 C02가 0.821로
+가장 높았지만 긴 source 문장을 그대로 옮기는 경향이 포함되므로 품질 1위라는 뜻은 아니다.
+Gemma-4-31B C07은 평균 10.28초/case로 가장 느렸고, source 수치와 관계를 안정적으로
+보존했다. 반대로 C05의 KONZ 한 답변과 C11의 SRER 한 답변에서 source와 모순되는 의미
+오류를 확인했다. 이 때문에 최종 논문 평가는 자동 유사도와 독립 human evaluation을 함께
+사용해야 한다.
+
 ## 목적과 범위
 
 다운로드와 서버 호환성이 먼저 확인된 네 checkpoint를 동일한 5개 sample에 적용했다.
