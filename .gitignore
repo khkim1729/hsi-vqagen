@@ -1,1 +1,40 @@
 .worktrees/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+__pycache__/
+*.py[cod]
+
+# Local paths, credentials, and environment files
+configs/local_paths.yaml
+.env
+.env.*
+!.env.example
+*credentials*
+*.pem
+*.key
+
+# Generated inference output and model artifacts
+outputs/
+models/
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# LaTeX and editor artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+.vscode/
+.idea/

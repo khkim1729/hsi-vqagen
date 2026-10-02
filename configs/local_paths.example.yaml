@@ -1,0 +1,6 @@
+dataset_root: /path/to/dataset/shards
+project_root: /path/to/hsi-vqagen
+description_system_legacy: /path/to/Hyperspectral_Descriptive_System
+description_system_production: /path/to/CLI_Descriptive_System
+overleaf_root: /path/to/existing/overleaf_project
+model_cache_root: /path/to/high_capacity/model_cache

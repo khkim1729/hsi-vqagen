@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hsi-vqagen"
+version = "0.1.0"
+description = "Reproducible HSI-derived VQA generation feasibility study"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "httpx>=0.27",
+  "matplotlib>=3.8",
+  "pandas>=2.2",
+  "Pillow>=10.4",
+  "pydantic>=2.8",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+serve = [
+  "accelerate>=1.0",
+  "huggingface-hub>=0.34",
+  "openai>=1.50",
+  "torch>=2.7",
+  "transformers>=4.57",
+  "vllm>=0.11",
+]
+dev = ["pytest>=8.3"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

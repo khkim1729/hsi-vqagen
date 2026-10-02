@@ -1,0 +1,9 @@
+-e .
+
+# Serving stack is installed explicitly after compatibility resolution.
+accelerate
+huggingface-hub
+openai
+torch
+transformers
+vllm
