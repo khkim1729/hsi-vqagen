@@ -25,13 +25,19 @@ stop_server() {
 run_group() {
   local launch_config=$1 gpu=$2 port=$3
   shift 3
+  local config_ids=("$launch_config" "$@")
   local runtime_dir="$runtime_root/${launch_config,,}-$port"
+  if "$repo_root/.venv/bin/python" "$repo_root/scripts/smoke_status.py" \
+      "$output_root" "${config_ids[@]}"; then
+    echo "Skipping completed Korean smoke group: ${config_ids[*]}"
+    return 0
+  fi
   rm -f "$runtime_dir/ready.json"
   trap 'stop_server "$runtime_dir"' RETURN
   "$repo_root/scripts/serve_model.sh" "$launch_config" "$gpu" "$port" "$runtime_dir"
   local load_seconds
   load_seconds=$("$repo_root/.venv/bin/python" -c "import json; print(json.load(open('$runtime_dir/ready.json'))['load_seconds'])")
-  for config_id in "$launch_config" "$@"; do
+  for config_id in "${config_ids[@]}"; do
     "$repo_root/.venv/bin/python" "$repo_root/scripts/run_configuration.py" "$config_id" \
       --base-url "http://127.0.0.1:$port/v1" --output-root "$output_root" \
       --limit 1 --load-seconds "$load_seconds" --gpu-index "$gpu" \
