@@ -10,8 +10,8 @@ Build a reproducible feasibility study that compares multimodal and text-only VQ
 The study is complete when:
 
 1. The real shard layout and the existing HSI description-generation pipeline are documented from source code and artifacts.
-2. All nine experimental configurations successfully complete a one-sample smoke test with a shared validated output schema.
-3. The same five samples are processed by all nine configurations, yielding 45 inference cases.
+2. All eleven experimental configurations successfully complete a one-sample smoke test with a shared validated output schema.
+3. The same five samples are processed by all eleven configurations, yielding 55 inference cases.
 4. Raw responses, normalized JSONL, run metadata, and manual-review worksheets are retained.
 5. Publication-quality pipeline and qualitative-comparison figures are produced.
 6. English and Korean paper entry points (`main.tex` and `main_ko.tex`) compile or have any local tool limitation documented.
@@ -86,7 +86,7 @@ For the audited production batch, pixel-level supervised SAM observation and Tet
 - **Multimodal condition:** HSI-derived RGB image plus the paired description.
 - **Text-only condition:** Paired description only. The RGB path is retained only as provenance and is never sent to the model.
 
-The paper uses these condition names instead of treating `VLM` and `LLM` as mutually exclusive model classes. In particular, Gemma 4 and Mistral Small 3.1 are multimodal-capable architectures that are also evaluated in a text-only condition.
+The paper uses these condition names instead of treating `VLM` and `LLM` as mutually exclusive model classes. In particular, Gemma 4, Mistral Small 3.1, Qwen3-VL, and InternVL3 are multimodal-capable architectures that are also evaluated in a text-only condition.
 
 All other controllable factors are held constant: sample IDs, prompt semantics, requested number of QA pairs, output schema, maximum generation length, and deterministic decoding where supported.
 
@@ -103,14 +103,23 @@ All other controllable factors are held constant: sample IDs, prompt semantics, 
 | C07 | `gemma4_31b_text_only` | `google/gemma-4-31B-it` | Text-only | Description only |
 | C08 | `qwen3_32b_text_only` | `Qwen/Qwen3-32B` | Text-only | Description only |
 | C09 | `gemma4_12b_text_only` | `google/gemma-4-12B-it` | Controlled text-only ablation | Description only |
+| C10 | `qwen3_vl_8b_text_only` | `Qwen/Qwen3-VL-8B-Instruct` | Controlled text-only ablation | Description only |
+| C11 | `internvl3_8b_text_only` | `OpenGVLab/InternVL3-8B` | Controlled text-only ablation | Description only |
 
-The explicit list above contains seven unique checkpoints and nine configurations because both Gemma 4 12B and Mistral Small 3.1 appear under two input conditions. This is the mathematically accurate count implied by retaining Mistral Small 3.1 as the already selected second text-only model. The paper reports checkpoint count and configuration count separately and must not call these nine distinct models.
+The explicit list above contains seven unique checkpoints and eleven configurations because Gemma 4 12B, Mistral Small 3.1, Qwen3-VL 8B, and InternVL3 8B each appear under two input conditions. The paper reports checkpoint count and configuration count separately and must not call these eleven distinct models.
 
-Mistral Small 3.1 remains the stronger-practical text-only selection rather than a parameter-matched 8B baseline. Its repository contains redundant weight formats, so only the format needed by the chosen serving path may be downloaded. The repeated Mistral conditions may be reported descriptively, but the preregistered controlled-modality analysis is C03 versus C09 with Gemma 4 12B.
+Mistral Small 3.1 remains the stronger-practical text-only selection rather than a parameter-matched 8B baseline. Its repository contains redundant weight formats, so only the format needed by the chosen serving path may be downloaded. C10 and C11 are added because the official Qwen3-VL documentation reports pure-text behavior and the official InternVL3 example explicitly supports a pure-text call without image tensors. Their inclusion in the full matrix is conditional on a real image-free smoke test.
 
-### Controlled modality ablation
+### Controlled modality ablations
 
-C03 and C09 use the exact same `google/gemma-4-12B-it` checkpoint revision, server process where practical, prompt wording, requested four QA pairs, generation parameters, and output schema. The only intended difference is whether the HSI-derived RGB image is included.
+Four same-checkpoint pairs isolate image availability from model family and parameter count:
+
+- C01 versus C10: `Qwen/Qwen3-VL-8B-Instruct`.
+- C02 versus C11: `OpenGVLab/InternVL3-8B`.
+- C03 versus C09: `google/gemma-4-12B-it`.
+- C04 versus C06: `mistralai/Mistral-Small-3.1-24B-Instruct-2503`.
+
+Each pair uses the exact same checkpoint revision, server process where practical, prompt semantics, requested four QA pairs, generation parameters, and output schema. The only intended difference is whether the HSI-derived RGB image is included. C03 versus C09 remains the primary preregistered Gemma analysis; the three additional pairs test whether the modality effect is consistent across architectures.
 
 The ablation research question is:
 
@@ -122,7 +131,7 @@ Its analysis covers correctness, grounding, hallucination, diversity, visual dep
 
 Use one vLLM OpenAI-compatible server per GPU as the primary path where the checkpoint is supported. This gives one request format and one client implementation across configurations. Each server uses a distinct localhost port and an explicit `CUDA_VISIBLE_DEVICES` assignment.
 
-Four GPUs cannot host all seven checkpoints simultaneously, so execution occurs in documented waves. Up to four checkpoints are loaded concurrently, their assigned configuration(s) run, and then the next wave starts. C03 and C09 run back-to-back against the same loaded Gemma 4 12B revision. C04 and C06 should likewise reuse one Mistral load when the backend supports both input forms. GPU assignment belongs to run metadata rather than configuration identity.
+Four GPUs cannot host all seven checkpoints simultaneously, so execution occurs in documented waves. Up to four checkpoints are loaded concurrently, their assigned configuration(s) run, and then the next wave starts. C01/C10, C02/C11, C03/C09, and C04/C06 run back-to-back against the same loaded checkpoint where practical. GPU assignment belongs to run metadata rather than configuration identity.
 
 Transformers direct inference is a per-checkpoint fallback when a documented vLLM incompatibility remains during the one-sample smoke test. This is especially relevant to the newer Gemma 4 12B Unified architecture, whose official model card currently documents Transformers loading but not a vLLM command, unlike Gemma 4 31B. If a fallback is used, the backend difference is recorded in every output and latency values are not directly compared without qualification. No checkpoint is silently replaced.
 
@@ -149,7 +158,7 @@ Prompts prohibit:
 - generic duplicates or simple paraphrases of the same fact;
 - claiming that RGB is raw hyperspectral data.
 
-Qwen3 text inference uses non-thinking mode so that hidden reasoning markers do not contaminate JSON. Gemma 4 thinking behavior is also fixed explicitly and identically for C03/C09. Generation uses the closest stable common strategy supported by all checkpoints; model-specific constraints, chat templates, image order, and preprocessing are captured rather than hidden. All configurations use the same maximum output budget.
+Qwen3 text inference uses non-thinking mode so that hidden reasoning markers do not contaminate JSON. Thinking behavior is fixed explicitly and identically within every same-checkpoint pair. Generation uses the closest stable common strategy supported by all checkpoints; model-specific constraints, chat templates, image order, and preprocessing are captured rather than hidden. All configurations use the same maximum output budget.
 
 One normalized JSONL line represents one QA pair and contains at least:
 
@@ -193,8 +202,8 @@ The implementation order is mandatory:
 3. Document the verified description pipeline from legacy and production sources.
 4. Document model selection, environment compatibility, and the fixed sample manifest.
 5. Complete repository skeleton, shared schema, tests, prompts, and model configs.
-6. Start each checkpoint individually and run all nine one-sample configuration smoke tests, recording load time, peak VRAM, latency, revision, and failures.
-7. Only after all nine configuration smoke tests pass, run the 5 x 9 study in checkpoint waves across the four GPUs.
+6. Start each checkpoint individually and run all eleven one-sample configuration smoke tests, recording load time, peak VRAM, latency, revision, and failures.
+7. Only after the smoke gate passes, run the 5 x 11 study in checkpoint waves across the four GPUs.
 8. Validate and compare results; leave subjective manual ratings unfilled unless an actual reviewer supplies them.
 9. Generate cross-model and Gemma 4 12B controlled-ablation reports from real outputs.
 10. Generate publication figures and tables from real outputs.
@@ -202,7 +211,7 @@ The implementation order is mandatory:
 12. Run tests, schema checks, secret scans, repository-size checks, and available LaTeX validation.
 13. Commit and push P1 and P2.
 
-If one configuration cannot pass its smoke test, the full 45-case study pauses. The failure and attempted workarounds are documented, and no replacement checkpoint is silently substituted.
+If one of the original nine configurations cannot pass its smoke test, the full study pauses. If exploratory C10 or C11 fails despite documented supported invocation attempts, the failure is retained as a compatibility result and the original 45-case matrix may proceed; neither checkpoint is silently replaced.
 
 ## 8. Evaluation and Figures
 
@@ -215,11 +224,11 @@ Publication assets include:
 1. A vector end-to-end overview that clearly separates HSI-derived RGB from the raw HSI cube and splits multimodal and text-only conditions.
 2. A vector diagram of the verified production description pipeline, explicitly showing disabled components only as out-of-scope notes if mentioned.
 3. Figure A: RGB, description summary, and the four multimodal configurations for two or three representative samples in the main paper, with all five in the appendix.
-4. Figure B: the same samples and the four text-only configurations, keeping labels and typography consistent with Figure A.
-5. Figure C: a focused C03-versus-C09 Gemma 4 12B controlled-ablation figure with paired outputs and highlighted visual-only details or paraphrase behavior.
+4. Figure B: the same samples and the four original text-only baselines C05--C08, keeping labels and typography consistent with Figure A.
+5. Figure C: same-checkpoint controlled-ablation panels for C01/C10, C02/C11, C03/C09, and C04/C06, with paired outputs and highlighted visual-only details or paraphrase behavior. The Gemma 4 12B pair receives a focused main-paper panel; all pairs and all five samples appear in the appendix.
 6. A quantitative summary only if completed manual ratings exist; otherwise the paper states that rating results are pending and omits the plot.
 
-No figure forces nine long outputs into one unreadable panel. Figure text is truncated only for display, while full outputs remain in appendix tables and machine-readable artifacts. Vector PDF/SVG is preferred.
+No figure forces eleven long outputs into one unreadable panel. Figure text is truncated only for display, while full outputs remain in appendix tables and machine-readable artifacts. Vector PDF/SVG is preferred.
 
 ## 9. Paper Structure
 
@@ -236,9 +245,9 @@ Both versions distinguish the previously generated HSI descriptions from the new
 The experiment and results sections separate two analytical axes:
 
 1. **Cross-model comparison:** quality differences among open checkpoints under multimodal or text-only input conditions.
-2. **Controlled modality ablation:** C03 versus C09, holding the Gemma 4 12B checkpoint fixed while changing only image availability.
+2. **Controlled modality ablation:** four same-checkpoint pairs hold model weights fixed while changing only image availability, with C03 versus C09 as the primary Gemma analysis.
 
-The paper includes a nine-row model/setup table and a dedicated controlled-ablation subsection and table.
+The paper includes an eleven-row configuration/setup table and a dedicated controlled-ablation subsection and table.
 
 ## 10. Credential, Storage, and Safety Design
 
@@ -258,7 +267,7 @@ Before either push, staged content and repository history created by this work a
 - Failed cases retain error type and raw response where safe.
 - Absolute paths are allowed only in ignored local config and local outputs; tracked artifacts use sample IDs and repository-relative references.
 - Tests cover malformed JSONL, missing components, duplicate IDs, mismatched fixed samples, text-only image leakage, partial model responses, repair failure, and interrupted/resumed execution.
-- Tests enforce exactly nine unique configuration IDs, exactly five ordered sample IDs per configuration, no image payload in C05--C09, and identical checkpoint revision and generation settings for C03/C09.
+- Tests enforce exactly eleven unique configuration IDs, exactly five ordered sample IDs per configuration, no image payload in C05--C11, and identical checkpoint revision and generation settings within C01/C10, C02/C11, C03/C09, and C04/C06.
 
 ## 12. Known Risks
 

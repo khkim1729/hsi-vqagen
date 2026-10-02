@@ -1,8 +1,8 @@
-# HSI-VQAGen Nine-Configuration Feasibility Implementation Plan
+# HSI-VQAGen Eleven-Configuration Feasibility Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build, run, document, and publish a reproducible five-sample feasibility study covering nine multimodal/text-only configurations and a controlled Gemma 4 12B modality ablation.
+**Goal:** Build, run, document, and publish a reproducible five-sample feasibility study covering eleven multimodal/text-only configurations and four same-checkpoint modality ablations.
 
 **Architecture:** A typed Python package reads the audited shard records, locks a five-sample manifest, builds condition-aware prompts, invokes either an OpenAI-compatible vLLM server or a documented Transformers fallback, and writes raw plus normalized outputs with complete run metadata. Deterministic evaluation and figure modules consume only normalized artifacts; a separate synchronization step copies verified tables, figures, and conservative English/Korean prose into the existing Overleaf repository.
 
@@ -17,10 +17,10 @@
 - Treat `/data/jypark/neon40k_work/shards`, the legacy repository, and `/data/jypark/CLI_Descriptive_System` as read-only.
 - Never put raw HSI cubes into model requests; multimodal input is HSI-derived RGB plus description.
 - Use exactly the five ordered sample IDs in the approved spec for every configuration.
-- Use exactly C01--C09; this is seven unique checkpoints and nine configurations.
-- C03 and C09 must share the exact Gemma 4 12B revision and generation settings; image availability is their only intended input difference.
-- C05--C09 must never send an image payload, even though some checkpoints are multimodal-capable.
-- Run one sample through every configuration before any 45-case run.
+- Use exactly C01--C11; this is seven unique checkpoints and eleven configurations.
+- C01/C10, C02/C11, C03/C09, and C04/C06 must share the exact checkpoint revision and generation settings within each pair; image availability is their only intended input difference.
+- C05--C11 must never send an image payload, even though several checkpoints are multimodal-capable.
+- Run one sample through every configuration before any 55-case run.
 - Do not silently replace an incompatible checkpoint; document cause and alternatives first.
 - Do not invent results, ratings, citations, dataset details, or legacy-pipeline components.
 - Keep credentials, datasets, model weights, virtual environments, caches, and raw output out of Git.
@@ -31,9 +31,9 @@
 
 ## Review Focus
 
-1. **Text-only leakage:** a multimodal-capable C06/C07/C09 checkpoint must receive no image object, image token, base64 data, or path in its request; Task 5 adds a payload-level test.
-2. **Ablation drift:** C03/C09 must reject differing revision, prompt version, QA count, output budget, or decoding settings; Task 4 adds a registry invariant test.
-3. **Partial/resumed runs:** an interrupted 45-case run must preserve completed raw/normalized cases and resume only missing case IDs; Task 6 adds a resume test.
+1. **Text-only leakage:** C05--C11 must receive no image object, image token, base64 data, or path in their requests; Task 5 adds a payload-level test.
+2. **Ablation drift:** C01/C10, C02/C11, C03/C09, and C04/C06 must reject differing revision, prompt version, QA count, output budget, or decoding settings; Task 4 adds registry invariant tests.
+3. **Partial/resumed runs:** an interrupted 55-case run must preserve completed raw/normalized cases and resume only missing case IDs; Task 6 adds a resume test.
 4. **Shard disagreement:** duplicate IDs, missing paired rows, stale RGB paths, or mismatched descriptions must appear in audit errors rather than being silently repaired; Task 2 adds fixture tests.
 5. **Backend divergence:** vLLM and Transformers must emit the same request/result contract while recording backend-specific preprocessing and timing; Task 5 adds a contract test and Task 8 verifies real smoke manifests.
 
@@ -187,7 +187,7 @@ git add docs/hsi_description_pipeline.md artifacts/hsi_description_pipeline_evid
 git commit -m "docs: document verified HSI description pipeline"
 ```
 
-### Task 4: Nine-configuration registry and model selection
+### Task 4: Eleven-configuration registry and model selection
 
 **Files:**
 - Create: `src/hsi_vqagen/config.py`
@@ -201,7 +201,7 @@ git commit -m "docs: document verified HSI description pipeline"
 
 - [ ] **Step 1: Write the failing registry invariant tests**
 
-Assert IDs are exactly C01--C09, output directories are unique and match the spec, C01--C04 are multimodal, C05--C09 are text-only, checkpoint count is seven, and C03/C09 match on checkpoint, revision, prompt version, QA count, max tokens, temperature/top-p/top-k/min-p, seed, and thinking mode. Assert C05--C09 set `allow_image=false`.
+Assert IDs are exactly C01--C11, output directories are unique and match the spec, C01--C04 are multimodal, C05--C11 are text-only, checkpoint count is seven, and all four same-checkpoint pairs match on checkpoint, revision, prompt version, QA count, max tokens, temperature/top-p/top-k/min-p, seed, and thinking mode. Assert C05--C11 set `allow_image=false`.
 
 - [ ] **Step 2: Run the test to verify it fails**
 
@@ -214,7 +214,7 @@ Pin explicit configuration IDs, checkpoint IDs, revisions after download resolut
 
 - [ ] **Step 4: Write the model-selection document from official sources and environment probes**
 
-Cover parameters, license, weight size, modality, current Transformers/vLLM support, expected BF16 footprint, one-H200 fit, serving command, prompt/thinking controls, and selection rationale. State that Gemma 4 12B's official card currently lacks a vLLM recipe while Gemma 4 31B and Qwen3 provide one, so smoke testing decides its backend. Explain the seven-checkpoint/nine-configuration count and the deliberate C03/C09 ablation.
+Cover parameters, license, weight size, modality, current Transformers/vLLM support, expected BF16 footprint, one-H200 fit, serving command, prompt/thinking controls, and selection rationale. State that Gemma 4 12B's official card currently lacks a vLLM recipe while Gemma 4 31B and Qwen3 provide one, so smoke testing decides its backend. Explain the seven-checkpoint/eleven-configuration count, the primary C03/C09 ablation, and the three additional same-checkpoint ablations.
 
 - [ ] **Step 5: Run registry tests**
 
@@ -225,7 +225,7 @@ Expected: PASS.
 
 ```bash
 git add src/hsi_vqagen/config.py configs/experiments.yaml tests/test_config.py docs/model_selection.md
-git commit -m "feat: define nine experiment configurations"
+git commit -m "feat: define eleven experiment configurations"
 ```
 
 ### Task 5: Shared schema, condition-aware prompts, and backend contract
@@ -249,7 +249,7 @@ git commit -m "feat: define nine experiment configurations"
 
 - [ ] **Step 1: Write failing schema and prompt tests**
 
-Assert every request asks for exactly four QA objects, keeps answer style/category guidance constant, and includes description text. Inspect serialized payloads to prove C05--C09 contain no image content/token/base64/path while C01--C04 contain exactly one RGB input before the description. Assert C03/C09 differ only by the image content element after canonicalization.
+Assert every request asks for exactly four QA objects, keeps answer style/category guidance constant, and includes description text. Inspect serialized payloads to prove C05--C11 contain no image content/token/base64/path while C01--C04 contain exactly one RGB input before the description. Assert each same-checkpoint pair differs only by the image content element after canonicalization.
 
 - [ ] **Step 2: Write failing normalization tests**
 
@@ -342,12 +342,12 @@ git commit -m "feat: add resumable measured inference runner"
 - Create: `docs/evaluation_protocol.md`
 
 **Interfaces:**
-- Consumes: normalized cases from C01--C09.
-- Produces: `evaluate_deterministic(cases) -> EvaluationSummary`, `build_manual_review_sheet(cases) -> DataFrame`, and `compare_gemma_ablation(c03, c09) -> AblationReport`.
+- Consumes: normalized cases from C01--C11.
+- Produces: `evaluate_deterministic(cases) -> EvaluationSummary`, `build_manual_review_sheet(cases) -> DataFrame`, and `compare_modality_ablation(multimodal, text_only) -> AblationReport` for every registered pair.
 
 - [ ] **Step 1: Write failing evaluation tests**
 
-Cover duplicate/paraphrase warnings, empty fields, pair-count mismatch, unsupported spectral keywords, text-only visual-source leakage, missing configuration/sample matrix cells, and exact C03/C09 pairing by sample/pair index. Assert the manual worksheet has blank fields for correctness, grounding, hallucination, diversity, visual dependence, usefulness, and specificity.
+Cover duplicate/paraphrase warnings, empty fields, pair-count mismatch, unsupported spectral keywords, text-only visual-source leakage, missing configuration/sample matrix cells, and exact pairing by sample/pair index for all four ablations. Assert the manual worksheet has blank fields for correctness, grounding, hallucination, diversity, visual dependence, usefulness, and specificity.
 
 - [ ] **Step 2: Run tests to verify they fail**
 
@@ -356,7 +356,7 @@ Expected: FAIL with missing evaluation modules.
 
 - [ ] **Step 3: Implement deterministic checks and review tables**
 
-Diagnostics flag issues but never assign subjective quality scores. The ablation report pairs C03/C09, summarizes only observable output properties before human rating, and provides columns for description-absent visual detail, paraphrase tendency, hallucination direction, diversity change, and specificity change. Add a `main()` entry point to `checks.py` accepting `--outputs`, `--require-configs`, `--require-samples`, and `--require-pairs` for the smoke and full-run gates.
+Diagnostics flag issues but never assign subjective quality scores. The ablation reports pair C01/C10, C02/C11, C03/C09, and C04/C06, summarize only observable output properties before human rating, and provide columns for description-absent visual detail, paraphrase tendency, hallucination direction, diversity change, and specificity change. Add a `main()` entry point to `checks.py` accepting `--outputs`, `--require-configs`, `--require-samples`, and `--require-pairs` for the smoke and full-run gates.
 
 - [ ] **Step 4: Run evaluation tests**
 
@@ -370,7 +370,7 @@ git add src/hsi_vqagen/evaluation tests/evaluation prompts/evaluation_prompt.txt
 git commit -m "feat: add feasibility and ablation evaluation"
 ```
 
-### Task 8: Model serving scripts and nine one-sample smoke tests
+### Task 8: Model serving scripts and eleven one-sample smoke tests
 
 **Files:**
 - Create: `scripts/serve_model.sh`
@@ -383,7 +383,7 @@ git commit -m "feat: add feasibility and ablation evaluation"
 
 **Interfaces:**
 - Consumes: installed runtime, checkpoint cache, registry, first approved sample, and GPU availability.
-- Produces: nine smoke output directories with real raw/normalized results and a compatibility decision per configuration.
+- Produces: eleven smoke output directories with real raw/normalized results and a compatibility decision per configuration.
 
 - [ ] **Step 1: Probe package/model compatibility before full downloads**
 
@@ -393,9 +393,9 @@ Record `nvidia-smi`, Python, PyTorch CUDA, Transformers, vLLM, Accelerate, Flash
 
 `serve_model.sh <config-id> <gpu> <port>` reads the registry, exports the `/data` cache, starts one checkpoint on one GPU, writes a PID/status log without secrets, and waits for model readiness. It must not kill unrelated processes. `check_server.py` verifies model ID/revision and performs a minimal health request.
 
-- [ ] **Step 3: Run C01--C09 smoke tests one checkpoint at a time**
+- [ ] **Step 3: Run C01--C11 smoke tests one checkpoint at a time**
 
-Use only the first fixed sample. For Gemma 4 12B, run C03 then C09 against the same load if possible. For Mistral, run C04 then C06 against the same load if possible. Each smoke test must produce four schema-valid pairs plus load time, latency, revision, prompt hash, backend, peak VRAM or a reason it is unavailable, and error log.
+Use only the first fixed sample. Run C01/C10, C02/C11, C03/C09, and C04/C06 against the same corresponding load where possible. Each smoke test must produce four schema-valid pairs plus load time, latency, revision, prompt hash, backend, peak VRAM or a reason it is unavailable, and error log. C10/C11 must additionally prove zero image content in the serialized request.
 
 - [ ] **Step 4: Diagnose failures without substituting models**
 
@@ -403,17 +403,17 @@ For each failed configuration, capture the exact exception and smallest reproduc
 
 - [ ] **Step 5: Validate the smoke gate**
 
-Run: `.venv/bin/python -m hsi_vqagen.evaluation.checks --outputs outputs/smoke --require-configs C01,C02,C03,C04,C05,C06,C07,C08,C09 --require-samples 1 --require-pairs 4`  
-Expected: PASS, 9 complete cases and 36 normalized QA rows.
+Run: `.venv/bin/python -m hsi_vqagen.evaluation.checks --outputs outputs/smoke --require-configs C01,C02,C03,C04,C05,C06,C07,C08,C09,C10,C11 --require-samples 1 --require-pairs 4`
+Expected: PASS, 11 complete cases and 44 normalized QA rows.
 
 - [ ] **Step 6: Commit compatibility evidence, not raw output**
 
 ```bash
 git add scripts/serve_model.sh scripts/run_smoke_tests.sh scripts/check_server.py docs/smoke_test_results.md docs/environment.md docs/model_selection.md configs/experiments.yaml
-git commit -m "docs: validate nine configuration smoke tests"
+git commit -m "docs: validate eleven configuration smoke tests"
 ```
 
-### Task 9: Execute and validate the five-by-nine study
+### Task 9: Execute and validate the five-by-eleven study
 
 **Files:**
 - Create: `scripts/run_feasibility.sh`
@@ -422,34 +422,36 @@ git commit -m "docs: validate nine configuration smoke tests"
 - Create: `artifacts/feasibility_summary.csv`
 - Create: `artifacts/manual_review.csv`
 - Create: `artifacts/gemma4_12b_ablation.csv`
+- Create: `artifacts/modality_ablations.csv`
 - Create: `docs/gemma4_12b_ablation.md`
+- Create: `docs/modality_ablations.md`
 
 **Interfaces:**
 - Consumes: passing smoke configurations and all five fixed samples.
-- Produces: complete 9 x 5 case matrix, 180 normalized QA rows when all cases return four pairs, telemetry summaries, and unfilled manual-review/ablation worksheets.
+- Produces: complete 11 x 5 case matrix, 220 normalized QA rows when all cases return four pairs, telemetry summaries, and unfilled manual-review/ablation worksheets.
 
 - [ ] **Step 1: Define and log execution waves**
 
 Choose up to four concurrent checkpoint loads based on measured smoke VRAM and backend compatibility. Record GPU, port, checkpoint revision, PID, start/end time, and configuration IDs. Reuse Gemma 4 12B and Mistral loads for their paired conditions.
 
-- [ ] **Step 2: Run all five samples through C01--C09**
+- [ ] **Step 2: Run all five samples through C01--C11**
 
 Run: `scripts/run_feasibility.sh --config configs/experiments.yaml --samples configs/feasibility_samples.yaml --output outputs/feasibility --resume`  
-Expected: 45 complete cases. If interrupted, rerun the same command and confirm completed case files are untouched.
+Expected: 55 complete cases. If interrupted, rerun the same command and confirm completed case files are untouched.
 
 - [ ] **Step 3: Normalize, aggregate, and validate the matrix**
 
-Run deterministic validation requiring nine configurations, the exact five ordered sample IDs, and four pairs per successful case. Verify text-only payload audit records show zero image inputs and C03/C09 manifest settings/revision match.
+Run deterministic validation requiring eleven configurations, the exact five ordered sample IDs, and four pairs per successful case. Verify text-only payload audit records show zero image inputs and every same-checkpoint pair's manifest settings/revision match.
 
 - [ ] **Step 4: Generate factual summaries and blank human-review sheets**
 
-Write counts, latency, load time, peak VRAM, validation errors, duplicate warnings, and backend/revision data to JSON/CSV. Do not populate subjective scores. Generate the Gemma paired worksheet and Markdown report with actual outputs and empty reviewer fields.
+Write counts, latency, load time, peak VRAM, validation errors, duplicate warnings, and backend/revision data to JSON/CSV. Do not populate subjective scores. Generate the primary Gemma worksheet plus a four-pair modality-ablation worksheet and Markdown reports with actual outputs and empty reviewer fields.
 
 - [ ] **Step 5: Commit small summaries and scripts**
 
 ```bash
-git add scripts/run_feasibility.sh docs/experiment_log.md docs/gemma4_12b_ablation.md artifacts/feasibility_summary.json artifacts/feasibility_summary.csv artifacts/manual_review.csv artifacts/gemma4_12b_ablation.csv
-git commit -m "feat: record nine configuration feasibility run"
+git add scripts/run_feasibility.sh docs/experiment_log.md docs/gemma4_12b_ablation.md docs/modality_ablations.md artifacts/feasibility_summary.json artifacts/feasibility_summary.csv artifacts/manual_review.csv artifacts/gemma4_12b_ablation.csv artifacts/modality_ablations.csv
+git commit -m "feat: record eleven configuration feasibility run"
 ```
 
 ### Task 10: Publication-quality figures and tables
@@ -467,9 +469,11 @@ git commit -m "feat: record nine configuration feasibility run"
 - Create: `figures/qualitative_multimodal.pdf`
 - Create: `figures/qualitative_text_only.pdf`
 - Create: `figures/gemma4_12b_ablation.pdf`
+- Create: `figures/modality_ablations.pdf`
 - Create: `paper_assets/model_setup.tex`
 - Create: `paper_assets/feasibility_summary.tex`
 - Create: `paper_assets/gemma4_12b_ablation.tex`
+- Create: `paper_assets/modality_ablations.tex`
 
 **Interfaces:**
 - Consumes: evidence map, normalized real outputs, factual summaries, and completed ratings only if available.
@@ -477,7 +481,7 @@ git commit -m "feat: record nine configuration feasibility run"
 
 - [ ] **Step 1: Write failing figure tests**
 
-Assert every renderer rejects missing real input, produces nonempty PDF/SVG, labels input condition, keeps all five samples in appendix mode, limits main-paper mode to two or three representative samples, and keeps C03/C09 adjacent in ablation output. Test that a quantitative rating plot is omitted when rating cells are blank.
+Assert every renderer rejects missing real input, produces nonempty PDF/SVG, labels input condition, keeps all five samples in appendix mode, limits main-paper mode to two or three representative samples, and keeps every same-checkpoint pair adjacent in ablation output. Test that a quantitative rating plot is omitted when rating cells are blank.
 
 - [ ] **Step 2: Run tests to verify they fail**
 
@@ -490,7 +494,7 @@ Use matplotlib vector patches/text with consistent type scale and color-safe pal
 
 - [ ] **Step 4: Implement split qualitative and ablation figures**
 
-Figure A shows RGB, description summary, and C01--C04; Figure B shows the same samples and C05--C08; Figure C pairs C03/C09. Truncate display text deterministically with a visible marker and retain full outputs in tables. Produce main-paper and all-five appendix variants where needed.
+Figure A shows RGB, description summary, and C01--C04; Figure B shows the same samples and C05--C08; Figure C contains paired same-checkpoint panels for C01/C10, C02/C11, C03/C09, and C04/C06. Truncate display text deterministically with a visible marker and retain full outputs in tables. Produce main-paper and all-five appendix variants where needed.
 
 - [ ] **Step 5: Run tests and generate real assets**
 
@@ -546,11 +550,11 @@ Use primary papers/model reports only. Verify title, author list, year, identifi
 
 - [ ] **Step 4: Draft Method and Experiments first**
 
-Describe active HSI preprocessing/index/SAM-clustering/agent/reduce stages precisely. Add the nine-row setup table, exact five samples, shared task/schema/settings, backend exceptions, 45-case scope, and separate cross-model versus C03/C09 ablation axes.
+Describe active HSI preprocessing/index/SAM-clustering/agent/reduce stages precisely. Add the eleven-row setup table, exact five samples, shared task/schema/settings, backend exceptions, 55-case scope, and separate cross-model versus controlled-ablation axes.
 
 - [ ] **Step 5: Draft Results without overclaiming**
 
-Insert only real outputs and factual telemetry. If manual ratings remain blank, present qualitative observations as explicitly manual pending-review material and omit quantitative quality plots. Keep C03/C09 as a dedicated subsection/table.
+Insert only real outputs and factual telemetry. If manual ratings remain blank, present qualitative observations as explicitly manual pending-review material and omit quantitative quality plots. Keep the primary C03/C09 result and the cross-architecture paired analysis in a dedicated subsection/table.
 
 - [ ] **Step 6: Draft Introduction, Related Work, Conclusion, and Korean mirror**
 
@@ -562,7 +566,7 @@ Run P1 paper tests and, if a TeX engine is available, compile both entry points 
 
 - [ ] **Step 8: Commit P1 sync/test tooling and P2 manuscript**
 
-Commit P1 with `feat: add reproducible Overleaf synchronization`; commit P2 with `docs: draft bilingual nine-configuration paper`.
+Commit P1 with `feat: add reproducible Overleaf synchronization`; commit P2 with `docs: draft bilingual eleven-configuration paper`.
 
 ### Task 12: Final verification, secure push, and handoff
 
@@ -577,7 +581,7 @@ Commit P1 with `feat: add reproducible Overleaf synchronization`; commit P2 with
 
 - [ ] **Step 1: Run complete code and data verification**
 
-Run all pytest suites, dataset audit assertions, configuration invariants, smoke gate, 45-case matrix validation, figure generation checks, and paper source/compile checks. Save command, timestamp, exit code, and concise outcome in `docs/experiment_log.md`.
+Run all pytest suites, dataset audit assertions, configuration invariants, smoke gate, 55-case matrix validation, figure generation checks, and paper source/compile checks. Save command, timestamp, exit code, and concise outcome in `docs/experiment_log.md`.
 
 - [ ] **Step 2: Audit secrets and repository size before staging/push**
 
@@ -593,7 +597,7 @@ Fetch and inspect P2 first. If remote advanced, integrate non-destructively and 
 
 - [ ] **Step 5: Write and commit final status**
 
-`docs/final_status.md` summarizes completed items, discovered data structure, final checkpoints/configurations, failures/workarounds, exact next commands, and decisions still required from the owner. Include the accurate seven-checkpoint/nine-configuration count.
+`docs/final_status.md` summarizes completed items, discovered data structure, final checkpoints/configurations, failures/workarounds, exact next commands, and decisions still required from the owner. Include the accurate seven-checkpoint/eleven-configuration count.
 
 - [ ] **Step 6: Confirm remote commits and hand off**
 
