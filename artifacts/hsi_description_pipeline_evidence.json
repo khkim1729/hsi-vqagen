@@ -1,0 +1,175 @@
+{
+  "scope": "Realized production path for the audited 10,000-patch description corpus",
+  "prompt_set": {
+    "version": "core-config-prompts@2026-07-30",
+    "hash": "0e88f131955c0f41"
+  },
+  "model_roles": {
+    "catalog": "gpt-5.4-mini",
+    "cluster": "gpt-5.4-mini",
+    "catalog_synthesis": "gpt-5.4",
+    "reduce": "gpt-5.4",
+    "web": "gpt-5.4-mini"
+  },
+  "batch_waves": {
+    "realtime_side_channel": [
+      "web_research"
+    ],
+    "wave_1": [
+      "catalog:*",
+      "cluster"
+    ],
+    "wave_2": [
+      "catalog_synthesis"
+    ],
+    "wave_3": [
+      "reduce"
+    ]
+  },
+  "claims": {
+    "input": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/runner.py",
+        "symbol_or_field": "run_patch"
+      },
+      {
+        "source_root": "dataset",
+        "source_path": "shards/*/patches/<sample_id>/meta.json",
+        "symbol_or_field": "quality; shape; wavelength_nm; georef"
+      }
+    ],
+    "preprocessing": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/runner.py",
+        "symbol_or_field": "valid_ratio; min_valid_ratio; analyze_sample arguments"
+      },
+      {
+        "source_root": "production",
+        "source_path": "config/settings.toml",
+        "symbol_or_field": "[quality].min_valid_ratio"
+      }
+    ],
+    "rgb_rendering": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/imaging/rgb_image.py",
+        "symbol_or_field": "rgb_png; upscale_to"
+      },
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/pipeline/agents_pipeline.py",
+        "symbol_or_field": "analyze_sample; rgb_image.png_for_patch"
+      }
+    ],
+    "index_selection_and_maps": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/pipeline/agents_pipeline.py",
+        "symbol_or_field": "analyze_full_all; auto_select; index_pngs"
+      },
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/indices/index_maps.py",
+        "symbol_or_field": "colormap_png; mono; nodata rendering"
+      }
+    ],
+    "sam_kmedoids_clustering": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/hsi_cluster.py",
+        "symbol_or_field": "run_kmedoids; choose_k_elbow; spectral_angle"
+      },
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/agents/cluster_agent.py",
+        "symbol_or_field": "run_cluster_agent; mean spectra; proportions"
+      }
+    ],
+    "map_agents": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/pipeline/agents_pipeline.py",
+        "symbol_or_field": "run_catalog_agents; category-grouped index maps"
+      },
+      {
+        "source_root": "dataset",
+        "source_path": "shards/*/patches/<sample_id>/meta.json",
+        "symbol_or_field": "calls; agents; map selections"
+      }
+    ],
+    "web_context": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/waves.py",
+        "symbol_or_field": "web_research realtime side channel"
+      },
+      {
+        "source_root": "production",
+        "source_path": "config/settings.toml",
+        "symbol_or_field": "agents.web_research; models.web"
+      }
+    ],
+    "catalog_synthesis": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/pipeline/agents_pipeline.py",
+        "symbol_or_field": "catalog synthesis stage"
+      },
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/waves.py",
+        "symbol_or_field": "wave_2 catalog_synthesis"
+      }
+    ],
+    "reduce_synthesis": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/core/pipeline/agents_pipeline.py",
+        "symbol_or_field": "run_holistic; RGB and textual evidence"
+      },
+      {
+        "source_root": "production",
+        "source_path": "prompts/reduce/system.txt",
+        "symbol_or_field": "final_description output contract"
+      }
+    ],
+    "output": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/finalize.py",
+        "symbol_or_field": "meta.json; descriptions.jsonl; sft.jsonl; summary"
+      },
+      {
+        "source_root": "dataset",
+        "source_path": "shards/*/descriptions.jsonl",
+        "symbol_or_field": "sample_id; description"
+      }
+    ],
+    "disabled_pixel_sam_and_tetracorder": [
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/runner.py",
+        "symbol_or_field": "_agent_flags: observe=false; tetracorder=false"
+      },
+      {
+        "source_root": "production",
+        "source_path": "hsi_batch/waves.py",
+        "symbol_or_field": "out-of-scope component declaration"
+      }
+    ],
+    "limitations": [
+      {
+        "source_root": "dataset",
+        "source_path": "shards/*/patches/<sample_id>/meta.json",
+        "symbol_or_field": "shape; agent flags; model roles; prompt metadata"
+      },
+      {
+        "source_root": "production",
+        "source_path": "prompts/reduce/system.txt",
+        "symbol_or_field": "RGB-only direct visual observation and text evidence"
+      }
+    ]
+  }
+}
