@@ -3,7 +3,7 @@ set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 runtime_root="$repo_root/outputs/runtime"
-output_root="$repo_root/outputs/smoke"
+output_root="$repo_root/outputs/smoke_korean"
 mkdir -p "$runtime_root" "$output_root"
 
 stop_server() {
@@ -34,7 +34,8 @@ run_group() {
   for config_id in "$launch_config" "$@"; do
     "$repo_root/.venv/bin/python" "$repo_root/scripts/run_configuration.py" "$config_id" \
       --base-url "http://127.0.0.1:$port/v1" --output-root "$output_root" \
-      --limit 1 --load-seconds "$load_seconds" --gpu-index "$gpu"
+      --limit 1 --load-seconds "$load_seconds" --gpu-index "$gpu" \
+      --prompt-version vqa-generation-ko-v1 --retry-invalid-once
   done
   stop_server "$runtime_dir"
   trap - RETURN
