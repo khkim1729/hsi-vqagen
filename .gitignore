@@ -6,6 +6,7 @@
 .cache/
 __pycache__/
 *.py[cod]
+*.egg-info/
 
 # Local paths, credentials, and environment files
 configs/local_paths.yaml

@@ -29,6 +29,7 @@ def test_gitignore_excludes_private_and_large_runtime_artifacts() -> None:
         "configs/local_paths.yaml",
         "outputs/",
         ".cache/",
+        "*.egg-info/",
         ".env",
         "*.safetensors",
         "*.bin",

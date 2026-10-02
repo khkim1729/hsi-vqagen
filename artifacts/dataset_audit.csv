@@ -1,0 +1,16 @@
+metric,value
+shard_count,100
+total_description_rows,10000
+total_sft_rows,10000
+unique_sample_count,10000
+valid_sample_count,10000
+fully_paired_count,10000
+missing_description_count,0
+missing_sft_count,0
+missing_rgb_count,0
+missing_meta_count,0
+unreadable_rgb_count,0
+malformed_json_count,0
+description_disagreement_count,0
+rgb_resolution:384x384,10000
+hsi_shape:64x64x426,10000

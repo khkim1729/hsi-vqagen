@@ -1,0 +1,39 @@
+{
+  "shard_count": 100,
+  "total_description_rows": 10000,
+  "total_sft_rows": 10000,
+  "unique_sample_count": 10000,
+  "valid_sample_count": 10000,
+  "fully_paired_count": 10000,
+  "duplicate_sample_ids": [],
+  "missing_description_count": 0,
+  "missing_sft_count": 0,
+  "missing_rgb_count": 0,
+  "missing_meta_count": 0,
+  "unreadable_rgb_count": 0,
+  "malformed_json_count": 0,
+  "description_disagreement_count": 0,
+  "image_resolutions": {
+    "384x384": 10000
+  },
+  "hsi_shapes": {
+    "64x64x426": 10000
+  },
+  "description_lengths": {
+    "minimum": 425,
+    "median": 750.0,
+    "mean": 756.8759,
+    "p95": 954,
+    "maximum": 1326
+  },
+  "file_formats": {
+    ".html": 10100,
+    ".json": 422772,
+    ".jsonl": 20823,
+    ".npy": 75054,
+    ".pkl": 40000,
+    ".png": 265878,
+    ".txt": 201186
+  },
+  "errors": []
+}
