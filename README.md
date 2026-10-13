@@ -4,6 +4,8 @@ HSI에서 추출한 RGB와 기존 HSI 분석 시스템이 만든 한국어 descr
 한국어 visual question answering(VQA) 데이터를 생성하는 재현 가능한 feasibility study다.
 일반 VLM에 raw hyperspectral cube를 직접 입력하지 않는다.
 
+README 위치: `121서버 01_hsi_vqa_gen_github/hsi-vqagen/README.md`
+
 ## 한눈에 보는 현재 상태
 
 | 항목 | 현재 상태 |
@@ -25,19 +27,22 @@ HSI에서 추출한 RGB와 기존 HSI 분석 시스템이 만든 한국어 descr
 모델 architecture와 실제 input condition을 분리한다. 예를 들어 Gemma-4-31B는
 multimodal-capable architecture지만 C07에서는 image를 전달하지 않는 text-only condition이다.
 
-| ID | Checkpoint | 규모 | Architecture capability | Input condition | 완료 VQA | Source cosine | 평균 latency | 상태 |
-|---|---|---:|---|---|---:|---:|---:|---|
-| C01 | Qwen/Qwen3-VL-8B-Instruct | 8B | Multimodal | RGB + description | 20 | 0.632 | 3.15 s | 완료 |
-| C02 | OpenGVLab/InternVL3-8B | 8B | Multimodal | RGB + description | 20 | 0.821 | 4.09 s | 완료 |
-| C03 | google/gemma-4-12B-it | 12B | Multimodal | RGB + description | 20 | 0.559 | 5.30 s | 완료 |
-| C04 | Mistral-Small-3.1-24B-Instruct-2503 | 24B | Multimodal | RGB + description | 20 | 0.537 | 6.10 s | 완료 |
-| C05 | Qwen/Qwen3-8B | 8B | Text | Description only | 20 | 0.625 | 3.06 s | 완료 |
-| C06 | Mistral-Small-3.1-24B-Instruct-2503 | 24B | Multimodal | Description only | 20 | 0.585 | 5.48 s | 완료 |
-| C07 | google/gemma-4-31B-it | 31B | Multimodal | Description only | 20 | 0.544 | 10.28 s | 완료 |
-| C08 | Qwen/Qwen3-32B | 32B | Text | Description only | 20 | 0.504 | 10.64 s | 완료 |
-| C09 | google/gemma-4-12B-it | 12B | Multimodal | Description only | 20 | 0.572 | 5.29 s | 완료 |
-| C10 | Qwen/Qwen3-VL-8B-Instruct | 8B | Multimodal | Description only | 20 | 0.557 | 2.88 s | 완료 |
-| C11 | OpenGVLab/InternVL3-8B | 8B | Multimodal | Description only | 20 | 0.652 | 3.73 s | 완료 |
+| ID | Checkpoint | 121서버 모델 경로 | 동일 checkpoint 그룹 | 규모 | Architecture capability | Input condition | 완료 VQA | Source cosine | 평균 latency | 상태 |
+|---|---|---|:---:|---:|---|---|---:|---:|---:|---|
+| C01 | Qwen/Qwen3-VL-8B-Instruct | `/data/hsi-vqagen-cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b` | O | 8B | Multimodal | RGB + description | 20 | 0.632 | 3.15 s | 완료 |
+| C02 | OpenGVLab/InternVL3-8B | `/data/hsi-vqagen-cache/huggingface/hub/models--OpenGVLab--InternVL3-8B/snapshots/853e3a797a661694b1b8ece0cb72dc2b23e3dac9` | △ | 8B | Multimodal | RGB + description | 20 | 0.821 | 4.09 s | 완료 |
+| C03 | google/gemma-4-12B-it | `/data/hsi-vqagen-cache/huggingface/hub/models--google--gemma-4-12B-it/snapshots/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7` | □ | 12B | Multimodal | RGB + description | 20 | 0.559 | 5.30 s | 완료 |
+| C04 | Mistral-Small-3.1-24B-Instruct-2503 | `/data/hsi-vqagen-cache/huggingface/hub/models--mistralai--Mistral-Small-3.1-24B-Instruct-2503/snapshots/68faf511d618ef198fef186659617cfd2eb8e33a` | ◇ | 24B | Multimodal | RGB + description | 20 | 0.537 | 6.10 s | 완료 |
+| C05 | Qwen/Qwen3-8B | `/data/hsi-vqagen-cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218` | — | 8B | Text | Description only | 20 | 0.625 | 3.06 s | 완료 |
+| C06 | Mistral-Small-3.1-24B-Instruct-2503 | `/data/hsi-vqagen-cache/huggingface/hub/models--mistralai--Mistral-Small-3.1-24B-Instruct-2503/snapshots/68faf511d618ef198fef186659617cfd2eb8e33a` | ◇ | 24B | Multimodal | Description only | 20 | 0.585 | 5.48 s | 완료 |
+| C07 | google/gemma-4-31B-it | `/data/hsi-vqagen-cache/huggingface/hub/models--google--gemma-4-31B-it/snapshots/842da3794eaa0b77d5f08bae87a17459d91ff475` | — | 31B | Multimodal | Description only | 20 | 0.544 | 10.28 s | 완료 |
+| C08 | Qwen/Qwen3-32B | `/data/hsi-vqagen-cache/huggingface/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137` | — | 32B | Text | Description only | 20 | 0.504 | 10.64 s | 완료 |
+| C09 | google/gemma-4-12B-it | `/data/hsi-vqagen-cache/huggingface/hub/models--google--gemma-4-12B-it/snapshots/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7` | □ | 12B | Multimodal | Description only | 20 | 0.572 | 5.29 s | 완료 |
+| C10 | Qwen/Qwen3-VL-8B-Instruct | `/data/hsi-vqagen-cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b` | O | 8B | Multimodal | Description only | 20 | 0.557 | 2.88 s | 완료 |
+| C11 | OpenGVLab/InternVL3-8B | `/data/hsi-vqagen-cache/huggingface/hub/models--OpenGVLab--InternVL3-8B/snapshots/853e3a797a661694b1b8ece0cb72dc2b23e3dac9` | △ | 8B | Multimodal | Description only | 20 | 0.652 | 3.73 s | 완료 |
+
+`동일 checkpoint 그룹`에서 같은 기호는 동일한 checkpoint와 revision을 공유하는
+configuration을 뜻한다. `—`는 다른 configuration과 checkpoint가 겹치지 않음을 뜻한다.
 
 `Source cosine`은 answer와 evidence가 source description의 문장과 얼마나 어휘적으로
 겹치는지 나타내는 character 2--4 gram TF-IDF proxy다. 원문을 길게 복사하면 높아질 수
