@@ -2,9 +2,20 @@
 """Verify a local OpenAI-compatible model server and minimal generation."""
 
 import argparse
+import json
 
 import httpx
 from openai import OpenAI
+
+
+def verify_model_revision(model_card: dict, expected_revision: str) -> tuple[bool, str | None]:
+    """A model ID alone cannot prove a weights revision."""
+    observed = model_card.get("revision") or model_card.get("model_revision")
+    if observed is None:
+        return False, None
+    if observed != expected_revision:
+        raise ValueError(f"served model revision mismatch: {observed}")
+    return True, observed
 
 
 def main() -> None:
@@ -20,9 +31,12 @@ def main() -> None:
     if args.health_only:
         return
     client = OpenAI(base_url=args.base_url, api_key="EMPTY", timeout=120)
-    available = {item.id for item in client.models.list().data}
+    models = client.models.list().data
+    available = {item.id for item in models}
     if args.model not in available:
         raise SystemExit(f"served model mismatch: expected {args.model}, got {sorted(available)}")
+    card = next(item for item in models if item.id == args.model)
+    revision_verified, observed_revision = verify_model_revision(card.model_dump(), args.revision)
     result = client.chat.completions.create(
         model=args.model,
         messages=[{"role": "user", "content": "Reply with the single word OK."}],
@@ -31,7 +45,11 @@ def main() -> None:
     )
     if not (result.choices[0].message.content or "").strip():
         raise SystemExit("health generation returned empty content")
-    print(f"ready model={args.model} revision={args.revision}")
+    print(json.dumps({
+        "model": args.model, "configured_revision": args.revision,
+        "served_revision_verified": revision_verified,
+        "observed_served_revision": observed_revision,
+    }, sort_keys=True))
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 from hsi_vqagen.inference.runner import case_file_key, run_configuration
 from hsi_vqagen.schema.generation import RawGeneration
@@ -63,10 +64,77 @@ def test_case_file_key_is_stable_and_files_are_atomic(record, registry, tmp_path
     assert not list(output.rglob("*.tmp"))
     assert summary.completed == 1
     assert len((output / "normalized.jsonl").read_text(encoding="utf-8").splitlines()) == 4
+    assert json.loads((output / "normalized.jsonl").read_text().splitlines()[0])["experiment_id"] == (
+        "hsi-vqagen-feasibility-v1"
+    )
     manifest = json.loads((output / "run_manifest.json").read_text(encoding="utf-8"))
     assert manifest["model_load_seconds"] == 4.5
     assert manifest["case_telemetry"][record.sample_id]["latency_seconds"] == 0.25
     assert manifest["case_telemetry"][record.sample_id]["peak_vram_bytes"] == 2048
+
+
+def test_shuffled_run_uses_frozen_image_mapping_and_records_its_hash(
+    record, registry, tmp_path: Path
+) -> None:
+    """Catches a robustness run reusing the correct image or omitting mapping identity."""
+    other_path = tmp_path / "other.png"
+    Image.new("RGB", (8, 8), color="red").save(other_path)
+    other = record.model_copy(update={"sample_id": "sample-002", "rgb_path": other_path})
+    config = registry.by_id["C01"].model_copy(update={
+        "id": "R02", "output_dir": "r02_shuffled", "image_variant": "shuffled"
+    })
+    mapping = {record.sample_id: other, other.sample_id: record}
+
+    summary = run_configuration(
+        config=config, records=[record, other], backend=_Backend([
+            _valid_text("one"), _valid_text("two")
+        ]), output_root=tmp_path, sample_manifest_sha256="a" * 64,
+        image_sources=mapping,
+    )
+
+    assert summary.completed == 2
+    output = tmp_path / "r02_shuffled"
+    rows = [json.loads(line) for line in (output / "normalized.jsonl").read_text().splitlines()]
+    assert {row["provenance"]["image_source_sample_id"] for row in rows if row["sample_id"] == record.sample_id} == {other.sample_id}
+    manifest = json.loads((output / "run_manifest.json").read_text())
+    assert len(manifest["image_mapping_sha256"]) == 64
+    assert manifest["image_variant"] == "shuffled"
+
+
+def test_shuffled_run_fails_before_writing_if_mapping_missing(record, registry, tmp_path: Path) -> None:
+    """Catches partial robustness artifacts from an incomplete mapping."""
+    config = registry.by_id["C01"].model_copy(update={
+        "id": "R02", "output_dir": "r02_shuffled", "image_variant": "shuffled"
+    })
+    with pytest.raises(ValueError, match="image mapping"):
+        run_configuration(
+            config=config, records=[record], backend=_Backend([]),
+            output_root=tmp_path, sample_manifest_sha256="a" * 64,
+        )
+    assert not (tmp_path / "r02_shuffled").exists()
+
+
+def test_partial_shuffled_run_keeps_full_frozen_mapping_identity(
+    record, registry, tmp_path: Path
+) -> None:
+    other_path = tmp_path / "other.png"
+    Image.new("RGB", (8, 8), color="red").save(other_path)
+    other = record.model_copy(update={"sample_id": "sample-002", "rgb_path": other_path})
+    config = registry.by_id["C01"].model_copy(update={
+        "id": "R02", "output_dir": "r02_partial", "image_variant": "shuffled"
+    })
+    mapping = {record.sample_id: other, other.sample_id: record}
+    from hsi_vqagen.data.samples import rgb_mapping_hash
+    full_hash = rgb_mapping_hash([(key, value.sample_id) for key, value in mapping.items()])
+    summary = run_configuration(
+        config=config, records=[record], backend=_Backend([_valid_text("partial")]),
+        output_root=tmp_path, sample_manifest_sha256="a" * 64,
+        image_sources=mapping, frozen_image_mapping_sha256=full_hash,
+    )
+    manifest = json.loads((summary.output_dir / "run_manifest.json").read_text())
+    assert summary.completed == 1
+    assert manifest["image_mapping_sha256"] == full_hash
+    assert manifest["requested_sample_ids"] == [record.sample_id]
 
 
 def test_resume_preserves_success_and_reruns_failed_only(record, registry, tmp_path: Path) -> None:
@@ -100,6 +168,83 @@ def test_resume_preserves_success_and_reruns_failed_only(record, registry, tmp_p
     assert success_path.read_bytes() == original_success
     assert (second_run.completed, second_run.failed, second_run.skipped) == (2, 0, 1)
     assert len((tmp_path / config.output_dir / "normalized.jsonl").read_text().splitlines()) == 8
+
+
+def test_resume_rejects_changed_input_provenance(record, registry, tmp_path: Path) -> None:
+    config = registry.by_id["C05"]
+    run_configuration(config=config, records=[record], backend=_Backend([_valid_text("old")]),
+                      output_root=tmp_path, sample_manifest_sha256=registry.sample_manifest_sha256)
+    changed = record.model_copy(update={"description": record.description + " altered"})
+    backend = _Backend([_valid_text("new")])
+    summary = run_configuration(config=config, records=[changed], backend=backend,
+                                output_root=tmp_path, sample_manifest_sha256=registry.sample_manifest_sha256)
+    assert summary.skipped == 0
+    assert backend.calls == [f"C05:{record.sample_id}"]
+
+
+def test_resume_rejects_changed_rgb_bytes(record, registry, tmp_path: Path) -> None:
+    config = registry.by_id["C05"]
+    run_configuration(config=config, records=[record], backend=_Backend([_valid_text("old")]),
+                      output_root=tmp_path, sample_manifest_sha256=registry.sample_manifest_sha256)
+    Image.new("RGB", (8, 8), color="blue").save(record.rgb_path)
+    backend = _Backend([_valid_text("new")])
+    summary = run_configuration(config=config, records=[record], backend=backend,
+                                output_root=tmp_path, sample_manifest_sha256=registry.sample_manifest_sha256)
+    assert summary.skipped == 0
+    assert backend.calls == [f"C05:{record.sample_id}"]
+
+
+def test_study_experiment_id_is_separate_from_legacy(record, registry, tmp_path: Path) -> None:
+    config = registry.by_id["C05"]
+    summary = run_configuration(config=config, records=[record], backend=_Backend([_valid_text("study")]),
+                                output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                                experiment_id="hsi-vqagen-icce2027-paper50-v1")
+    row = json.loads((summary.output_dir / "normalized.jsonl").read_text().splitlines()[0])
+    assert row["experiment_id"] == "hsi-vqagen-icce2027-paper50-v1"
+    assert row["provenance"]["description_sha256"]
+    assert row["provenance"]["rgb_sha256"]
+    manifest = json.loads((summary.output_dir / "run_manifest.json").read_text())
+    assert manifest["revision_provenance"] == "configured_registry_revision_not_runtime_attestation"
+
+
+def test_study_resume_rebuilds_case_missing_attempt_provenance(record, registry, tmp_path: Path) -> None:
+    config = registry.by_id["C05"]
+    study_id = "hsi-vqagen-icce2027-paper50-v1"
+    first = run_configuration(config=config, records=[record], backend=_Backend([_valid_text("first")]),
+                              output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                              experiment_id=study_id)
+    case_path = next((first.output_dir / "cases").glob("*.json"))
+    saved = json.loads(case_path.read_text())
+    saved.pop("effective_generation_settings")
+    saved.pop("attempt_provenance")
+    case_path.write_text(json.dumps(saved))
+    backend = _Backend([_valid_text("fresh")])
+    second = run_configuration(config=config, records=[record], backend=backend,
+                               output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                               experiment_id=study_id)
+    assert second.skipped == 0
+    assert backend.calls == [f"C05:{record.sample_id}"]
+    saved = json.loads(case_path.read_text())
+    saved["effective_generation_settings"]["seed"] = config.generation.seed + 1
+    case_path.write_text(json.dumps(saved))
+    third_backend = _Backend([_valid_text("fresh again")])
+    third = run_configuration(config=config, records=[record], backend=third_backend,
+                              output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                              experiment_id=study_id)
+    assert third.skipped == 0
+    assert third_backend.calls == [f"C05:{record.sample_id}"]
+
+
+def test_study_output_identity_pins_retry_policy(record, registry, tmp_path: Path) -> None:
+    config = registry.by_id["C05"]
+    run_configuration(config=config, records=[record], backend=_Backend([_valid_text("first")]),
+                      output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                      experiment_id="hsi-vqagen-icce2027-paper50-v1", retry_invalid_once=True)
+    with pytest.raises(ValueError, match="identity mismatch"):
+        run_configuration(config=config, records=[record], backend=_Backend([]),
+                          output_root=tmp_path, sample_manifest_sha256="a" * 64,
+                          experiment_id="hsi-vqagen-icce2027-paper50-v1",
+                          retry_invalid_once=False)
 
 
 def test_refuses_to_mix_revision_or_settings_in_existing_output(
@@ -175,3 +320,16 @@ def test_optional_validation_retry_uses_next_seed_and_preserves_attempts(
         "maximum_retries": 1,
         "seed_offset": 1,
     }
+    row = json.loads((tmp_path / config.output_dir / "normalized.jsonl").read_text().splitlines()[0])
+    assert row["generation_settings"]["seed"] == config.generation.seed
+    assert row["effective_generation_settings"]["seed"] == config.generation.seed + 1
+    assert row["attempt_provenance"] == "validation_retry_seed_plus_one"
+    assert manifest["case_telemetry"][record.sample_id]["effective_generation_settings"]["seed"] == (
+        config.generation.seed + 1
+    )
+    attempts_path = tmp_path / config.output_dir / "raw" / (
+        case_file_key(f"C05:{record.sample_id}") + ".attempts.json"
+    )
+    attempts = json.loads(attempts_path.read_text())
+    assert len(attempts) == 2
+    assert attempts[1]["backend_metadata"]["retry_seed"] == config.generation.seed + 1

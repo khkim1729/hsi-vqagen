@@ -85,6 +85,15 @@ def normalize_response(
                 errors.append(_error_text(repair_exc))
 
     telemetry = attempts[-1]
+    effective_settings = request.generation.model_dump(mode="json")
+    attempt_provenance = "base_request"
+    if len(attempts) > 1:
+        if telemetry.backend_metadata.get("validation_retry") == 1:
+            effective_settings = {**effective_settings, "seed": telemetry.backend_metadata["retry_seed"]}
+            attempt_provenance = "validation_retry_seed_plus_one"
+        else:
+            effective_settings = None
+            attempt_provenance = "external_repair_unknown_settings"
     return NormalizedCase(
         experiment_id=request.experiment_id,
         case_id=request.case_id,
@@ -98,6 +107,8 @@ def normalize_response(
         prompt_version=request.prompt_version,
         prompt_sha256=request.prompt_sha256,
         generation_settings=request.generation.model_dump(mode="json"),
+        effective_generation_settings=effective_settings,
+        attempt_provenance=attempt_provenance,
         latency_seconds=sum(attempt.latency_seconds for attempt in attempts),
         model_load_seconds=telemetry.model_load_seconds,
         peak_vram_bytes=max(

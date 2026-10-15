@@ -1,4 +1,7 @@
 import json
+import base64
+
+from PIL import Image
 
 import pytest
 
@@ -64,3 +67,28 @@ def test_ablation_pair_prompt_diff_is_only_evidence_mode_and_image(
     assert canonical_multimodal == canonical_text
     assert sum(item["type"] == "image_url" for item in multimodal) == 1
     assert sum(item["type"] == "image_url" for item in text_only) == 0
+
+
+def test_shuffled_rgb_request_records_image_origin_without_changing_description(
+    record, registry, tmp_path
+) -> None:
+    """Catches a swap that changes the text source or hides the image provenance."""
+    image_path = tmp_path / "other.png"
+    Image.new("RGB", (8, 8), color="red").save(image_path)
+    image_record = record.model_copy(update={"sample_id": "other-sample", "rgb_path": image_path})
+    config = registry.by_id["C01"].model_copy(update={"id": "R02", "image_variant": "shuffled"})
+
+    request = build_generation_request(record, config, image_record=image_record)
+
+    assert request.rgb_path == image_path
+    assert request.provenance["description"] == record.description
+    assert request.provenance["image_source_sample_id"] == "other-sample"
+    assert request.provenance["image_variant"] == "shuffled"
+    assert base64.b64encode(image_path.read_bytes()).decode() in request.messages[-1]["content"][0]["image_url"]["url"]
+
+
+def test_shuffled_rgb_request_requires_an_explicit_other_image(record, registry) -> None:
+    """Catches a robustness condition silently using the correct RGB."""
+    config = registry.by_id["C01"].model_copy(update={"id": "R02", "image_variant": "shuffled"})
+    with pytest.raises(ValueError, match="shuffled"):
+        build_generation_request(record, config)

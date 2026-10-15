@@ -1,0 +1,30 @@
+registry_version: icce2027-rgb-robustness-v1
+parent_registry: experiments.yaml
+prompt_version: vqa-generation-ko-v1
+sample_manifest_sha256: 636ce872445090612592511e4805eba08dbd4f42634e82eacb71532b28238d9b
+image_mapping_sha256: 3420119df2d0eed7b80b08907d88b26ed7d932a598828ac840df93138ff6fc10
+configurations:
+  - id: R01
+    source_config_id: C01
+    output_dir: r01_qwen_paired_rgb
+    image_variant: paired
+  - id: R02
+    source_config_id: C01
+    output_dir: r02_qwen_shuffled_rgb
+    image_variant: shuffled
+  - id: R03
+    source_config_id: C10
+    output_dir: r03_qwen_description_only
+    image_variant: none
+  - id: R04
+    source_config_id: C03
+    output_dir: r04_gemma_paired_rgb
+    image_variant: paired
+  - id: R05
+    source_config_id: C03
+    output_dir: r05_gemma_shuffled_rgb
+    image_variant: shuffled
+  - id: R06
+    source_config_id: C09
+    output_dir: r06_gemma_description_only
+    image_variant: none

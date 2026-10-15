@@ -86,6 +86,10 @@ class NormalizedCase(BaseModel):
     prompt_version: str
     prompt_sha256: str
     generation_settings: dict[str, Any]
+    effective_generation_settings: dict[str, Any] | None = None
+    attempt_provenance: Literal[
+        "base_request", "validation_retry_seed_plus_one", "external_repair_unknown_settings"
+    ] | None = None
     latency_seconds: float
     model_load_seconds: float
     peak_vram_bytes: int | None

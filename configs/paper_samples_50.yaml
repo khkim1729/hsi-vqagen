@@ -1,0 +1,257 @@
+experiment_id: hsi-vqagen-icce2027-paper50-v1
+selection_seed: icce-2027-v1
+source_valid_records: 10000
+selection_method: round-robin NEON site and global description-length tertile, preferring unused shards
+manifest_sha256: 40d3f07e006cd255dee4245fec224b5da16ed958f8dc47b458d83048524a8ec2
+content_sha256: fb2764269685ac84347f43c15823bcf3565351034ea8ea3a2b0aa0d41922791f
+samples:
+  - sample_id: NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212
+    shard: s0211
+    description_sha256: 6482cbfc477a457b18441f62f7ee7e4652c438e6b5391d7c976f080ce1b42e7d
+    rgb_sha256: a97a6764252ba94e8360c69a94cbc4c37e3f46fcc0b09eade531ad75fea0fa14
+    description_length: 582
+  - sample_id: NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84
+    shard: s0009
+    description_sha256: 51810776a23afe05f07516877f5fe2da6225dd5395ec3bc03f90512c976a3624
+    rgb_sha256: 82288c120ec68bf961612b33e0cdfef0d83bb4e3281fcba42ed870b0bc279b59
+    description_length: 760
+  - sample_id: NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660
+    shard: s0377
+    description_sha256: f0a32cdb603fb45497a63813086eeeca485e9bcea1a0dfaa1325011bf4b42b05
+    rgb_sha256: 6a5a52b61840a9c0c20c2112d82f6f683e6fa95c835f7f097aee1bd24b46057a
+    description_length: 874
+  - sample_id: NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980
+    shard: s0316
+    description_sha256: 571cfc9ef2abc52b9738e7690e513927550e1056e0df34057f37f043affb95b2
+    rgb_sha256: 77cb95925b23049d2e1a5ce55b335921d56156c1267bf7176d5fd38be5492cdf
+    description_length: 702
+  - sample_id: NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724
+    shard: s0237
+    description_sha256: 736612a56ba548cd40d987a15fa5e641c816cee4a95c9539b6945ac9ad4d91ad
+    rgb_sha256: 4824ce169a88fb07195521d14b65bd1e4bc54979908eac737b739927da0774f5
+    description_length: 792
+  - sample_id: NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404
+    shard: s0397
+    description_sha256: 1431b4adba0db53adf837da98b942e3d63300724f11bcf6877c16c2fc7f1fa11
+    rgb_sha256: e3c17d4f55098244f59f0c58f5bd12a8dcbb779fc4d72e18f36fdc12591d94a2
+    description_length: 875
+  - sample_id: NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404
+    shard: s0056
+    description_sha256: 026023bc35c00f9c6a1ad264b3aa53d2e8fea1caf28d1d3c5143907d49f33733
+    rgb_sha256: 958d28fcae600ac9c3882562416ceeace4837bf964b02e4746b8d87441707881
+    description_length: 640
+  - sample_id: NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404
+    shard: s0398
+    description_sha256: 08e425e2ccd92d585f736ace363225ad0ce502b33053d2faa80865cb484dad5d
+    rgb_sha256: 440c619f0fe2d6645a6b813199f19692c60334d904a3db9d1ba240676bab6ed8
+    description_length: 741
+  - sample_id: NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468
+    shard: s0097
+    description_sha256: 0f8eca0ebc61a634d9d8ac5ec179c21cc8dd6178827fe535d39a9fbe9a8f3bcc
+    rgb_sha256: fa0327feee12714448c1f5f582e5296bdeaef4f56f9e7fc6e7b08d44ed516e59
+    description_length: 894
+  - sample_id: NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788
+    shard: s0102
+    description_sha256: 67e67690fd9875e193100f7d9ab49af6805a367ce35748f3c31a88a381c286d6
+    rgb_sha256: a96e96c261a3ac8dd030a9d49bd17ce330201b94f15759ee3457cb94e8faa47c
+    description_length: 688
+  - sample_id: NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276
+    shard: s0201
+    description_sha256: cc03aee74ed02deecb1fde29ac516fc08799cb19240db468f661594a0d3e20f3
+    rgb_sha256: 65107352564ab94bf170a9b1ece00fd34e7de85f3dafdc402ded21272e85caf7
+    description_length: 719
+  - sample_id: NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660
+    shard: s0106
+    description_sha256: 9d67be677e1950de126efe12ddeba858e5e7cb85b2c03d2b65df31dba96cbaff
+    rgb_sha256: 17a84a98d992392e82dd6ccf4e5e9612f6873726d1f771e7e5b037bb257edc77
+    description_length: 873
+  - sample_id: NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596
+    shard: s0202
+    description_sha256: 4ae94e0bcb4d3de2ef64093b219e0e511c231435f245322448c7cb9f2ed66c08
+    rgb_sha256: bfef97b10653fcb88eb0aa34fbc33b4049f85cdeae0e7b6dc3e173df41d84356
+    description_length: 663
+  - sample_id: NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660
+    shard: s0322
+    description_sha256: 47899bb33065d70b02890f7cb101c8f931db10e1c8af2a9ee84231a3e7fa3784
+    rgb_sha256: f54f30adbb98e95c2ab433778e3228775bf9285b49445084a9756d0b4070b581
+    description_length: 713
+  - sample_id: NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212
+    shard: s0270
+    description_sha256: 7deb6081bac90208a16235b605b714a69d4c05aff83f4d10141605fc82ed2a55
+    rgb_sha256: 98f0f39129fd65e79cbe7f833473fd1373b29bf8f91319a636b95ba2a34c1b86
+    description_length: 848
+  - sample_id: NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212
+    shard: s0362
+    description_sha256: a718f23931ccef15561d78cfdf831394346eafb28778e75f689d51243884a2b9
+    rgb_sha256: 22a9123a2442f1d5f8beff1ba2975fe06d4b912ec5d5b67d4acdf7afc90f6491
+    description_length: 691
+  - sample_id: NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340
+    shard: s0363
+    description_sha256: 3917b5d3f058a03be9889450ab34bf7961de7bdbc10b847a1f4012e347c7de7e
+    rgb_sha256: 585316f4f29d0ade3daf5e2838f808d243f9b77ee465967626276fca163b7c2d
+    description_length: 736
+  - sample_id: NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660
+    shard: s0324
+    description_sha256: 527adc1630c9571b96d04f6fc679609bb79428e10de3b00f3963df3318b6a634
+    rgb_sha256: 1bce43b6d573b2b523d0f8ee5426ae2ad622bdedd580340f5158826a386ae708
+    description_length: 802
+  - sample_id: NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596
+    shard: s0116
+    description_sha256: 2a600d0bff5b6aeab09bcee332670b44a5c3e55d4e7a7bd8c0dec43fd4666896
+    rgb_sha256: 270bdf08e3e8279993439f38bf35f3c4a9a8499ecb6a3e773a3112d476c3143a
+    description_length: 662
+  - sample_id: NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404
+    shard: s0296
+    description_sha256: 38397231e98dd67efe6104a871327d315c763510b179bc1d1bfccae756771e41
+    rgb_sha256: 3a2eb4013350a85b1ca104ede092693814b387ea1cacbda25efb84e4031c7a5d
+    description_length: 766
+  - sample_id: NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788
+    shard: s0373
+    description_sha256: a7ba8d2063948e232b2b82f6a72b236ac5f0424cce691f4e474dee69e236ee37
+    rgb_sha256: 73656355503d095edab9f128468de84ddd314a385b13ca1461a1b5a8eb62129d
+    description_length: 571
+  - sample_id: NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212
+    shard: s0207
+    description_sha256: cdf34ee088183b4e241bfa2d7cd14e6fb1286e822a47e3f382585c14cc3f13cc
+    rgb_sha256: c11c42fd168b7561e60b1969ed7e95c189ca9e3d7e76636730c32a9775dbfa79
+    description_length: 649
+  - sample_id: NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404
+    shard: s0162
+    description_sha256: ad30dd2c326d53c4570d79a551192f77337e320c8587ce5c57886fba2734c1c6
+    rgb_sha256: e21250deaef57516b9298fbf1144c668ce5faf55f23dc4e66457f40be859f2ee
+    description_length: 727
+  - sample_id: NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468
+    shard: s0209
+    description_sha256: 3eaaec5af3f15383e6ccf80e653bcb210436e9f20b8fe31248d4ed34c38719cb
+    rgb_sha256: 06c0c45066dcbfbffd32c5f81b5346968f7ac620f3a9925f5e1cc65c8d5f8aa7
+    description_length: 744
+  - sample_id: NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980
+    shard: s0005
+    description_sha256: 3afcad3691a852d51e7a5b34e6cbcf1e4fa5c25e017ebb7b30606cd2ada1344a
+    rgb_sha256: 48e3729545e979d1599828586cae5cd95a6de6dd2066233a3ea2e34a437c857f
+    description_length: 852
+  - sample_id: NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212
+    shard: s0375
+    description_sha256: 82699aa64478dd00e835f01474f0056d3756c40ec001ede7fc20d2275d83bb13
+    rgb_sha256: 2322bec30570d9c2bd6a383125db0b00f138e3205680e3e59b2fb052cd07cf3e
+    description_length: 668
+  - sample_id: NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276
+    shard: s0316
+    description_sha256: 2f29d4d2abe7189ea5b05dbb8133a9affe2e57e10ad27448991dee29b470c9e3
+    rgb_sha256: 28fb58062451302693e728a7a4d3fb5ac167725e56d5f263d9aff17ad10f3b97
+    description_length: 906
+  - sample_id: NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84
+    shard: s0242
+    description_sha256: b8901e397f6ac98ddbbd5eb26534ac516303c3caedb777a652979f3628db92d5
+    rgb_sha256: d3e4532081f89b033503015653d38b9e6920eed5c26ac2705a4248c8fdd16fb9
+    description_length: 832
+  - sample_id: NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148
+    shard: s0397
+    description_sha256: 36a1ec276fc31fe80abe64c8c07bc504f07dd74d24d2bbf49ff0d14586187040
+    rgb_sha256: 0f73d9724ba0776b5bccf6b84be38946c342895855492e17cfd2074a379f4b29
+    description_length: 493
+  - sample_id: NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660
+    shard: s0057
+    description_sha256: bfc711a99f991a9922d8f92a7cf976cd3a080d29a5ba1648d163a35643f1cbe9
+    rgb_sha256: 2ca176ea32f5ff12cb32d3223b216dbe444737000dc31bf5a9dbca6a04968939
+    description_length: 759
+  - sample_id: NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852
+    shard: s0398
+    description_sha256: 8a01c66cf1a59cf1fcff1ff3c9207a4490e692287271691398a9a63cf1dc7a33
+    rgb_sha256: a1f4d2851b548b6e15292ef6c79056565b5087faa82ba47688124d632e69887f
+    description_length: 967
+  - sample_id: NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660
+    shard: s0096
+    description_sha256: a62db91d9ba3498a259f61e46d627f9b68763f107caf466d3b9ababd2941f738
+    rgb_sha256: 571832f6b42a5b65af00c71acc495ad9f905e07891a90394a9f85d72596c9d78
+    description_length: 690
+  - sample_id: NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340
+    shard: s0102
+    description_sha256: f4fbcbe4fd225ecb03740fc569da80aa127ae98b75fcc988694d82f55f06ba82
+    rgb_sha256: 15889cab149adcf9dc30a82f48b1f609490f337f1a6abbe20000d5df206ad6db
+    description_length: 746
+  - sample_id: NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724
+    shard: s0201
+    description_sha256: 290c7878b010c2c460fcb1fcec1b62bfd3d4e2de9b45a9c0ded2d46de655bfdf
+    rgb_sha256: 88adf08f1796396b774994647be47787010fad1153edc1b50f2f9851df1cc205
+    description_length: 1074
+  - sample_id: NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468
+    shard: s0106
+    description_sha256: fc2787b59480ad55cd974bf5bc18beb23d16a075b15cca5a3c7ee27ea93b34df
+    rgb_sha256: 2b088bc57e54d5b2e402c2d5bb7623fba045f3bf0153fe4944956c43312cd342
+    description_length: 691
+  - sample_id: NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84
+    shard: s0202
+    description_sha256: a0187571baf7af5f2a69d785f43c141905c7ffae8f59548825fa17f151d9ba95
+    rgb_sha256: 0780b85b8577d450dfb7639c6ca87d4a89f61b38108fb1debf25aac334932179
+    description_length: 785
+  - sample_id: NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724
+    shard: s0322
+    description_sha256: 80edd4710a47b9030691af8d4458704a1b9b1ad6b1c5675a8da5d4fbbf9454bd
+    rgb_sha256: 6131f4435bd4d5d37fe26597efbc1b2a2ff7207cb98b512e2ee7c4845a6fdae6
+    description_length: 874
+  - sample_id: NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212
+    shard: s0267
+    description_sha256: a36bc6bd0da2af4a3d48d85786de6d6f5b86f6dcd83ec8ff203b8f1b4ac373c9
+    rgb_sha256: d0320acabf74d5f6f96340dde13dfcd4a3006517835dcedf4e894b5fb0fc9cda
+    description_length: 681
+  - sample_id: NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596
+    shard: s0361
+    description_sha256: 269c08e7401a4c2175d55f2003c57cec76a110b1399909b231e92a89ea601cc1
+    rgb_sha256: b75a38630bb8e510bdce99296bcb7029cdde71fdf0b11ed3bb34bc0afd431ec6
+    description_length: 834
+  - sample_id: NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212
+    shard: s0364
+    description_sha256: 6b046a61f7a51b59a3e13e3a048a5eb6454ce86b7e3c8d05fb4547378bd49b23
+    rgb_sha256: f3b2971a911c81f9c376f8ede203fa23da1f134727676872a22ecda979e8bfdb
+    description_length: 1171
+  - sample_id: NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532
+    shard: s0323
+    description_sha256: 630354d4f05b4707bdbe57740132650e6ec959ed8b8a6b2b6811bdc0bca508fa
+    rgb_sha256: ae8b005688590b94573da1233c5c03b43d1151757e3179e2436eedd5545f9f3c
+    description_length: 638
+  - sample_id: NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596
+    shard: s0108
+    description_sha256: fb1c2c197040aa7ad6f881fe601a9dee5d08eccd7ce66ff196ec7e285843b284
+    rgb_sha256: bed7fa894d873571408feb6ab8c262299d052a86f8da2e3cd22847712da1d1ff
+    description_length: 734
+  - sample_id: NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596
+    shard: s0295
+    description_sha256: abd0be1510e3c75374937676d2c186653830842f5dc8f95344f3cefe90c10985
+    rgb_sha256: c62a485bfeb2138933189e1bf502c1a57c96d6e5bf48eb0fa919134ca4eb2054
+    description_length: 868
+  - sample_id: NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724
+    shard: s0373
+    description_sha256: 1444af09f87bbe213d07313c361eeb4f58bf1c9a7bbb73e720fea424266dac13
+    rgb_sha256: 8813a02b0d08a9b0b0eb360b567a09a7dcc4c2ff5d3d48bf679b109946fc711c
+    description_length: 461
+  - sample_id: NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340
+    shard: s0202
+    description_sha256: 06cbacf82ec8a61178fb00969577b430142bf83bd876d8fd81cda3890d9fc6e8
+    rgb_sha256: b2b72720c44bda197096198e363a3d8fdd4215211036c770bbf2487e8129d065
+    description_length: 792
+  - sample_id: NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468
+    shard: s0160
+    description_sha256: 3c34be137145938a3596b625952de21a483592a455ba2ef294880e5e476da137
+    rgb_sha256: 7e14d39dce174d5d654b24c2e3cc8c40b65acb57a2ec1b76eaf17f9b939ca2ed
+    description_length: 802
+  - sample_id: NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532
+    shard: s0210
+    description_sha256: d352feafb2e8adc68b79d4f29c8ce1fc011990b52e5a378346907ed546f3ab9c
+    rgb_sha256: 72565d85a926b4e4eb5b1b5bbe7ed157163d99fd583d3f49a3e50f69862a356e
+    description_length: 1077
+  - sample_id: NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788
+    shard: s0006
+    description_sha256: c0d188026cbd3f6a4549e6be08962cf0a46ef666199382e7f5aeaab63103a304
+    rgb_sha256: 5d6930dfc2767dde657f7558cf0ab4e4d2fac9c1092fe4793c0437fb68685d3f
+    description_length: 628
+  - sample_id: NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852
+    shard: s0374
+    description_sha256: c000b7116de6843d2c7cd99680bde838140906f1c9371088059ce10b3ea3c123
+    rgb_sha256: 223e22e451f32b5f85c2ea1d07ff89cb1b6e940a26b74e9a3049ea310ec9b1b9
+    description_length: 730
+  - sample_id: NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660
+    shard: s0316
+    description_sha256: 6f7d70b21792d40125dbd205383d5e24f15c956ee74e311674d3ad7797bc05e8
+    rgb_sha256: 99b096c092cc9d5a7d58ac6f02da4a8c4b3859d32ea94efe37878f5b79fd5dff
+    description_length: 850

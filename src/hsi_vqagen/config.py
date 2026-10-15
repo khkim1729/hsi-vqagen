@@ -39,6 +39,7 @@ class ExperimentConfig(BaseModel):
     revision: str = Field(min_length=40, max_length=40, pattern=r"^[0-9a-f]{40}$")
     condition: Literal["multimodal", "text_only"]
     allow_image: bool
+    image_variant: Literal["paired", "shuffled", "none"] | None = None
     preferred_backend: Literal["vllm", "transformers"]
     fallback_backend: Literal["vllm", "transformers"] | None = None
     prompt_version: str
@@ -52,6 +53,10 @@ class ExperimentConfig(BaseModel):
             raise ValueError("text-only configurations must set allow_image=false")
         if self.condition == "multimodal" and not self.allow_image:
             raise ValueError("multimodal configurations must set allow_image=true")
+        if self.image_variant == "none" and self.allow_image:
+            raise ValueError("image_variant=none cannot receive RGB")
+        if self.image_variant in {"paired", "shuffled"} and not self.allow_image:
+            raise ValueError("image variant requires an RGB condition")
         return self
 
 
@@ -110,3 +115,74 @@ def load_experiment_registry(path: Path) -> ExperimentRegistry:
     # This YAML-only key gives every condition one identical generation mapping.
     payload.pop("shared_generation", None)
     return ExperimentRegistry.model_validate(payload)
+
+
+ROBUSTNESS_SOURCES = {
+    "R01": ("C01", "paired"),
+    "R02": ("C01", "shuffled"),
+    "R03": ("C10", "none"),
+    "R04": ("C03", "paired"),
+    "R05": ("C03", "shuffled"),
+    "R06": ("C09", "none"),
+}
+
+
+class RobustnessRegistry(BaseModel):
+    """Separate, six-condition RGB sensitivity study with frozen controls."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    registry_version: Literal["icce2027-rgb-robustness-v1"]
+    sample_manifest_sha256: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$")
+    image_mapping_sha256: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$")
+    configurations: tuple[ExperimentConfig, ...]
+
+    @property
+    def by_id(self) -> dict[str, ExperimentConfig]:
+        return {item.id: item for item in self.configurations}
+
+    @model_validator(mode="after")
+    def enforce_robustness_contract(self) -> "RobustnessRegistry":
+        if tuple(self.by_id) != tuple(ROBUSTNESS_SOURCES):
+            raise ValueError("robustness configuration IDs and order must be R01-R06")
+        if len({item.output_dir for item in self.configurations}) != 6:
+            raise ValueError("robustness output directories must be distinct")
+        for group in (("R01", "R02", "R03"), ("R04", "R05", "R06")):
+            members = [self.by_id[key] for key in group]
+            controls = {
+                (item.checkpoint, item.revision, item.prompt_version, item.generation)
+                for item in members
+            }
+            if len(controls) != 1:
+                raise ValueError("robustness triad must retain the same checkpoint and generation controls")
+            if [item.image_variant for item in members] != ["paired", "shuffled", "none"]:
+                raise ValueError("robustness triad image variants must be paired/shuffled/none")
+        return self
+
+
+def load_robustness_registry(path: Path) -> RobustnessRegistry:
+    path = Path(path)
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    parent = Path(payload.pop("parent_registry"))
+    if not parent.is_absolute():
+        parent = path.parent / parent
+    source = load_experiment_registry(parent).by_id
+    prompt_version = payload.pop("prompt_version")
+    expanded = []
+    for entry in payload["configurations"]:
+        config_id = entry["id"]
+        expected_source, expected_variant = ROBUSTNESS_SOURCES.get(config_id, (None, None))
+        if entry.get("source_config_id") != expected_source:
+            raise ValueError(f"same checkpoint control drift for {config_id}")
+        if entry.get("image_variant") != expected_variant:
+            raise ValueError(f"image variant control drift for {config_id}")
+        base = source[expected_source].model_dump(mode="python")
+        base.update(
+            id=config_id,
+            output_dir=entry["output_dir"],
+            image_variant=expected_variant,
+            prompt_version=prompt_version,
+        )
+        expanded.append(ExperimentConfig.model_validate(base))
+    payload["configurations"] = expanded
+    return RobustnessRegistry.model_validate(payload)

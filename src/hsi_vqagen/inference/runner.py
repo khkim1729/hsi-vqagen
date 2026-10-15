@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict
 
 from hsi_vqagen.config import ExperimentConfig
 from hsi_vqagen.data.records import DatasetRecord
+from hsi_vqagen.data.samples import rgb_mapping_hash
 from hsi_vqagen.inference.backends import GenerationBackend
 from hsi_vqagen.inference.normalize import RepairCallable, normalize_response
 from hsi_vqagen.inference.prompts import build_generation_request
@@ -39,7 +40,12 @@ def case_file_key(case_id: str) -> str:
 
 
 def _identity_payload(
-    config: ExperimentConfig, sample_manifest_sha256: str, prompt_sha256: str
+    config: ExperimentConfig,
+    sample_manifest_sha256: str,
+    prompt_sha256: str,
+    image_mapping_sha256: str | None = None,
+    experiment_id: str | None = None,
+    retry_invalid_once: bool = False,
 ) -> dict[str, Any]:
     identity = {
         "schema_version": "hsi-vqagen.generation-config.v1",
@@ -57,6 +63,17 @@ def _identity_payload(
         "template_controls": config.template_controls,
         "preprocessing_exceptions": config.preprocessing_exceptions,
     }
+    if config.image_variant is not None:
+        identity["image_variant"] = config.image_variant
+        identity["image_mapping_sha256"] = image_mapping_sha256
+    if experiment_id is not None:
+        identity["experiment_id"] = experiment_id
+        identity["revision_provenance"] = "configured_registry_revision_not_runtime_attestation"
+        identity["validation_retry_policy"] = {
+            "enabled": retry_invalid_once,
+            "maximum_retries": 1 if retry_invalid_once else 0,
+            "seed_offset": 1 if retry_invalid_once else 0,
+        }
     encoded = json.dumps(identity, sort_keys=True, separators=(",", ":")).encode("utf-8")
     identity["identity_sha256"] = hashlib.sha256(encoded).hexdigest()
     return identity
@@ -69,6 +86,38 @@ def _load_case(path: Path) -> NormalizedCase | None:
         return NormalizedCase.model_validate_json(path.read_text(encoding="utf-8"))
     except Exception:
         return None
+
+
+def _case_matches_request(
+    case: NormalizedCase, request, *, require_attempt_provenance: bool = False,
+    retry_invalid_once: bool = False,
+) -> bool:
+    base_settings = request.generation.model_dump(mode="json")
+    if case.validation_status == "valid":
+        expected_attempt = "base_request"
+        expected_effective = base_settings
+    else:
+        expected_attempt = "validation_retry_seed_plus_one"
+        expected_effective = {**base_settings, "seed": base_settings["seed"] + 1}
+    return (
+        case.experiment_id == request.experiment_id
+        and case.case_id == request.case_id
+        and case.sample_id == request.sample_id
+        and case.config_id == request.config_id
+        and case.model == request.model
+        and case.revision == request.revision
+        and case.backend == request.backend
+        and case.input_condition == request.input_condition
+        and case.prompt_version == request.prompt_version
+        and case.prompt_sha256 == request.prompt_sha256
+        and case.generation_settings == base_settings
+        and case.provenance == request.provenance
+        and (not require_attempt_provenance or (
+            case.effective_generation_settings == expected_effective
+            and case.attempt_provenance == expected_attempt
+            and (case.validation_status != "repaired" or retry_invalid_once)
+        ))
+    )
 
 
 def _case_telemetry(case: NormalizedCase, raw: RawGeneration | None) -> dict[str, Any]:
@@ -84,6 +133,8 @@ def _case_telemetry(case: NormalizedCase, raw: RawGeneration | None) -> dict[str
         "model_load_seconds": case.model_load_seconds,
         **measurement.model_dump(mode="json"),
         "validation_status": case.validation_status,
+        "effective_generation_settings": case.effective_generation_settings,
+        "attempt_provenance": case.attempt_provenance,
     }
 
 
@@ -97,18 +148,48 @@ def run_configuration(
     resume: bool = True,
     repair: RepairCallable | None = None,
     retry_invalid_once: bool = False,
+    image_sources: dict[str, DatasetRecord] | None = None,
+    experiment_id: str | None = None,
+    frozen_image_mapping_sha256: str | None = None,
 ) -> RunSummary:
+    if not records:
+        raise ValueError("at least one dataset record is required")
+    image_mapping_sha256 = None
+    if config.image_variant == "shuffled":
+        if image_sources is None or not {row.sample_id for row in records} <= set(image_sources):
+            raise ValueError("shuffled image mapping must cover every requested sample")
+        selected_ids = {row.sample_id for row in records}
+        mapping_ids = list(image_sources)
+        source_ids = [image_sources[sample_id].sample_id for sample_id in mapping_ids]
+        if (set(source_ids) != set(mapping_ids)
+                or any(sample_id == image_sources[sample_id].sample_id for sample_id in mapping_ids)
+                or (frozen_image_mapping_sha256 is None and set(mapping_ids) != selected_ids)):
+            raise ValueError("shuffled image mapping must be a derangement of the cohort")
+        image_mapping_sha256 = rgb_mapping_hash([
+            (sample_id, image_sources[sample_id].sample_id) for sample_id in mapping_ids
+        ])
+        if (frozen_image_mapping_sha256 is not None
+                and image_mapping_sha256 != frozen_image_mapping_sha256):
+            raise ValueError("shuffled image mapping differs from frozen identity")
+    elif image_sources is not None or frozen_image_mapping_sha256 is not None:
+        raise ValueError("image mapping is only valid for a shuffled RGB condition")
+
     output_dir = Path(output_root) / config.output_dir
     raw_dir = output_dir / "raw"
     case_dir = output_dir / "cases"
     raw_dir.mkdir(parents=True, exist_ok=True)
     case_dir.mkdir(parents=True, exist_ok=True)
 
-    if not records:
-        raise ValueError("at least one dataset record is required")
-    first_request = build_generation_request(records[0], config)
+    first_request = build_generation_request(
+        records[0], config,
+        image_record=image_sources[records[0].sample_id] if image_sources else None,
+        experiment_id=experiment_id,
+    )
     identity = _identity_payload(
-        config, sample_manifest_sha256, first_request.prompt_sha256
+        config, sample_manifest_sha256, first_request.prompt_sha256,
+        image_mapping_sha256=image_mapping_sha256,
+        experiment_id=experiment_id,
+        retry_invalid_once=retry_invalid_once,
     )
     config_path = output_dir / "generation_config.json"
     if config_path.is_file():
@@ -121,13 +202,26 @@ def run_configuration(
     skipped = 0
     cases: list[NormalizedCase] = []
     raw_by_sample: dict[str, RawGeneration] = {}
+    request_provenance: dict[str, dict[str, Any]] = {}
     for record in records:
-        request = build_generation_request(record, config)
+        request = build_generation_request(
+            record, config,
+            image_record=image_sources[record.sample_id] if image_sources else None,
+            experiment_id=experiment_id,
+        )
+        request_provenance[record.sample_id] = request.provenance
         key = case_file_key(request.case_id)
         raw_path = raw_dir / f"{key}.json"
+        attempts_path = raw_dir / f"{key}.attempts.json"
         case_path = case_dir / f"{key}.json"
         existing_case = _load_case(case_path) if resume else None
-        if existing_case is not None and existing_case.validation_status in {"valid", "repaired"}:
+        if (existing_case is not None
+                and existing_case.validation_status in {"valid", "repaired"}
+                and _case_matches_request(
+                    existing_case, request,
+                    require_attempt_provenance=experiment_id is not None,
+                    retry_invalid_once=retry_invalid_once,
+                )):
             skipped += 1
             cases.append(existing_case)
             if raw_path.is_file():
@@ -154,8 +248,15 @@ def run_configuration(
                 error=redact_secrets(f"{type(exc).__name__}: {exc}"),
             )
         retry_callable = repair
+        retry_raw: RawGeneration | None = None
+        if repair is not None:
+            def retry_callable(raw_text: str, validation_error: str) -> RawGeneration:
+                nonlocal retry_raw
+                retry_raw = repair(raw_text, validation_error)
+                return retry_raw
         if retry_invalid_once and raw.error is None and retry_callable is None:
             def retry_callable(raw_text: str, validation_error: str) -> RawGeneration:
+                nonlocal retry_raw
                 del raw_text
                 retry_generation = request.generation.model_copy(
                     update={"seed": request.generation.seed + 1}
@@ -182,7 +283,8 @@ def run_configuration(
                     "retry_seed": retry_generation.seed,
                     "trigger_validation_error": redact_secrets(validation_error),
                 }
-                return retried.model_copy(update={"backend_metadata": metadata})
+                retry_raw = retried.model_copy(update={"backend_metadata": metadata})
+                return retry_raw
 
         case = normalize_response(
             raw,
@@ -190,6 +292,10 @@ def run_configuration(
             repair=retry_callable if raw.error is None else None,
         )
         atomic_write_json(raw_path, raw.model_dump(mode="json"))
+        atomic_write_json(
+            attempts_path,
+            [attempt.model_dump(mode="json") for attempt in (raw, retry_raw) if attempt is not None],
+        )
         atomic_write_json(case_path, case.model_dump(mode="json"))
         cases.append(case)
         raw_by_sample[record.sample_id] = raw
@@ -248,6 +354,7 @@ def run_configuration(
             "seed_offset": 1 if retry_invalid_once else 0,
         },
         "case_telemetry": telemetry,
+        "case_input_provenance": request_provenance,
     }
     atomic_write_json(output_dir / "run_manifest.json", manifest)
     return RunSummary(

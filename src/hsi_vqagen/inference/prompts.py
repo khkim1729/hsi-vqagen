@@ -45,7 +45,11 @@ def _data_uri(path: Path) -> str:
     return f"data:{mime};base64,{encoded}"
 
 
-def build_messages(record: DatasetRecord, config: ExperimentConfig) -> list[dict]:
+def build_messages(
+    record: DatasetRecord,
+    config: ExperimentConfig,
+    image_record: DatasetRecord | None = None,
+) -> list[dict]:
     """Create a request with one shared task body and a controlled evidence label."""
 
     evidence_mode = "RGB + description" if config.allow_image else "description only"
@@ -55,8 +59,9 @@ def build_messages(record: DatasetRecord, config: ExperimentConfig) -> list[dict
     )
     content: list[dict] = []
     if config.allow_image:
+        source = image_record or record
         content.append(
-            {"type": "image_url", "image_url": {"url": _data_uri(record.rgb_path)}}
+            {"type": "image_url", "image_url": {"url": _data_uri(source.rgb_path)}}
         )
     content.append({"type": "text", "text": user_text})
     system_message = (
@@ -77,10 +82,39 @@ def build_generation_request(
     record: DatasetRecord,
     config: ExperimentConfig,
     backend: Literal["vllm", "transformers"] | None = None,
+    image_record: DatasetRecord | None = None,
+    experiment_id: str | None = None,
 ) -> GenerationRequest:
+    if config.image_variant == "shuffled":
+        if image_record is None or image_record.sample_id == record.sample_id:
+            raise ValueError("shuffled RGB requires an explicit different image record")
+    elif image_record is not None and image_record.sample_id != record.sample_id:
+        raise ValueError("only shuffled RGB may use another sample's image")
+    if not config.allow_image and image_record is not None:
+        raise ValueError("text-only request cannot receive an image record")
     selected_backend = backend or config.preferred_backend
+    image_source = image_record or record
+    provenance = {
+        "dataset_shard": record.shard,
+        "description": record.description,
+        "description_prompt_version": record.prompt_version,
+        "description_prompt_hash": record.prompt_hash,
+        "hsi_shape": list(record.hsi_shape),
+        "rgb_size": list(record.rgb_size),
+        "description_sha256": hashlib.sha256(record.description.encode("utf-8")).hexdigest(),
+        "rgb_sha256": hashlib.sha256(record.rgb_path.read_bytes()).hexdigest(),
+    }
+    if config.image_variant is not None:
+        provenance["image_variant"] = config.image_variant
+        provenance["image_source_sample_id"] = (
+            image_source.sample_id if config.allow_image else None
+        )
+        provenance["image_rgb_sha256"] = (
+            hashlib.sha256(image_source.rgb_path.read_bytes()).hexdigest()
+            if config.allow_image else None
+        )
     return GenerationRequest(
-        experiment_id=EXPERIMENT_IDS[config.prompt_version],
+        experiment_id=experiment_id or EXPERIMENT_IDS[config.prompt_version],
         case_id=f"{config.id}:{record.sample_id}",
         sample_id=record.sample_id,
         config_id=config.id,
@@ -91,15 +125,8 @@ def build_generation_request(
         prompt_version=config.prompt_version,
         prompt_sha256=prompt_sha256(config.prompt_version),
         generation=config.generation,
-        messages=build_messages(record, config),
-        provenance={
-            "dataset_shard": record.shard,
-            "description": record.description,
-            "description_prompt_version": record.prompt_version,
-            "description_prompt_hash": record.prompt_hash,
-            "hsi_shape": list(record.hsi_shape),
-            "rgb_size": list(record.rgb_size),
-        },
-        rgb_path=record.rgb_path if config.allow_image else None,
+        messages=build_messages(record, config, image_record=image_record),
+        provenance=provenance,
+        rgb_path=image_source.rgb_path if config.allow_image else None,
         template_controls=config.template_controls,
     )
