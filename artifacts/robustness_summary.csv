@@ -1,0 +1,7 @@
+config_id,requested_case_count,run_requested_case_count,missing_sample_ids,completed_case_count,failed_case_count,validation_rate,pair_count,question_type_distribution,mean_latency_seconds
+R01,20,20,[],20,0,1.0,80,"{""attribute"": 35, ""comparison"": 3, ""counting"": 5, ""interpretive"": 18, ""spatial"": 19}",3.2797937235969585
+R02,20,20,[],20,0,1.0,80,"{""attribute"": 32, ""comparison"": 9, ""counting"": 7, ""interpretive"": 16, ""spatial"": 16}",3.3146123469399753
+R03,20,20,[],20,0,1.0,80,"{""attribute"": 27, ""comparison"": 5, ""counting"": 10, ""interpretive"": 21, ""spatial"": 17}",3.229208451550221
+R04,20,20,[],20,0,1.0,80,"{""attribute"": 27, ""comparison"": 12, ""counting"": 8, ""interpretive"": 25, ""spatial"": 8}",5.783926400588825
+R05,20,20,[],20,0,1.0,80,"{""attribute"": 28, ""comparison"": 11, ""counting"": 5, ""interpretive"": 26, ""spatial"": 10}",5.741041984554613
+R06,20,20,[],20,0,1.0,80,"{""attribute"": 29, ""comparison"": 15, ""counting"": 8, ""interpretive"": 21, ""spatial"": 7}",5.809616152336821

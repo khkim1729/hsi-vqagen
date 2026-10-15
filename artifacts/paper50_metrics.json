@@ -1,0 +1,3900 @@
+{
+  "schema_version": "hsi-vqagen.study-analysis.v1",
+  "sample_manifest_sha256": "40d3f07e006cd255dee4245fec224b5da16ed958f8dc47b458d83048524a8ec2",
+  "report_status": "final_complete",
+  "minimum_ci_scenes": 10,
+  "expected_scene_count": 50,
+  "bootstrap_unit": "scene (one case per configuration)",
+  "bootstrap_replicates": 2000,
+  "metric_note": "Source-description cosine is a lexical overlap proxy, not correctness. Question types are model-provided labels. Human review is required for answer quality and visual grounding.",
+  "configurations": [
+    {
+      "config_id": "C01",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 81,
+        "comparison": 8,
+        "counting": 19,
+        "interpretive": 46,
+        "spatial": 46
+      },
+      "mean_latency_seconds": 3.3105538034206257
+    },
+    {
+      "config_id": "C10",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 67,
+        "comparison": 14,
+        "counting": 31,
+        "interpretive": 43,
+        "spatial": 45
+      },
+      "mean_latency_seconds": 3.169211765343789
+    },
+    {
+      "config_id": "C02",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 92,
+        "comparison": 2,
+        "counting": 5,
+        "interpretive": 53,
+        "spatial": 48
+      },
+      "mean_latency_seconds": 3.4407468142476865
+    },
+    {
+      "config_id": "C11",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 78,
+        "comparison": 5,
+        "counting": 3,
+        "interpretive": 77,
+        "spatial": 37
+      },
+      "mean_latency_seconds": 3.8237513420102185
+    },
+    {
+      "config_id": "C03",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 68,
+        "comparison": 29,
+        "counting": 17,
+        "interpretive": 62,
+        "spatial": 24
+      },
+      "mean_latency_seconds": 5.647673972540069
+    },
+    {
+      "config_id": "C09",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 66,
+        "comparison": 36,
+        "counting": 22,
+        "interpretive": 55,
+        "spatial": 21
+      },
+      "mean_latency_seconds": 5.673465799188707
+    },
+    {
+      "config_id": "C04",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 59,
+        "comparison": 25,
+        "counting": 36,
+        "interpretive": 36,
+        "spatial": 44
+      },
+      "mean_latency_seconds": 6.5539937290060335
+    },
+    {
+      "config_id": "C06",
+      "requested_case_count": 50,
+      "run_requested_case_count": 50,
+      "missing_sample_ids": [],
+      "completed_case_count": 50,
+      "failed_case_count": 0,
+      "validation_rate": 1.0,
+      "pair_count": 200,
+      "question_type_distribution": {
+        "attribute": 61,
+        "comparison": 28,
+        "counting": 35,
+        "interpretive": 36,
+        "spatial": 40
+      },
+      "mean_latency_seconds": 5.766918133613654
+    }
+  ],
+  "case_metrics": [
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3125294360997243,
+      "mean_answer_characters": 15.75,
+      "latency_seconds": 3.2582965049659833
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6466496915114341,
+      "mean_answer_characters": 10.5,
+      "latency_seconds": 2.765814285958186
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.695956056016317,
+      "mean_answer_characters": 53.0,
+      "latency_seconds": 4.232321611023508
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.9591875999063944,
+      "mean_answer_characters": 18.0,
+      "latency_seconds": 4.205520029994659
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6487879682598561,
+      "mean_answer_characters": 35.75,
+      "latency_seconds": 3.6914003170095384
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.3775700038644123,
+      "mean_answer_characters": 9.0,
+      "latency_seconds": 2.5256064019631594
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8625009460630862,
+      "mean_answer_characters": 18.5,
+      "latency_seconds": 3.5310643039410934
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6190756092520551,
+      "mean_answer_characters": 32.75,
+      "latency_seconds": 3.9448714839527383
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.37728997958816396,
+      "mean_answer_characters": 10.75,
+      "latency_seconds": 2.778582848026417
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6234595330169187,
+      "mean_answer_characters": 38.25,
+      "latency_seconds": 3.4038396880496293
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6745848934108443,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 2.9697975880699232
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.3220653475534872,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 2.806031172047369
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7770068470685111,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 3.1343069979920983
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5238559506990986,
+      "mean_answer_characters": 17.0,
+      "latency_seconds": 2.768175310920924
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9382367006525254,
+      "mean_answer_characters": 51.0,
+      "latency_seconds": 4.289601775002666
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9522570528043609,
+      "mean_answer_characters": 25.5,
+      "latency_seconds": 4.20887777605094
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6957500757019102,
+      "mean_answer_characters": 9.0,
+      "latency_seconds": 3.0264468389796093
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8780811261905681,
+      "mean_answer_characters": 18.5,
+      "latency_seconds": 4.316060864948668
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5189349654723736,
+      "mean_answer_characters": 15.75,
+      "latency_seconds": 2.9555836060317233
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5279672985424557,
+      "mean_answer_characters": 25.25,
+      "latency_seconds": 3.416378663969226
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6563808521247895,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 2.597749882028438
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.9482907016316134,
+      "mean_answer_characters": 11.75,
+      "latency_seconds": 3.1864155679941177
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8351772231876495,
+      "mean_answer_characters": 19.0,
+      "latency_seconds": 3.2651729329954833
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3344355051283628,
+      "mean_answer_characters": 20.5,
+      "latency_seconds": 2.417300050961785
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8016686602176418,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 3.382426619064063
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3318762896722474,
+      "mean_answer_characters": 16.5,
+      "latency_seconds": 2.5995596080319956
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.40702648748638776,
+      "mean_answer_characters": 25.0,
+      "latency_seconds": 3.17722363199573
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.518104503013074,
+      "mean_answer_characters": 19.25,
+      "latency_seconds": 2.8968434300040826
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9291975977081219,
+      "mean_answer_characters": 6.25,
+      "latency_seconds": 4.502618898986839
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8723701058880923,
+      "mean_answer_characters": 40.75,
+      "latency_seconds": 3.732560032978654
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.47491708412152867,
+      "mean_answer_characters": 38.0,
+      "latency_seconds": 3.5425306169781834
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6092032529162859,
+      "mean_answer_characters": 16.75,
+      "latency_seconds": 2.706616926006973
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6769436715350552,
+      "mean_answer_characters": 38.5,
+      "latency_seconds": 3.3411341349128634
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6588676192360287,
+      "mean_answer_characters": 37.5,
+      "latency_seconds": 3.8015158170601353
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7835443156917,
+      "mean_answer_characters": 44.5,
+      "latency_seconds": 3.435453893034719
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6727253434515128,
+      "mean_answer_characters": 32.25,
+      "latency_seconds": 3.5777061270782724
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8876367286671768,
+      "mean_answer_characters": 22.75,
+      "latency_seconds": 3.851087376009673
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.9538361313152605,
+      "mean_answer_characters": 14.5,
+      "latency_seconds": 4.251904322067276
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8255583761215946,
+      "mean_answer_characters": 16.5,
+      "latency_seconds": 2.9238080610521138
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.4860937070993316,
+      "mean_answer_characters": 25.25,
+      "latency_seconds": 2.8506221449933946
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6828421375858913,
+      "mean_answer_characters": 13.5,
+      "latency_seconds": 4.306595379952341
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8777937864579397,
+      "mean_answer_characters": 8.5,
+      "latency_seconds": 3.4512920370325446
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4785106920650361,
+      "mean_answer_characters": 21.0,
+      "latency_seconds": 2.872820045100525
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7127267515340473,
+      "mean_answer_characters": 14.0,
+      "latency_seconds": 2.6169179279822856
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.612901266990321,
+      "mean_answer_characters": 18.25,
+      "latency_seconds": 2.4428479180205613
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6427230370778874,
+      "mean_answer_characters": 20.0,
+      "latency_seconds": 2.6947190979262814
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7925466739520595,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 3.710709237959236
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.39553009811928797,
+      "mean_answer_characters": 12.5,
+      "latency_seconds": 2.70766198693309
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4787658132714777,
+      "mean_answer_characters": 34.25,
+      "latency_seconds": 2.6794835509499535
+    },
+    {
+      "config_id": "C01",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5990306998921047,
+      "mean_answer_characters": 46.5,
+      "latency_seconds": 3.7758148460416123
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4388005428598854,
+      "mean_answer_characters": 8.5,
+      "latency_seconds": 2.593423694022931
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5472686034827479,
+      "mean_answer_characters": 11.75,
+      "latency_seconds": 2.446585791069083
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6870157059843973,
+      "mean_answer_characters": 36.25,
+      "latency_seconds": 3.1609785560285673
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8228799530253226,
+      "mean_answer_characters": 22.5,
+      "latency_seconds": 3.6852204829920083
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5428256949958792,
+      "mean_answer_characters": 39.0,
+      "latency_seconds": 3.227910503046587
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6003367708762247,
+      "mean_answer_characters": 20.5,
+      "latency_seconds": 3.082483561942354
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8720229389694358,
+      "mean_answer_characters": 14.75,
+      "latency_seconds": 3.364270013058558
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.736861534084448,
+      "mean_answer_characters": 18.5,
+      "latency_seconds": 3.5957786509534344
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.41089919576120837,
+      "mean_answer_characters": 16.5,
+      "latency_seconds": 2.7189073460176587
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5935282642183983,
+      "mean_answer_characters": 19.75,
+      "latency_seconds": 2.9081882239552215
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7018152017157682,
+      "mean_answer_characters": 26.25,
+      "latency_seconds": 3.440764368046075
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.49603147807206327,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 2.425111599965021
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7140335810081315,
+      "mean_answer_characters": 21.5,
+      "latency_seconds": 3.246517465915531
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8138820068149206,
+      "mean_answer_characters": 21.5,
+      "latency_seconds": 3.6218554220395163
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9310864165042687,
+      "mean_answer_characters": 15.75,
+      "latency_seconds": 3.879832515027374
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.663704910629149,
+      "mean_answer_characters": 15.5,
+      "latency_seconds": 3.420146032003686
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.438821793366492,
+      "mean_answer_characters": 13.75,
+      "latency_seconds": 2.4112543950323015
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7476753922389566,
+      "mean_answer_characters": 10.25,
+      "latency_seconds": 4.0663835341110826
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.49898195538801227,
+      "mean_answer_characters": 10.0,
+      "latency_seconds": 2.339348215959035
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4095859826957909,
+      "mean_answer_characters": 14.75,
+      "latency_seconds": 2.3614060149993747
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7698138216033706,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 2.4309675300028175
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.9623508174770226,
+      "mean_answer_characters": 7.75,
+      "latency_seconds": 3.31149983801879
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7843454039971944,
+      "mean_answer_characters": 14.5,
+      "latency_seconds": 2.9184657700825483
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3405526289535091,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 2.4167966480599716
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5078384557910839,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 2.8235137900337577
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.33380022258725384,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 2.5140009180177003
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.49358437695427054,
+      "mean_answer_characters": 74.75,
+      "latency_seconds": 4.897134487051517
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.371051867889128,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 2.48565087094903
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4705823499005153,
+      "mean_answer_characters": 16.0,
+      "latency_seconds": 2.7573781920364127
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5774015946683366,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 2.340105302981101
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7556560859300778,
+      "mean_answer_characters": 20.0,
+      "latency_seconds": 3.5475512630073354
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.553115367242,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 2.4698088439181447
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6068682811346743,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 3.191934101982042
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8751419725126812,
+      "mean_answer_characters": 14.75,
+      "latency_seconds": 3.4409206949640065
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7469642884035042,
+      "mean_answer_characters": 25.75,
+      "latency_seconds": 3.019313954981044
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7970809259329978,
+      "mean_answer_characters": 33.25,
+      "latency_seconds": 3.7024388320278376
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6598235851704783,
+      "mean_answer_characters": 26.25,
+      "latency_seconds": 3.3095340440049767
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.9447108821858385,
+      "mean_answer_characters": 20.0,
+      "latency_seconds": 4.517248087911867
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6955384460192138,
+      "mean_answer_characters": 43.5,
+      "latency_seconds": 6.3627668680856
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6024634955249352,
+      "mean_answer_characters": 32.5,
+      "latency_seconds": 3.088830802938901
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.645896454979307,
+      "mean_answer_characters": 25.75,
+      "latency_seconds": 3.4821529909968376
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7853544476219486,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 3.1475126419682056
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5853222333800796,
+      "mean_answer_characters": 18.25,
+      "latency_seconds": 2.844864362035878
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7632102258212504,
+      "mean_answer_characters": 33.25,
+      "latency_seconds": 3.443694391986355
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6229000814204764,
+      "mean_answer_characters": 18.75,
+      "latency_seconds": 2.9490902069956064
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5180138433915185,
+      "mean_answer_characters": 23.5,
+      "latency_seconds": 3.125077751930803
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.742830477983756,
+      "mean_answer_characters": 23.5,
+      "latency_seconds": 3.0717340890550986
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5278484873902157,
+      "mean_answer_characters": 14.5,
+      "latency_seconds": 2.89366381498985
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5082333326664911,
+      "mean_answer_characters": 10.25,
+      "latency_seconds": 2.6901917420327663
+    },
+    {
+      "config_id": "C10",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5046890612362259,
+      "mean_answer_characters": 30.5,
+      "latency_seconds": 3.270379047957249
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9099399564133702,
+      "mean_answer_characters": 3.5,
+      "latency_seconds": 4.263231477001682
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4813263450105864,
+      "mean_answer_characters": 34.0,
+      "latency_seconds": 3.500072385999374
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9288751121431307,
+      "mean_answer_characters": 19.25,
+      "latency_seconds": 3.637497866060585
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.7238756224410086,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 3.0123019570019096
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6357433044400157,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 3.8018684620037675
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5601026247169553,
+      "mean_answer_characters": 46.5,
+      "latency_seconds": 3.4857831300469115
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.7914405014398281,
+      "mean_answer_characters": 47.5,
+      "latency_seconds": 4.160437796963379
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8881396955710211,
+      "mean_answer_characters": 39.5,
+      "latency_seconds": 4.5243951979791746
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7008713908984356,
+      "mean_answer_characters": 23.25,
+      "latency_seconds": 3.492261809995398
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6633825430307363,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 3.135306440992281
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8465107255165452,
+      "mean_answer_characters": 72.0,
+      "latency_seconds": 4.542510679108091
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5943308697552036,
+      "mean_answer_characters": 18.0,
+      "latency_seconds": 3.0180542930029333
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9157360835037891,
+      "mean_answer_characters": 80.25,
+      "latency_seconds": 4.7660205620341
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.750916684367358,
+      "mean_answer_characters": 12.0,
+      "latency_seconds": 3.352987485937774
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7341663159077958,
+      "mean_answer_characters": 42.0,
+      "latency_seconds": 4.293025271035731
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4295537772975448,
+      "mean_answer_characters": 10.75,
+      "latency_seconds": 2.3788377090822905
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.8084271251809019,
+      "mean_answer_characters": 57.0,
+      "latency_seconds": 4.226794898044318
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7114241875775721,
+      "mean_answer_characters": 55.25,
+      "latency_seconds": 3.8395453579723835
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.41072046773111603,
+      "mean_answer_characters": 6.75,
+      "latency_seconds": 2.2971080279676244
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.37125239468678534,
+      "mean_answer_characters": 16.0,
+      "latency_seconds": 2.5050505599938333
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7976757637609446,
+      "mean_answer_characters": 4.0,
+      "latency_seconds": 2.6743560140021145
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5765166864714814,
+      "mean_answer_characters": 19.5,
+      "latency_seconds": 2.94936371804215
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7226515876216425,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 3.0725995569955558
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6975085259030821,
+      "mean_answer_characters": 30.5,
+      "latency_seconds": 3.5125543299363926
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5761222317814993,
+      "mean_answer_characters": 14.0,
+      "latency_seconds": 2.777783052995801
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.35385709715415603,
+      "mean_answer_characters": 3.0,
+      "latency_seconds": 2.5284669080283493
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.642879212191428,
+      "mean_answer_characters": 14.25,
+      "latency_seconds": 3.762920910026878
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9203488843693959,
+      "mean_answer_characters": 33.5,
+      "latency_seconds": 3.8991353129968047
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4190881549744383,
+      "mean_answer_characters": 13.5,
+      "latency_seconds": 2.614815974025987
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.8861545057535682,
+      "mean_answer_characters": 84.5,
+      "latency_seconds": 4.880705524934456
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8534406660285646,
+      "mean_answer_characters": 61.5,
+      "latency_seconds": 4.347143213963136
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7602272219293597,
+      "mean_answer_characters": 46.25,
+      "latency_seconds": 3.309409549110569
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6498938203135032,
+      "mean_answer_characters": 24.25,
+      "latency_seconds": 3.1834664460038766
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8236432786840072,
+      "mean_answer_characters": 60.25,
+      "latency_seconds": 4.070729985949583
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7800974818944472,
+      "mean_answer_characters": 23.5,
+      "latency_seconds": 3.086225155973807
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5696502280849889,
+      "mean_answer_characters": 20.75,
+      "latency_seconds": 2.6210286770947278
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9321634303719412,
+      "mean_answer_characters": 24.0,
+      "latency_seconds": 3.9041139510227367
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.687874019190467,
+      "mean_answer_characters": 11.0,
+      "latency_seconds": 3.520426618051715
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7157918950572997,
+      "mean_answer_characters": 25.0,
+      "latency_seconds": 3.00167679192964
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6250237065424301,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 3.1011396440444514
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5367265846664683,
+      "mean_answer_characters": 39.75,
+      "latency_seconds": 3.151143584982492
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.6849393731389405,
+      "mean_answer_characters": 19.5,
+      "latency_seconds": 3.6209727179957554
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6353928500558357,
+      "mean_answer_characters": 22.0,
+      "latency_seconds": 2.8779889930738136
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.20003543963116238,
+      "mean_answer_characters": 4.5,
+      "latency_seconds": 2.0038193879881874
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7214182419432089,
+      "mean_answer_characters": 29.25,
+      "latency_seconds": 3.4895698049804196
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.945879901482447,
+      "mean_answer_characters": 68.25,
+      "latency_seconds": 4.499908469966613
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.9009385468720587,
+      "mean_answer_characters": 22.75,
+      "latency_seconds": 2.9717353070154786
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5720178554813428,
+      "mean_answer_characters": 55.0,
+      "latency_seconds": 3.4933748350013047
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8697914506467357,
+      "mean_answer_characters": 58.5,
+      "latency_seconds": 4.478833139990456
+    },
+    {
+      "config_id": "C02",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4746770391599034,
+      "mean_answer_characters": 7.75,
+      "latency_seconds": 2.398841768037528
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6451965816612923,
+      "mean_answer_characters": 39.25,
+      "latency_seconds": 4.3165789829799905
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.666809316788851,
+      "mean_answer_characters": 46.75,
+      "latency_seconds": 3.876914582098834
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9102357481799316,
+      "mean_answer_characters": 26.5,
+      "latency_seconds": 3.6090493019437417
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8207786458873629,
+      "mean_answer_characters": 45.5,
+      "latency_seconds": 3.897974016959779
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7132564934577006,
+      "mean_answer_characters": 48.75,
+      "latency_seconds": 5.655815095989965
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6218892694890786,
+      "mean_answer_characters": 22.5,
+      "latency_seconds": 3.19523395691067
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8598244622442184,
+      "mean_answer_characters": 59.75,
+      "latency_seconds": 5.0099614629289135
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.893340815623068,
+      "mean_answer_characters": 82.5,
+      "latency_seconds": 5.1277225819649175
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7679214316769968,
+      "mean_answer_characters": 83.0,
+      "latency_seconds": 4.9029529970139265
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5185806067580492,
+      "mean_answer_characters": 21.5,
+      "latency_seconds": 2.5636944479774684
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5732130406525509,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 3.0485286340117455
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7851901813375642,
+      "mean_answer_characters": 29.0,
+      "latency_seconds": 3.9561311199795455
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9103514005373456,
+      "mean_answer_characters": 62.25,
+      "latency_seconds": 4.526148616918363
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.750916684367358,
+      "mean_answer_characters": 12.0,
+      "latency_seconds": 3.290980700054206
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7752813544857218,
+      "mean_answer_characters": 75.5,
+      "latency_seconds": 4.753721310989931
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4502636239183482,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 2.317060913075693
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.7800057938384587,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 3.369077607989311
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.912657954464096,
+      "mean_answer_characters": 56.0,
+      "latency_seconds": 4.396652258001268
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4111485123152595,
+      "mean_answer_characters": 8.25,
+      "latency_seconds": 2.255319853895344
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.41055113774544494,
+      "mean_answer_characters": 15.0,
+      "latency_seconds": 2.493899389053695
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8322087466450169,
+      "mean_answer_characters": 68.25,
+      "latency_seconds": 4.807477383990772
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.7501219150255616,
+      "mean_answer_characters": 22.0,
+      "latency_seconds": 3.436963088926859
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8488447026252296,
+      "mean_answer_characters": 56.75,
+      "latency_seconds": 4.032042184961028
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9037083699803431,
+      "mean_answer_characters": 24.25,
+      "latency_seconds": 3.703117305994965
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6501613866083163,
+      "mean_answer_characters": 51.5,
+      "latency_seconds": 4.0909946259344
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8625409299685487,
+      "mean_answer_characters": 90.5,
+      "latency_seconds": 5.2419349029660225
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.915565013044925,
+      "mean_answer_characters": 64.0,
+      "latency_seconds": 5.451748732011765
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8878647909749642,
+      "mean_answer_characters": 75.25,
+      "latency_seconds": 4.587819066946395
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.42453591503589694,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 2.402722880942747
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9012951560165436,
+      "mean_answer_characters": 81.75,
+      "latency_seconds": 4.8993413399439305
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.574895383894647,
+      "mean_answer_characters": 41.5,
+      "latency_seconds": 3.2117997229797766
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7981258895451633,
+      "mean_answer_characters": 68.0,
+      "latency_seconds": 4.026378865004517
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7027821266607645,
+      "mean_answer_characters": 34.0,
+      "latency_seconds": 3.460931285051629
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7251218667982747,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 3.1299729089951143
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8167537932725036,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 2.8241276419721544
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8917062869746388,
+      "mean_answer_characters": 58.5,
+      "latency_seconds": 4.869668320985511
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.9363665940202954,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 3.7708387339953333
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7512592593047266,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 3.9564318569609895
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7285023567369321,
+      "mean_answer_characters": 22.75,
+      "latency_seconds": 2.9946156369987875
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.75468708857783,
+      "mean_answer_characters": 42.5,
+      "latency_seconds": 3.616748473024927
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5451991624177106,
+      "mean_answer_characters": 72.25,
+      "latency_seconds": 4.235156817943789
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.5504478479980041,
+      "mean_answer_characters": 24.5,
+      "latency_seconds": 3.154477951931767
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8728149195801171,
+      "mean_answer_characters": 27.75,
+      "latency_seconds": 3.5266284650424495
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 1,
+      "mean_source_description_cosine": 0.6384078747529894,
+      "mean_answer_characters": 29.25,
+      "latency_seconds": 3.3977133170701563
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7214182419432089,
+      "mean_answer_characters": 29.25,
+      "latency_seconds": 3.382385454955511
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6810549706672567,
+      "mean_answer_characters": 25.75,
+      "latency_seconds": 3.0790999960154295
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7210508116595096,
+      "mean_answer_characters": 30.25,
+      "latency_seconds": 3.803859916049987
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5558708297166272,
+      "mean_answer_characters": 8.5,
+      "latency_seconds": 2.527074068086222
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9072379136598434,
+      "mean_answer_characters": 83.25,
+      "latency_seconds": 5.392403002013452
+    },
+    {
+      "config_id": "C11",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6581268697059648,
+      "mean_answer_characters": 70.5,
+      "latency_seconds": 3.609675322077237
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5728431889761869,
+      "mean_answer_characters": 20.75,
+      "latency_seconds": 5.454622037010267
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7591536275318478,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 5.838726382004097
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6359012464476549,
+      "mean_answer_characters": 41.0,
+      "latency_seconds": 6.5907874630065635
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6839528177554752,
+      "mean_answer_characters": 15.25,
+      "latency_seconds": 5.2824988240608945
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.730967408192547,
+      "mean_answer_characters": 41.0,
+      "latency_seconds": 6.635270362952724
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5777261727118729,
+      "mean_answer_characters": 19.75,
+      "latency_seconds": 4.996947832987644
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6850632926486272,
+      "mean_answer_characters": 36.0,
+      "latency_seconds": 6.549802439985797
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8056708616296034,
+      "mean_answer_characters": 37.75,
+      "latency_seconds": 7.633857146953233
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6096787828011601,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 5.59745732403826
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5794887695852842,
+      "mean_answer_characters": 25.75,
+      "latency_seconds": 5.5755818750476465
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5123175050155198,
+      "mean_answer_characters": 27.0,
+      "latency_seconds": 5.345532759907655
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5956657939789286,
+      "mean_answer_characters": 9.75,
+      "latency_seconds": 5.371006638975814
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5842771315366957,
+      "mean_answer_characters": 25.25,
+      "latency_seconds": 5.606259644031525
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5794070208216157,
+      "mean_answer_characters": 35.5,
+      "latency_seconds": 5.88545886403881
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7034734448989652,
+      "mean_answer_characters": 18.25,
+      "latency_seconds": 5.448994150036015
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.703848530223647,
+      "mean_answer_characters": 47.25,
+      "latency_seconds": 6.684458584990352
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5092782285500815,
+      "mean_answer_characters": 24.75,
+      "latency_seconds": 5.070258563035168
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6257989873011,
+      "mean_answer_characters": 17.5,
+      "latency_seconds": 5.405000556958839
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5899284561815418,
+      "mean_answer_characters": 26.75,
+      "latency_seconds": 5.760805969010107
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4525255949577933,
+      "mean_answer_characters": 26.5,
+      "latency_seconds": 5.052932320977561
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.658686815057485,
+      "mean_answer_characters": 45.0,
+      "latency_seconds": 5.8471997319720685
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8748355868114941,
+      "mean_answer_characters": 22.5,
+      "latency_seconds": 6.002440473996103
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7473185180807503,
+      "mean_answer_characters": 52.5,
+      "latency_seconds": 6.700786515022628
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7758170855646682,
+      "mean_answer_characters": 39.25,
+      "latency_seconds": 6.965741639025509
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6144821237335159,
+      "mean_answer_characters": 28.75,
+      "latency_seconds": 6.267862170934677
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.46028048421510226,
+      "mean_answer_characters": 12.0,
+      "latency_seconds": 4.666619744035415
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6207437568759371,
+      "mean_answer_characters": 50.75,
+      "latency_seconds": 7.054035392939113
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5212201242454507,
+      "mean_answer_characters": 35.5,
+      "latency_seconds": 5.79795059398748
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4914947754922918,
+      "mean_answer_characters": 14.75,
+      "latency_seconds": 4.921881929039955
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4603989694981889,
+      "mean_answer_characters": 16.75,
+      "latency_seconds": 4.960655592032708
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6775805581554443,
+      "mean_answer_characters": 26.5,
+      "latency_seconds": 5.092994019039907
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7517834584777735,
+      "mean_answer_characters": 35.75,
+      "latency_seconds": 6.194708107039332
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.44327074268566113,
+      "mean_answer_characters": 28.5,
+      "latency_seconds": 4.906091519980691
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6574158421504539,
+      "mean_answer_characters": 34.0,
+      "latency_seconds": 5.839363225037232
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6802526865836434,
+      "mean_answer_characters": 19.0,
+      "latency_seconds": 4.948224121006206
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6922074196657805,
+      "mean_answer_characters": 37.25,
+      "latency_seconds": 6.28490557090845
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7076939171290122,
+      "mean_answer_characters": 23.25,
+      "latency_seconds": 6.23110957397148
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4222859532076899,
+      "mean_answer_characters": 10.75,
+      "latency_seconds": 4.687992676976137
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7600112311419378,
+      "mean_answer_characters": 10.25,
+      "latency_seconds": 5.371944026090205
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6353194241051117,
+      "mean_answer_characters": 26.5,
+      "latency_seconds": 6.003958456916735
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.567907853133952,
+      "mean_answer_characters": 22.75,
+      "latency_seconds": 4.8477805010043085
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8241810358809785,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 6.071860856958665
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6745261385463305,
+      "mean_answer_characters": 18.0,
+      "latency_seconds": 5.302105241920799
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6298185448397267,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 4.60905284807086
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.654026536111868,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 5.14270373492036
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6173299741434095,
+      "mean_answer_characters": 23.75,
+      "latency_seconds": 5.157849941053428
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6102336575684266,
+      "mean_answer_characters": 19.5,
+      "latency_seconds": 5.1692939340136945
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.48709007169495555,
+      "mean_answer_characters": 29.0,
+      "latency_seconds": 4.876933252089657
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.3913889765000627,
+      "mean_answer_characters": 24.75,
+      "latency_seconds": 4.731500760070048
+    },
+    {
+      "config_id": "C03",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6647282069305859,
+      "mean_answer_characters": 26.75,
+      "latency_seconds": 5.941892736940645
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4893829510151764,
+      "mean_answer_characters": 28.0,
+      "latency_seconds": 8.135111007024534
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7048456077634966,
+      "mean_answer_characters": 16.5,
+      "latency_seconds": 5.337810682016425
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7471770947579033,
+      "mean_answer_characters": 31.75,
+      "latency_seconds": 6.410561237949878
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5732489258350932,
+      "mean_answer_characters": 18.5,
+      "latency_seconds": 5.05911241506692
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7323607142882618,
+      "mean_answer_characters": 41.75,
+      "latency_seconds": 6.3631521300412714
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.587687695113031,
+      "mean_answer_characters": 32.5,
+      "latency_seconds": 5.660357974935323
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6462885420017893,
+      "mean_answer_characters": 29.0,
+      "latency_seconds": 5.809527909965254
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5369016079838584,
+      "mean_answer_characters": 22.75,
+      "latency_seconds": 5.63145568408072
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.38605083885208724,
+      "mean_answer_characters": 13.75,
+      "latency_seconds": 4.276438798988238
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5404764756398021,
+      "mean_answer_characters": 26.5,
+      "latency_seconds": 5.225809677038342
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6319687638450674,
+      "mean_answer_characters": 31.75,
+      "latency_seconds": 5.539975625928491
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5956657939789286,
+      "mean_answer_characters": 9.75,
+      "latency_seconds": 5.0374485639622435
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6951160484995821,
+      "mean_answer_characters": 26.0,
+      "latency_seconds": 5.714504277100787
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5880784979381772,
+      "mean_answer_characters": 33.0,
+      "latency_seconds": 5.577838515979238
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8665043650825355,
+      "mean_answer_characters": 21.5,
+      "latency_seconds": 6.468297107028775
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7589401702756576,
+      "mean_answer_characters": 51.25,
+      "latency_seconds": 6.791448325035162
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5098250209466941,
+      "mean_answer_characters": 25.25,
+      "latency_seconds": 4.968099093995988
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6092958707306776,
+      "mean_answer_characters": 38.0,
+      "latency_seconds": 6.170891879010014
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5884036410267217,
+      "mean_answer_characters": 27.75,
+      "latency_seconds": 5.487875501974486
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.507897193694214,
+      "mean_answer_characters": 30.75,
+      "latency_seconds": 5.076766268000938
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7180618134980425,
+      "mean_answer_characters": 44.75,
+      "latency_seconds": 5.764583865995519
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8825696279334421,
+      "mean_answer_characters": 13.0,
+      "latency_seconds": 5.679278074996546
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6506369652154261,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 4.600274189026095
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5710783428762605,
+      "mean_answer_characters": 30.5,
+      "latency_seconds": 5.913460078067146
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6554988564228901,
+      "mean_answer_characters": 38.0,
+      "latency_seconds": 6.437296599964611
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.48594328402052384,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 4.485349740949459
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6226092134779417,
+      "mean_answer_characters": 36.75,
+      "latency_seconds": 7.0317292080726475
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5133607832048459,
+      "mean_answer_characters": 39.0,
+      "latency_seconds": 5.490388476056978
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5028568843283621,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 5.242759663960896
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5487310344753371,
+      "mean_answer_characters": 31.0,
+      "latency_seconds": 5.1898820829810575
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.634719554759675,
+      "mean_answer_characters": 21.25,
+      "latency_seconds": 4.704877048032358
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7571461267144753,
+      "mean_answer_characters": 35.75,
+      "latency_seconds": 5.867892096983269
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5320815828503006,
+      "mean_answer_characters": 28.5,
+      "latency_seconds": 5.059851516969502
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7529931936184159,
+      "mean_answer_characters": 44.75,
+      "latency_seconds": 7.196771514019929
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7622615046011156,
+      "mean_answer_characters": 26.75,
+      "latency_seconds": 5.36113373900298
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5235542075222,
+      "mean_answer_characters": 31.0,
+      "latency_seconds": 5.85158561100252
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7632444051396932,
+      "mean_answer_characters": 43.75,
+      "latency_seconds": 7.542330179014243
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.38602959083284366,
+      "mean_answer_characters": 28.25,
+      "latency_seconds": 4.741879864945076
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6461775715369698,
+      "mean_answer_characters": 34.0,
+      "latency_seconds": 6.174989522085525
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8644608183670142,
+      "mean_answer_characters": 37.0,
+      "latency_seconds": 6.383107078028843
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.48271015348402,
+      "mean_answer_characters": 24.25,
+      "latency_seconds": 5.522147115087137
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.9001780157058941,
+      "mean_answer_characters": 41.25,
+      "latency_seconds": 7.0464665229665115
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6888650164529939,
+      "mean_answer_characters": 26.75,
+      "latency_seconds": 6.109528934000991
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.561160431958831,
+      "mean_answer_characters": 28.0,
+      "latency_seconds": 4.927077919943258
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6496945171321672,
+      "mean_answer_characters": 17.0,
+      "latency_seconds": 5.1422212469624355
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5937851079826743,
+      "mean_answer_characters": 28.25,
+      "latency_seconds": 5.278309870045632
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.678624352965471,
+      "mean_answer_characters": 16.0,
+      "latency_seconds": 4.6889242170145735
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.3365169107364726,
+      "mean_answer_characters": 23.0,
+      "latency_seconds": 4.447291395044886
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4741530544817533,
+      "mean_answer_characters": 35.0,
+      "latency_seconds": 5.709534795023501
+    },
+    {
+      "config_id": "C09",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5210331086531258,
+      "mean_answer_characters": 24.75,
+      "latency_seconds": 5.339885118068196
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5509975787419256,
+      "mean_answer_characters": 43.0,
+      "latency_seconds": 7.647931838990189
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.650364662354983,
+      "mean_answer_characters": 8.25,
+      "latency_seconds": 6.034724564058706
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.759521946020521,
+      "mean_answer_characters": 13.25,
+      "latency_seconds": 6.703165718936361
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6922926418771664,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 6.209320219932124
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6389175850177523,
+      "mean_answer_characters": 44.0,
+      "latency_seconds": 9.220918075996451
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.26849879732581683,
+      "mean_answer_characters": 42.25,
+      "latency_seconds": 6.79184219497256
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7175751506281678,
+      "mean_answer_characters": 17.0,
+      "latency_seconds": 7.496996234054677
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4653130630657879,
+      "mean_answer_characters": 26.75,
+      "latency_seconds": 6.166531970957294
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3855999238763238,
+      "mean_answer_characters": 16.0,
+      "latency_seconds": 6.166689939098433
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.588766487992318,
+      "mean_answer_characters": 23.5,
+      "latency_seconds": 6.134648117003962
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7311618553948438,
+      "mean_answer_characters": 30.5,
+      "latency_seconds": 7.987378477002494
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6237587974652244,
+      "mean_answer_characters": 17.0,
+      "latency_seconds": 7.34849235706497
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8395837882950292,
+      "mean_answer_characters": 20.0,
+      "latency_seconds": 7.28615845402237
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6285035987343811,
+      "mean_answer_characters": 15.0,
+      "latency_seconds": 7.074527757009491
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8474157021262306,
+      "mean_answer_characters": 12.5,
+      "latency_seconds": 7.798869914957322
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.45636628918898337,
+      "mean_answer_characters": 15.5,
+      "latency_seconds": 5.652539027039893
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.42421595469796847,
+      "mean_answer_characters": 14.5,
+      "latency_seconds": 5.179585585952736
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7022164732885846,
+      "mean_answer_characters": 30.0,
+      "latency_seconds": 8.254141763900407
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.34242457090889744,
+      "mean_answer_characters": 9.0,
+      "latency_seconds": 5.498229530989192
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3661899958147298,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 5.956466761068441
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.710314363388053,
+      "mean_answer_characters": 18.75,
+      "latency_seconds": 6.197961881989613
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.727732830204064,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 6.4140017189783975
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5221481498433025,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 5.604710651910864
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5638124894216455,
+      "mean_answer_characters": 51.0,
+      "latency_seconds": 7.920405899989419
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5861070177007848,
+      "mean_answer_characters": 16.5,
+      "latency_seconds": 6.768259284086525
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4407073271402431,
+      "mean_answer_characters": 5.25,
+      "latency_seconds": 5.826558477943763
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5934579611786934,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 7.126531340065412
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5190152082762243,
+      "mean_answer_characters": 24.0,
+      "latency_seconds": 6.503162642940879
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.339978107079995,
+      "mean_answer_characters": 21.0,
+      "latency_seconds": 6.512365116970614
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7305534024191339,
+      "mean_answer_characters": 25.0,
+      "latency_seconds": 7.318617671029642
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6133410983652283,
+      "mean_answer_characters": 20.0,
+      "latency_seconds": 6.7467847290681675
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6364804104298439,
+      "mean_answer_characters": 10.75,
+      "latency_seconds": 6.175308029050939
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6989140327569777,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 7.752083303988911
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.22183396008742065,
+      "mean_answer_characters": 31.25,
+      "latency_seconds": 6.0020012620370835
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.6675739942517978,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 5.951703265076503
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.5418564203861936,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 7.8994699999457225
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8453142665153717,
+      "mean_answer_characters": 10.0,
+      "latency_seconds": 7.104651613975875
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6141111888491894,
+      "mean_answer_characters": 7.75,
+      "latency_seconds": 6.587526182993315
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.7642913055713665,
+      "mean_answer_characters": 13.0,
+      "latency_seconds": 6.6126017550705
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5867299664603671,
+      "mean_answer_characters": 19.0,
+      "latency_seconds": 6.130214423988946
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.687614388787989,
+      "mean_answer_characters": 7.0,
+      "latency_seconds": 5.070217972970568
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5160562889952212,
+      "mean_answer_characters": 11.5,
+      "latency_seconds": 5.092085387092084
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5821921557487469,
+      "mean_answer_characters": 26.25,
+      "latency_seconds": 6.067545822937973
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6535461607189889,
+      "mean_answer_characters": 8.5,
+      "latency_seconds": 5.0544462479883805
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5949735217650683,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 6.108093764050864
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5566156408219997,
+      "mean_answer_characters": 27.25,
+      "latency_seconds": 6.0148594450438395
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8822468697890745,
+      "mean_answer_characters": 18.0,
+      "latency_seconds": 6.116437523975037
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5695931998354214,
+      "mean_answer_characters": 32.75,
+      "latency_seconds": 6.913949821027927
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.44671999765534054,
+      "mean_answer_characters": 30.5,
+      "latency_seconds": 5.739374930039048
+    },
+    {
+      "config_id": "C04",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4696668596255682,
+      "mean_answer_characters": 15.5,
+      "latency_seconds": 5.758597781066783
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4405000_bidirectional_reflectance-148-212X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.3787511738274886,
+      "mean_answer_characters": 27.75,
+      "latency_seconds": 6.096722378977574
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_BART_DP3_314000_4875000_bidirectional_reflectance-596-660X20-84",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5420711647529756,
+      "mean_answer_characters": 8.0,
+      "latency_seconds": 6.417958244914189
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_BONA_DP3_473000_7227000_bidirectional_reflectance-20-84X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.759521946020521,
+      "mean_answer_characters": 13.25,
+      "latency_seconds": 6.160771215916611
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D11_CLBJ_DP3_634000_3687000_bidirectional_reflectance-340-404X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.8647492109969452,
+      "mean_answer_characters": 12.5,
+      "latency_seconds": 7.028172831051052
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_CPER_DP3_518000_4514000_bidirectional_reflectance-148-212X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6785474509439432,
+      "mean_answer_characters": 27.5,
+      "latency_seconds": 5.796850878978148
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_DEJU_DP3_561000_7075000_bidirectional_reflectance-916-980X340-404",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6748936565058344,
+      "mean_answer_characters": 14.25,
+      "latency_seconds": 6.239853026927449
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4711000_bidirectional_reflectance-276-340X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.7321575740745616,
+      "mean_answer_characters": 20.75,
+      "latency_seconds": 6.949755577021278
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7087000_bidirectional_reflectance-852-916X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5037778497546967,
+      "mean_answer_characters": 19.0,
+      "latency_seconds": 5.9851485879626125
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4709000_bidirectional_reflectance-340-404X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5574834749417773,
+      "mean_answer_characters": 38.0,
+      "latency_seconds": 6.355898746987805
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D03_JERC_DP3_740000_3450000_bidirectional_reflectance-468-532X724-788",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.4801351112723335,
+      "mean_answer_characters": 18.25,
+      "latency_seconds": 5.360328587004915
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_KONZ_DP3_711000_4333000_bidirectional_reflectance-532-596X212-276",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.3894739554247003,
+      "mean_answer_characters": 28.75,
+      "latency_seconds": 5.931375676998869
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_LIRO_DP3_289000_5097000_bidirectional_reflectance-532-596X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4655498927075007,
+      "mean_answer_characters": 14.75,
+      "latency_seconds": 5.770978912012652
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_MCDI_DP3_721000_4317000_bidirectional_reflectance-660-724X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6425567725539321,
+      "mean_answer_characters": 11.5,
+      "latency_seconds": 5.910894859931432
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D11_OAES_DP3_496000_3909000_bidirectional_reflectance-84-148X596-660",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.41645628837290966,
+      "mean_answer_characters": 14.0,
+      "latency_seconds": 5.287439111038111
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4460000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.8401447777444195,
+      "mean_answer_characters": 21.0,
+      "latency_seconds": 7.3368974819313735
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4112000_bidirectional_reflectance-84-148X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5158176820334693,
+      "mean_answer_characters": 21.5,
+      "latency_seconds": 5.910270415013656
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_SOAP_DP3_296000_4102000_bidirectional_reflectance-148-212X276-340",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.554351080815098,
+      "mean_answer_characters": 18.5,
+      "latency_seconds": 5.996134744957089
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3524000_bidirectional_reflectance-148-212X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6918065673504401,
+      "mean_answer_characters": 24.25,
+      "latency_seconds": 7.085643387050368
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_STEI_DP3_299000_5038000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3619807122882736,
+      "mean_answer_characters": 6.25,
+      "latency_seconds": 5.27440547500737
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_STER_DP3_663000_4483000_bidirectional_reflectance-532-596X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.431692231506784,
+      "mean_answer_characters": 7.0,
+      "latency_seconds": 5.252069020061754
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-276-340X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6270741968601794,
+      "mean_answer_characters": 16.0,
+      "latency_seconds": 5.628458363004029
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_UKFS_DP3_315000_4323000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3770865434109234,
+      "mean_answer_characters": 9.25,
+      "latency_seconds": 4.590792573988438
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5118000_bidirectional_reflectance-468-532X340-404",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4932205345778233,
+      "mean_answer_characters": 10.5,
+      "latency_seconds": 5.462856336031109
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4400000_bidirectional_reflectance-212-276X404-468",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.566676917799541,
+      "mean_answer_characters": 25.25,
+      "latency_seconds": 6.306135726044886
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_BART_DP3_313000_4880000_bidirectional_reflectance-276-340X916-980",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.7427038538686783,
+      "mean_answer_characters": 7.5,
+      "latency_seconds": 6.062712448067032
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_BONA_DP3_472000_7227000_bidirectional_reflectance-212-276X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4201293342440071,
+      "mean_answer_characters": 7.5,
+      "latency_seconds": 4.828759329975583
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3690000_bidirectional_reflectance-660-724X212-276",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.38025520097740423,
+      "mean_answer_characters": 12.75,
+      "latency_seconds": 5.8934276109794155
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_CPER_DP3_519000_4525000_bidirectional_reflectance-852-916X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5405693884696668,
+      "mean_answer_characters": 20.75,
+      "latency_seconds": 5.2934922280255705
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_DEJU_DP3_567000_7087000_bidirectional_reflectance-84-148X84-148",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6735858189073766,
+      "mean_answer_characters": 7.75,
+      "latency_seconds": 5.950873031979427
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_HARV_DP3_725000_4713000_bidirectional_reflectance-788-852X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5344909733283592,
+      "mean_answer_characters": 13.75,
+      "latency_seconds": 5.3334108599228784
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_HEAL_DP3_394000_7090000_bidirectional_reflectance-532-596X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5210299692181393,
+      "mean_answer_characters": 18.25,
+      "latency_seconds": 4.947085000923835
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_HOPB_DP3_716000_4705000_bidirectional_reflectance-724-788X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.6588388549105937,
+      "mean_answer_characters": 11.5,
+      "latency_seconds": 5.081455570994876
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D03_JERC_DP3_739000_3453000_bidirectional_reflectance-468-532X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6812895908821611,
+      "mean_answer_characters": 35.0,
+      "latency_seconds": 6.838037539971992
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_KONZ_DP3_710000_4335000_bidirectional_reflectance-788-852X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.37035093817607834,
+      "mean_answer_characters": 34.5,
+      "latency_seconds": 6.149417023989372
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_LIRO_DP3_290000_5097000_bidirectional_reflectance-724-788X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6378658168340876,
+      "mean_answer_characters": 24.75,
+      "latency_seconds": 6.117663969984278
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_MCDI_DP3_718000_4312000_bidirectional_reflectance-468-532X20-84",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5515172597697945,
+      "mean_answer_characters": 32.25,
+      "latency_seconds": 6.919499674928375
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D11_OAES_DP3_488000_3918000_bidirectional_reflectance-468-532X660-724",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.44173052354733233,
+      "mean_answer_characters": 10.0,
+      "latency_seconds": 4.93100240000058
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_RMNP_DP3_452000_4452000_bidirectional_reflectance-852-916X148-212",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.37204258764852804,
+      "mean_answer_characters": 9.0,
+      "latency_seconds": 4.62186464201659
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_SJER_DP3_254000_4108000_bidirectional_reflectance-148-212X532-596",
+      "pair_count": 4,
+      "question_type_count": 2,
+      "mean_source_description_cosine": 0.8448342612965352,
+      "mean_answer_characters": 6.0,
+      "latency_seconds": 5.523292548023164
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_SOAP_DP3_298000_4106000_bidirectional_reflectance-724-788X148-212",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.6494746948740379,
+      "mean_answer_characters": 14.0,
+      "latency_seconds": 6.126410754979588
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D14_SRER_DP3_505000_3518000_bidirectional_reflectance-404-468X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.4642121642455722,
+      "mean_answer_characters": 7.5,
+      "latency_seconds": 5.0986472150543705
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_STEI_DP3_295000_5044000_bidirectional_reflectance-212-276X532-596",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5306297334846009,
+      "mean_answer_characters": 6.5,
+      "latency_seconds": 5.040902632987127
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_STER_DP3_663000_4478000_bidirectional_reflectance-84-148X532-596",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5033369472220096,
+      "mean_answer_characters": 16.25,
+      "latency_seconds": 5.19547658902593
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D17_TEAK_DP3_324000_4106000_bidirectional_reflectance-404-468X660-724",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5228235195452887,
+      "mean_answer_characters": 11.0,
+      "latency_seconds": 4.847803310025483
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D06_UKFS_DP3_305000_4324000_bidirectional_reflectance-20-84X276-340",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5421183623141812,
+      "mean_answer_characters": 17.25,
+      "latency_seconds": 5.992793443030678
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D05_UNDE_DP3_304000_5116000_bidirectional_reflectance-660-724X404-468",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.5172174889668963,
+      "mean_answer_characters": 17.75,
+      "latency_seconds": 5.451455094036646
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D10_ARIK_DP3_712000_4401000_bidirectional_reflectance-20-84X468-532",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.723528703558473,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 6.094517741003074
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D01_BART_DP3_313000_4882000_bidirectional_reflectance-596-660X724-788",
+      "pair_count": 4,
+      "question_type_count": 4,
+      "mean_source_description_cosine": 0.4962086127120475,
+      "mean_answer_characters": 11.25,
+      "latency_seconds": 5.140083952923305
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D19_BONA_DP3_471000_7229000_bidirectional_reflectance-148-212X788-852",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.3791452740217394,
+      "mean_answer_characters": 11.0,
+      "latency_seconds": 4.805460272007622
+    },
+    {
+      "config_id": "C06",
+      "sample_id": "NEON_D11_CLBJ_DP3_632000_3697000_bidirectional_reflectance-660-724X596-660",
+      "pair_count": 4,
+      "question_type_count": 3,
+      "mean_source_description_cosine": 0.5880103005181947,
+      "mean_answer_characters": 12.25,
+      "latency_seconds": 5.924549637013115
+    }
+  ],
+  "comparisons": [
+    {
+      "left_config_id": "C01",
+      "right_config_id": "C10",
+      "paired_scene_count": 50,
+      "metrics": {
+        "question_type_count": {
+          "mean_delta": -0.18,
+          "ci95": [
+            -0.46,
+            0.08
+          ]
+        },
+        "mean_source_description_cosine": {
+          "mean_delta": 0.02295861512746298,
+          "ci95": [
+            -0.02056508019894072,
+            0.06613116589466447
+          ]
+        },
+        "mean_answer_characters": {
+          "mean_delta": 1.555,
+          "ci95": [
+            -2.455,
+            5.365
+          ]
+        },
+        "latency_seconds": {
+          "mean_delta": 0.14134203807683662,
+          "ci95": [
+            -0.07418276998680084,
+            0.3309173582284711
+          ]
+        }
+      }
+    },
+    {
+      "left_config_id": "C02",
+      "right_config_id": "C11",
+      "paired_scene_count": 50,
+      "metrics": {
+        "question_type_count": {
+          "mean_delta": -0.14,
+          "ci95": [
+            -0.32,
+            0.06
+          ]
+        },
+        "mean_source_description_cosine": {
+          "mean_delta": -0.04593857320909206,
+          "ci95": [
+            -0.08947209080895037,
+            -0.0026731442326241774
+          ]
+        },
+        "mean_answer_characters": {
+          "mean_delta": -11.565,
+          "ci95": [
+            -19.535,
+            -3.235
+          ]
+        },
+        "latency_seconds": {
+          "mean_delta": -0.38300452776253224,
+          "ci95": [
+            -0.6334387316205539,
+            -0.1411047147354111
+          ]
+        }
+      }
+    },
+    {
+      "left_config_id": "C03",
+      "right_config_id": "C09",
+      "paired_scene_count": 50,
+      "metrics": {
+        "question_type_count": {
+          "mean_delta": -0.18,
+          "ci95": [
+            -0.34,
+            -0.02
+          ]
+        },
+        "mean_source_description_cosine": {
+          "mean_delta": 0.006288909595118059,
+          "ci95": [
+            -0.020935748591122173,
+            0.03367771827704711
+          ]
+        },
+        "mean_answer_characters": {
+          "mean_delta": -2.335,
+          "ci95": [
+            -5.12,
+            0.43
+          ]
+        },
+        "latency_seconds": {
+          "mean_delta": -0.02579182664863765,
+          "ci95": [
+            -0.25828496276633817,
+            0.18033415438840167
+          ]
+        }
+      }
+    },
+    {
+      "left_config_id": "C04",
+      "right_config_id": "C06",
+      "paired_scene_count": 50,
+      "metrics": {
+        "question_type_count": {
+          "mean_delta": -0.1,
+          "ci95": [
+            -0.34,
+            0.14
+          ]
+        },
+        "mean_source_description_cosine": {
+          "mean_delta": 0.0345853301361219,
+          "ci95": [
+            -0.008438085110522188,
+            0.07635738167534115
+          ]
+        },
+        "mean_answer_characters": {
+          "mean_delta": 3.505,
+          "ci95": [
+            1.13,
+            6.02
+          ]
+        },
+        "latency_seconds": {
+          "mean_delta": 0.7870755953923799,
+          "ci95": [
+            0.5630647156387567,
+            1.024768333765678
+          ]
+        }
+      }
+    }
+  ]
+}

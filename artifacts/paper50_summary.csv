@@ -1,0 +1,9 @@
+config_id,requested_case_count,run_requested_case_count,missing_sample_ids,completed_case_count,failed_case_count,validation_rate,pair_count,question_type_distribution,mean_latency_seconds
+C01,50,50,[],50,0,1.0,200,"{""attribute"": 81, ""comparison"": 8, ""counting"": 19, ""interpretive"": 46, ""spatial"": 46}",3.3105538034206257
+C10,50,50,[],50,0,1.0,200,"{""attribute"": 67, ""comparison"": 14, ""counting"": 31, ""interpretive"": 43, ""spatial"": 45}",3.169211765343789
+C02,50,50,[],50,0,1.0,200,"{""attribute"": 92, ""comparison"": 2, ""counting"": 5, ""interpretive"": 53, ""spatial"": 48}",3.4407468142476865
+C11,50,50,[],50,0,1.0,200,"{""attribute"": 78, ""comparison"": 5, ""counting"": 3, ""interpretive"": 77, ""spatial"": 37}",3.8237513420102185
+C03,50,50,[],50,0,1.0,200,"{""attribute"": 68, ""comparison"": 29, ""counting"": 17, ""interpretive"": 62, ""spatial"": 24}",5.647673972540069
+C09,50,50,[],50,0,1.0,200,"{""attribute"": 66, ""comparison"": 36, ""counting"": 22, ""interpretive"": 55, ""spatial"": 21}",5.673465799188707
+C04,50,50,[],50,0,1.0,200,"{""attribute"": 59, ""comparison"": 25, ""counting"": 36, ""interpretive"": 36, ""spatial"": 44}",6.5539937290060335
+C06,50,50,[],50,0,1.0,200,"{""attribute"": 61, ""comparison"": 28, ""counting"": 35, ""interpretive"": 36, ""spatial"": 40}",5.766918133613654

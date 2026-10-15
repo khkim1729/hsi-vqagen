@@ -29,9 +29,11 @@ class _Backend:
     def __init__(self, texts: list[str]):
         self.texts = iter(texts)
         self.calls = []
+        self.requests = []
 
     def generate(self, request):
         self.calls.append(request.case_id)
+        self.requests.append(request)
         return RawGeneration(
             text=next(self.texts),
             backend=request.backend,
@@ -333,3 +335,13 @@ def test_optional_validation_retry_uses_next_seed_and_preserves_attempts(
     attempts = json.loads(attempts_path.read_text())
     assert len(attempts) == 2
     assert attempts[1]["backend_metadata"]["retry_seed"] == config.generation.seed + 1
+    assert attempts[1]["backend_metadata"]["retry_mode"] == "corrective_prompt"
+    assert len(attempts[1]["backend_metadata"]["repair_prompt_sha256"]) == 64
+    retry_messages = backend.requests[1].messages
+    assert retry_messages[-2] == {
+        "role": "assistant", "content": [{"type": "text", "text": "not json"}]
+    }
+    assert retry_messages[-1]["role"] == "user"
+    correction = retry_messages[-1]["content"][0]["text"]
+    assert "exactly 4 distinct entries" in correction
+    assert "Validation error: ValueError: no JSON object found" in correction

@@ -42,7 +42,8 @@ spectral/material 정보를 RGB만으로 추론하지 못하게 하고, text-onl
 Prompt file의 SHA-256, prompt version, checkpoint revision, generation settings는
 `generation_config.json`과 각 normalized row에 기록한다. Validator는 pair 수, schema,
 provenance와 중복 질문을 검사한다. 선택적 validation retry는 최초 실패 시 seed를
-20261001에서 20261002로 바꾸는 최대 1회이며, 원시 응답과 retry 여부를 남긴다.
+20261001에서 20261002로 바꾸고 `json_repair_v1.txt`의 구조 교정 지시를 덧붙이는
+최대 1회이다. 최초/교정 원시 응답, trigger 오류, 교정 prompt SHA-256을 모두 남긴다.
 
 ## 자동 평가
 

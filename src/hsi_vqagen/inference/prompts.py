@@ -17,6 +17,7 @@ PROMPT_PATHS = {
     "vqa-generation-v1": ROOT / "prompts" / "vqa_generation_v1.txt",
     "vqa-generation-ko-v1": ROOT / "prompts" / "vqa_generation_ko_v1.txt",
 }
+REPAIR_PROMPT_PATH = ROOT / "prompts" / "json_repair_v1.txt"
 EXPERIMENT_IDS = {
     "vqa-generation-v1": "hsi-vqagen-feasibility-v1",
     "vqa-generation-ko-v1": "hsi-vqagen-feasibility-ko-v1",
@@ -36,6 +37,23 @@ def _template(prompt_version: str) -> str:
 
 def prompt_sha256(prompt_version: str = "vqa-generation-v1") -> str:
     return hashlib.sha256(_prompt_path(prompt_version).read_bytes()).hexdigest()
+
+
+def repair_prompt_sha256() -> str:
+    return hashlib.sha256(REPAIR_PROMPT_PATH.read_bytes()).hexdigest()
+
+
+def build_validation_retry_request(request, raw_text: str, validation_error: str):
+    """Build one provenance-visible corrective turn without changing task evidence."""
+
+    instruction = REPAIR_PROMPT_PATH.read_text(encoding="utf-8").strip()
+    correction = f"{instruction}\n\nValidation error: {validation_error}"
+    messages = [
+        *request.messages,
+        {"role": "assistant", "content": [{"type": "text", "text": raw_text}]},
+        {"role": "user", "content": [{"type": "text", "text": correction}]},
+    ]
+    return request.model_copy(update={"messages": messages})
 
 
 def _data_uri(path: Path) -> str:

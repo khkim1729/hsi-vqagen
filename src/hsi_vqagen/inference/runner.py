@@ -15,7 +15,11 @@ from hsi_vqagen.data.records import DatasetRecord
 from hsi_vqagen.data.samples import rgb_mapping_hash
 from hsi_vqagen.inference.backends import GenerationBackend
 from hsi_vqagen.inference.normalize import RepairCallable, normalize_response
-from hsi_vqagen.inference.prompts import build_generation_request
+from hsi_vqagen.inference.prompts import (
+    build_generation_request,
+    build_validation_retry_request,
+    repair_prompt_sha256,
+)
 from hsi_vqagen.inference.telemetry import peak_vram_measurement
 from hsi_vqagen.schema.generation import NormalizedCase, RawGeneration
 from hsi_vqagen.utils.io import atomic_write_json, atomic_write_text
@@ -257,11 +261,14 @@ def run_configuration(
         if retry_invalid_once and raw.error is None and retry_callable is None:
             def retry_callable(raw_text: str, validation_error: str) -> RawGeneration:
                 nonlocal retry_raw
-                del raw_text
                 retry_generation = request.generation.model_copy(
                     update={"seed": request.generation.seed + 1}
                 )
-                retry_request = request.model_copy(
+                retry_request = build_validation_retry_request(
+                    request,
+                    raw_text,
+                    redact_secrets(validation_error),
+                ).model_copy(
                     update={"generation": retry_generation}
                 )
                 try:
@@ -281,6 +288,8 @@ def run_configuration(
                     **retried.backend_metadata,
                     "validation_retry": 1,
                     "retry_seed": retry_generation.seed,
+                    "retry_mode": "corrective_prompt",
+                    "repair_prompt_sha256": repair_prompt_sha256(),
                     "trigger_validation_error": redact_secrets(validation_error),
                 }
                 retry_raw = retried.model_copy(update={"backend_metadata": metadata})

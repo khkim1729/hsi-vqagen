@@ -53,11 +53,11 @@ pinned Gemma-4-12B checkpoint. These IDs, output directories, provenance
 fields, and manifest identity are distinct from C01–C11. The 20 scenes × six
 conditions request 120 cases and 480 QA pairs.
 
-## Execution when a GPU is genuinely idle
+## Execution and GPU safety
 
-As of 2026-10-15 UTC, GPUs 0–3 were occupied by other users. No paper or
-robustness inference was started. Check both utilization and compute processes
-immediately before a run. The orchestrator refuses a GPU reporting more than
+Both studies completed on 2026-10-15 UTC: paper50 used GPU 1 and robustness
+used GPU 3. GPU 0, which contained another user's process, was not touched.
+The orchestrator refuses a GPU reporting more than
 512 MiB used, nonzero utilization, or a compute process; it never chooses a GPU
 or stops another user's process. It starts each model on the explicit GPU and
 stops only the server process group it launched after verifying its PID and
@@ -108,14 +108,12 @@ uses the existing pinned virtual environment and local dataset path config
 without copying either into the tracked repository. Existing five-scene
 outputs in the older worktree remain untouched.
 
-Using the observed five-scene mean case latencies, 50-scene inference is about
-30 minutes of generation plus about 10 minutes of four checkpoint loads;
-allow 45–60 minutes including scans and retries on one idle H200. The
-robustness run is about 9 minutes of generation plus roughly 7 minutes of
-two checkpoint loads; allow 20–30 minutes. These are planning estimates,
-not measured times for the new cohorts.
+For future reproduction, allow time for four checkpoint loads plus 400 cases
+for paper50, and two checkpoint loads plus 120 cases for robustness. Resume
+skips only cases whose frozen request identity and successful-attempt provenance
+match.
 
-## Analysis after complete inference
+## Completed analysis
 
 Only after every condition has completed, run:
 
@@ -142,8 +140,10 @@ final paper result. Bootstrap CIs are withheld for comparisons with fewer
 than 10 paired scenes; eligible comparison bars remain visible in mixed
 exploratory figures. Rows retain the registry generation settings as the
 requested base settings and separately record the effective successful-attempt
-settings and whether a validation retry used `seed+1`. The analyzer verifies
-those fields against the run telemetry and retry policy. Per-case
+settings and whether a validation retry used `seed+1`. A retry is a single
+corrective turn using the versioned `json_repair_v1.txt` instruction; its
+trigger error and repair-prompt SHA-256 are retained in the attempt metadata.
+The analyzer verifies the normalized fields against the run telemetry and retry policy. Per-case
 `raw/*.attempts.json` retains complete first/retry backend records without
 changing the legacy first-attempt `raw/*.json` format.
 Validation rate uses all frozen scenes as its denominator. Question-type
@@ -154,3 +154,13 @@ observations. Source-description cosine is lexical overlap, not correctness.
 No automated statistic here establishes visual grounding or answer truth.
 Those claims require the planned blind human review against the available
 description and RGB, with explicit tracking of the shuffled image source.
+
+Both reports have status `final_complete`. Paper50 contains 400/400 completed
+cases and 1,600 QA pairs. Its RGB-minus-text cosine deltas (95% scene-bootstrap
+CI) are C01/C10 `.023 [-.021, .066]`, C02/C11 `-.046 [-.089, -.003]`,
+C03/C09 `.006 [-.021, .034]`, and C04/C06 `.035 [-.008, .076]`. Robustness
+contains 120/120 completed cases and 480 pairs. Paired-minus-shuffled cosine is
+`.021 [-.039, .079]` for Qwen3-VL and `.031 [-.004, .066]` for Gemma-4-12B.
+The latter intervals include zero, so the lexical proxy does not show a stable
+paired-RGB benefit. This is a diagnostic of description-dominated behavior,
+not a semantic correctness or visual-grounding verdict.

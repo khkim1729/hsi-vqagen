@@ -10,17 +10,20 @@ README 위치: `121서버 01_hsi_vqa_gen_github/hsi-vqagen/README.md`
 
 | 항목 | 현재 상태 |
 |---|---|
-| 고정 sample | 5개, 모든 configuration에서 동일 ID·순서 사용 |
+| 고정 sample | 5-scene 전 모델 matrix + 50-scene 동일-checkpoint 확장 |
 | 등록 checkpoint | 7개 open checkpoint |
 | 실험 configuration | 11개: RGB + description 4개, description only 7개 |
 | 완료 | 11개 configuration, 55 case, 한국어 VQA 220개 |
+| 논문 확장 실험 | 50 scenes × 8조건 = 400 cases/1,600 VQA |
+| RGB 강건성 실험 | 20 scenes × 6조건 = 120 cases/480 VQA |
 | 모델 다운로드 | 7개 checkpoint 모두 완료 |
 | 한국어 형식 통과 | 220/220 VQA |
 | 주요 controlled ablation | Gemma-4-12B C03 vs C09 |
 | 원시 HSI 입력 여부 | 없음; HSI-derived RGB와 paired description만 사용 |
 
-현재 수치는 동일한 고정 5개 sample로 수행한 예비 결과다. 전체 데이터셋 결과나 통계적
-우월성 주장이 아니며, correctness는 자동 cosine만으로 판정하지 않는다.
+11-configuration 표는 동일한 고정 5개 sample의 breadth 결과다. 별도의 50-scene
+same-checkpoint 연구와 20-scene RGB perturbation 연구는 scene 단위 bootstrap CI를
+제공하지만, correctness는 자동 cosine만으로 판정하지 않는다.
 
 ## 모델 및 실험 조건
 
@@ -108,8 +111,9 @@ Paired HSI-derived source description (한국어):
 
 허용하는 `question_type`은 `spatial`, `counting`, `comparison`, `attribute`,
 `interpretive`다. 출력은 정확히 4개 pair인지, 필수 필드가 있는지, 질문이 중복되지
-않는지를 strict validator로 검사한다. 검증 실패 시 선택적으로 seed를 1 증가시켜 최대
-한 번만 재시도하며, 원시 시도와 validation status를 기록한다.
+않는지를 strict validator로 검사한다. 검증 실패 시 선택적으로 seed를 1 증가시키고
+versioned 구조 교정 지시를 추가해 최대 한 번만 재시도하며, 두 원시 시도와 validation
+status, 교정 prompt hash를 기록한다.
 
 ### 공통 generation setting
 
@@ -141,6 +145,25 @@ Paired HSI-derived source description (한국어):
 Legacy description-generation 프로젝트는 read-only reference로 조사했으며 수정하지 않았다.
 
 ## 현재 결과
+
+### ICCE 확장 실험
+
+- **Same-checkpoint 50-scene:** C01/C10, C02/C11, C03/C09, C04/C06의
+  400 cases와 1,600 VQA가 모두 structural validation을 통과했다.
+- RGB-minus-text source cosine은 Qwen3-VL `.023 [-.021, .066]`, InternVL3
+  `-.046 [-.089, -.003]`, Gemma-4-12B `.006 [-.021, .034]`, Mistral Small 3.1
+  `.035 [-.008, .076]`이다(괄호는 scene-bootstrap 95% CI).
+- **RGB perturbation 20-scene:** Qwen3-VL과 Gemma-4-12B 각각 paired RGB,
+  shuffled RGB, no-image를 실행해 120 cases와 480 VQA가 모두 통과했다.
+  paired-minus-shuffled cosine CI는 두 모델 모두 0을 포함했다.
+- 따라서 자동 lexical proxy에서는 paired RGB의 일관된 이득이 관찰되지 않았다.
+  이는 description 지배 가능성을 보여주는 진단 결과이며 visual grounding 또는
+  correctness의 부재/존재를 직접 증명하지 않는다.
+
+재현 산출물: [50-scene metrics](artifacts/paper50_metrics.json),
+[50-scene comparisons](artifacts/paper50_comparisons.csv),
+[RGB robustness metrics](artifacts/robustness_metrics.json),
+[RGB robustness comparisons](artifacts/robustness_comparisons.csv).
 
 ### 정량·정성 평가
 
@@ -200,6 +223,10 @@ scripts/serve_model.sh C01 1 8101 outputs/runtime/c01-8101
   --retry-invalid-once
 ```
 
+`--retry-invalid-once`는 검증 실패 응답을 그대로 보존한 뒤, seed+1과
+`prompts/json_repair_v1.txt`를 사용한 구조 교정 요청을 정확히 한 번 수행한다. 교정
+prompt 해시와 validation 오류는 `raw/*.attempts.json`에 기록된다.
+
 ### 평가와 figure 재생성
 
 ```bash
@@ -238,8 +265,9 @@ Hyperspectral VQA Generation*이다. Overleaf에는 영문 `main.tex`와 한국�
 
 1. 평가자 2인의 독립 1--5점 human evaluation과 불일치 조정
 2. 대표 2개 qualitative figure는 본문, 전체 5개는 Appendix에 배치
-3. 11-configuration의 cross-model 결과와 same-checkpoint ablation을 분리해 분석
-4. 5-sample feasibility 결론과 향후 전체 데이터 실행을 명확히 분리
+3. 11-configuration breadth, 50-scene same-checkpoint, 20-scene perturbation을
+   분리해 보고
+4. 자동 lexical 결과와 human correctness/visual-dependence 평가를 명확히 분리
 
 ## 보안과 재현성
 
